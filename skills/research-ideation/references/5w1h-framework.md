@@ -46,7 +46,7 @@ The 5W1H framework is a systematic thinking tool that helps researchers conceptu
 - Who will care about this research
 - Who will use the research outputs
 - Who will benefit from it
-- Who needs to be collaborated with
+- Who you need to collaborate with
 
 **Stakeholder categories**:
 - **Academia**: Researchers in the same field, reviewers, citers

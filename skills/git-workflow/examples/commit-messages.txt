@@ -25,9 +25,9 @@ Solution: Reduced cache time from 5 minutes to 1 minute
 
 ## Commits with Footer
 
-feat(api): refactor user interface
+feat(api): refactor user API
 
-BREAKING CHANGE: user query API path changed
+BREAKING CHANGE: user query endpoint path changed
 Old path: /api/user/list
 New path: /api/system/user/list
 

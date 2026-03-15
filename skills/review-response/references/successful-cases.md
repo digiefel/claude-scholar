@@ -344,4 +344,4 @@ We thank the reviewers for their detailed comments. We have conducted additional
 
 ## Ongoing Updates
 
-This document will be continuously updated with more successful cases.
+This document will be continuously updated with more successful cases. If you have a strong rebuttal case to share, contributions are welcome.

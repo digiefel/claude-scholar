@@ -2,7 +2,7 @@
 
 ## Conventional Commits Format
 
-Following the **Conventional Commits** specification, commit message format:
+Commit messages follow the **Conventional Commits** specification and use the following format:
 
 ```
 <type>(<scope>): <subject>
@@ -118,9 +118,9 @@ Solution: Reduced cache time from 5 minutes to 1 minute"
 ### Commit with Footer
 
 ```bash
-git commit -m "feat(api): refactor user interface
+git commit -m "feat(api): refactor user API
 
-BREAKING CHANGE: user query API path changed
+BREAKING CHANGE: user query endpoint path changed
 Old path: /api/user/list
 New path: /api/system/user/list
 
