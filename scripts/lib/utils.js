@@ -1,6 +1,6 @@
 /**
- * 跨平台工具函数库
- * 为 Claude Code 插件提供跨平台兼容性支持
+ * Cross-platform utility library
+ * Provides cross-platform compatibility support for Claude Code plugins
  *
  * @module utils
  */
@@ -10,23 +10,23 @@ const path = require('path');
 const os = require('os');
 const { execSync, spawnSync } = require('child_process');
 
-// 平台检测常量
+// Platform detection constants
 const isWindows = process.platform === 'win32';
 const isMacOS = process.platform === 'darwin';
 const isLinux = process.platform === 'linux';
 
 /**
- * 获取用户主目录（跨平台）
- * @returns {string} 用户主目录路径
+ * Get the user home directory (cross-platform)
+ * @returns {string} User home directory path
  */
 function getHomeDir() {
   return os.homedir();
 }
 
 /**
- * 确保目录存在，如不存在则创建（跨平台）
- * @param {string} dirPath - 目录路径
- * @returns {string} 目录路径
+ * Ensure a directory exists, creating it if it does not (cross-platform)
+ * @param {string} dirPath - Directory path
+ * @returns {string} Directory path
  */
 function ensureDir(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -36,23 +36,23 @@ function ensureDir(dirPath) {
 }
 
 /**
- * 检查命令是否存在（跨平台）
- * @param {string} cmd - 命令名称
- * @returns {boolean} 命令是否存在
+ * Check whether a command exists (cross-platform)
+ * @param {string} cmd - Command name
+ * @returns {boolean} Whether the command exists
  */
 function commandExists(cmd) {
-  // 验证命令名称安全性
+  // Validate command name safety
   if (!/^[a-zA-Z0-9_.-]+$/.test(cmd)) {
     return false;
   }
 
   try {
     if (isWindows) {
-      // Windows 使用 where 命令
+      // Windows uses the where command
       const result = spawnSync('where', [cmd], { stdio: 'pipe' });
       return result.status === 0;
     } else {
-      // Unix-like 系统使用 which 命令
+      // Unix-like systems use the which command
       const result = spawnSync('which', [cmd], { stdio: 'pipe' });
       return result.status === 0;
     }
@@ -62,10 +62,10 @@ function commandExists(cmd) {
 }
 
 /**
- * 安全执行命令（跨平台）
- * @param {string} cmd - 要执行的命令
- * @param {Object} options - 执行选项
- * @returns {{success: boolean, output: string, error?: string}} 执行结果
+ * Safely execute a command (cross-platform)
+ * @param {string} cmd - Command to execute
+ * @param {Object} options - Execution options
+ * @returns {{success: boolean, output: string, error?: string}} Execution result
  */
 function runCommand(cmd, options = {}) {
   try {
@@ -85,8 +85,8 @@ function runCommand(cmd, options = {}) {
 }
 
 /**
- * 获取 Claude 配置目录（跨平台）
- * @returns {string} Claude 配置目录路径
+ * Get the Claude configuration directory (cross-platform)
+ * @returns {string} Claude configuration directory path
  */
 function getClaudeConfigDir() {
   const homeDir = getHomeDir();
@@ -94,27 +94,27 @@ function getClaudeConfigDir() {
 }
 
 /**
- * 获取项目根目录（跨平台）
- * @param {string} startDir - 起始目录
- * @returns {string|null} 项目根目录或 null
+ * Get the project root directory (cross-platform)
+ * @param {string} startDir - Starting directory
+ * @returns {string|null} Project root directory or null
  */
 function getProjectRoot(startDir = process.cwd()) {
   let currentDir = startDir;
 
   while (currentDir !== path.parse(currentDir).root) {
-    // 检查是否存在 .claude-plugin 目录
+    // Check whether .claude-plugin directory exists
     const pluginDir = path.join(currentDir, '.claude-plugin');
     if (fs.existsSync(pluginDir)) {
       return currentDir;
     }
 
-    // 检查是否存在 package.json
+    // Check whether package.json exists
     const packageJson = path.join(currentDir, 'package.json');
     if (fs.existsSync(packageJson)) {
       return currentDir;
     }
 
-    // 向上移动
+    // Move up one level
     currentDir = path.dirname(currentDir);
   }
 
@@ -122,36 +122,36 @@ function getProjectRoot(startDir = process.cwd()) {
 }
 
 /**
- * 路径拼接（跨平台）
- * @param {...string} paths - 路径片段
- * @returns {string} 拼接后的路径
+ * Join path segments (cross-platform)
+ * @param {...string} paths - Path segments
+ * @returns {string} Joined path
  */
 function joinPath(...paths) {
   return path.join(...paths);
 }
 
 /**
- * 获取绝对路径（跨平台）
- * @param {...string} paths - 路径片段
- * @returns {string} 绝对路径
+ * Resolve an absolute path (cross-platform)
+ * @param {...string} paths - Path segments
+ * @returns {string} Absolute path
  */
 function resolvePath(...paths) {
   return path.resolve(...paths);
 }
 
 /**
- * 规范化路径（跨平台）
- * @param {string} filePath - 文件路径
- * @returns {string} 规范化后的路径
+ * Normalize a path (cross-platform)
+ * @param {string} filePath - File path
+ * @returns {string} Normalized path
  */
 function normalizePath(filePath) {
   return path.normalize(filePath);
 }
 
 /**
- * 读取 JSON 文件（跨平台）
- * @param {string} filePath - JSON 文件路径
- * @returns {Object|null} 解析后的 JSON 对象或 null
+ * Read a JSON file (cross-platform)
+ * @param {string} filePath - JSON file path
+ * @returns {Object|null} Parsed JSON object or null
  */
 function readJSON(filePath) {
   try {
@@ -163,11 +163,11 @@ function readJSON(filePath) {
 }
 
 /**
- * 写入 JSON 文件（跨平台）
- * @param {string} filePath - JSON 文件路径
- * @param {Object} data - 要写入的数据
- * @param {number|object|string} space - JSON 缩进空格数
- * @returns {boolean} 是否成功
+ * Write a JSON file (cross-platform)
+ * @param {string} filePath - JSON file path
+ * @param {Object} data - Data to write
+ * @param {number|object|string} space - JSON indentation spaces
+ * @returns {boolean} Whether the operation succeeded
  */
 function writeJSON(filePath, data, space = 2) {
   try {
@@ -180,10 +180,10 @@ function writeJSON(filePath, data, space = 2) {
 }
 
 /**
- * 复制文件（跨平台）
- * @param {string} src - 源文件路径
- * @param {string} dest - 目标文件路径
- * @returns {boolean} 是否成功
+ * Copy a file (cross-platform)
+ * @param {string} src - Source file path
+ * @param {string} dest - Destination file path
+ * @returns {boolean} Whether the operation succeeded
  */
 function copyFile(src, dest) {
   try {
@@ -196,8 +196,8 @@ function copyFile(src, dest) {
 }
 
 /**
- * 获取平台信息
- * @returns {Object} 平台信息对象
+ * Get platform information
+ * @returns {Object} Platform information object
  */
 function getPlatformInfo() {
   return {
@@ -212,7 +212,7 @@ function getPlatformInfo() {
   };
 }
 
-// 导出所有函数
+// Export all functions
 module.exports = {
   isWindows,
   isMacOS,

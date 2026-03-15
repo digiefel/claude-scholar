@@ -1,64 +1,64 @@
-# 分支管理策略详解
+# Branch Management Strategies
 
-## 分支类型
+## Branch Types
 
-| 分支类型 | 命名规范          | 说明                       | 生命周期       |
-| :------- | :---------------- | :------------------------- | :------------- |
-| master   | `master`          | 主分支，始终保持可发布状态 | 永久           |
-| develop  | `develop`         | 开发分支，集成最新开发代码 | 永久           |
-| feature  | `feature/功能名`  | 功能分支                   | 开发完成后删除 |
-| bugfix   | `bugfix/问题描述` | Bug修复分支                | 修复完成后删除 |
-| hotfix   | `hotfix/问题描述` | 紧急修复分支               | 修复完成后删除 |
-| release  | `release/版本号`  | 发布分支                   | 发布完成后删除 |
+| Branch Type | Naming Convention | Description | Lifecycle |
+|:-----------|:-----------------|:------------|:----------|
+| master | `master` | Main branch, always in releasable state | Permanent |
+| develop | `develop` | Development branch, integrates latest development code | Permanent |
+| feature | `feature/feature-name` | Feature branch | Delete after development is complete |
+| bugfix | `bugfix/issue-description` | Bug fix branch | Delete after fix is complete |
+| hotfix | `hotfix/issue-description` | Emergency fix branch | Delete after fix is complete |
+| release | `release/version-number` | Release branch | Delete after release is complete |
 
-## 分支命名规范
+## Branch Naming Conventions
 
-### 功能分支
-
-```
-feature/user-management          # ✅ 用户管理功能
-feature/123-add-export          # ✅ 关联Issue的功能
-```
-
-### Bug修复分支
+### Feature Branches
 
 ```
-bugfix/login-error              # ✅ 登录错误修复
-bugfix/456-fix-timeout          # ✅ 关联Issue的修复
+feature/user-management          # user management feature
+feature/123-add-export          # feature linked to an issue
 ```
 
-### 紧急修复分支
+### Bug Fix Branches
 
 ```
-hotfix/security-vulnerability   # ✅ 安全漏洞修复
-hotfix/v1.0.1                   # ✅ 版本号修复
+bugfix/login-error              # login error fix
+bugfix/456-fix-timeout          # fix linked to an issue
 ```
 
-### 发布分支
+### Emergency Fix Branches
 
 ```
-release/v1.0.0                  # ✅ 版本发布
-release/v2.0.0-beta.1           # ✅ 预发布版本
+hotfix/security-vulnerability   # security vulnerability fix
+hotfix/v1.0.1                   # version number fix
 ```
 
-## 分支保护规则
+### Release Branches
 
-### master 分支
+```
+release/v1.0.0                  # version release
+release/v2.0.0-beta.1           # pre-release version
+```
 
-- 禁止直接推送
-- 必须通过 Pull Request 合并
-- 必须通过 CI 检查
-- 必须至少一人 Code Review
+## Branch Protection Rules
 
-### develop 分支
+### master branch
 
-- 限制直接推送
-- 建议通过 Pull Request 合并
-- 必须通过 CI 检查
+- Direct push prohibited
+- Must merge via Pull Request
+- Must pass CI checks
+- Must be reviewed by at least one person
 
-## 分支操作命令
+### develop branch
 
-### 创建功能分支
+- Direct push restricted
+- Recommended to merge via Pull Request
+- Must pass CI checks
+
+## Branch Operation Commands
+
+### Create Feature Branch
 
 ```bash
 git checkout develop
@@ -66,7 +66,7 @@ git pull origin develop
 git checkout -b feature/user-management
 ```
 
-### 创建Bug修复分支
+### Create Bug Fix Branch
 
 ```bash
 git checkout develop
@@ -74,7 +74,7 @@ git pull origin develop
 git checkout -b bugfix/login-error
 ```
 
-### 创建紧急修复分支（从master创建）
+### Create Emergency Fix Branch (from master)
 
 ```bash
 git checkout master
@@ -82,94 +82,94 @@ git pull origin master
 git checkout -b hotfix/security-fix
 ```
 
-### 删除分支
+### Delete Branch
 
 ```bash
-git branch -d feature/user-management     # 删除本地分支
-git push origin -d feature/user-management # 删除远程分支
+git branch -d feature/user-management      # delete local branch
+git push origin -d feature/user-management # delete remote branch
 ```
 
-## 工作流程详解
+## Detailed Workflows
 
-### 日常开发流程
+### Daily Development Workflow
 
 ```bash
-# 1. 同步最新代码
+# 1. Sync latest code
 git checkout develop
 git pull origin develop
 
-# 2. 创建功能分支
+# 2. Create feature branch
 git checkout -b feature/user-management
 
-# 3. 开发并提交
+# 3. Develop and commit
 git add .
-git commit -m "feat(user): 添加用户列表页面"
+git commit -m "feat(user): add user list page"
 
-# 4. 推送到远程
+# 4. Push to remote
 git push -u origin feature/user-management
 
-# 5. 创建 Pull Request 并请求 Code Review
+# 5. Create Pull Request and request Code Review
 
-# 6. 合并到 develop（通过 PR）
+# 6. Merge to develop (via PR)
 
-# 7. 删除功能分支
+# 7. Delete feature branch
 git branch -d feature/user-management
 git push origin -d feature/user-management
 ```
 
-### 紧急修复流程
+### Emergency Fix Workflow
 
 ```bash
-# 1. 从 master 创建修复分支
+# 1. Create fix branch from master
 git checkout master
 git pull origin master
 git checkout -b hotfix/critical-bug
 
-# 2. 修复并提交
+# 2. Fix and commit
 git add .
-git commit -m "fix(auth): 修复认证绕过漏洞"
+git commit -m "fix(auth): fix authentication bypass vulnerability"
 
-# 3. 合并到 master
+# 3. Merge to master
 git checkout master
 git merge --no-ff hotfix/critical-bug
-git tag -a v1.0.1 -m "hotfix: 修复认证绕过漏洞"
+git tag -a v1.0.1 -m "hotfix: fix authentication bypass vulnerability"
 git push origin master --tags
 
-# 4. 同步到 develop
+# 4. Sync to develop
 git checkout develop
 git merge --no-ff hotfix/critical-bug
 git push origin develop
 
-# 5. 删除修复分支
+# 5. Delete fix branch
 git branch -d hotfix/critical-bug
 ```
 
-### 版本发布流程
+### Version Release Workflow
 
 ```bash
-# 1. 创建发布分支
+# 1. Create release branch
 git checkout develop
 git checkout -b release/v1.0.0
 
-# 2. 更新版本号和文档
-# 修改 package.json 版本号
-# 更新 CHANGELOG.md
+# 2. Update version number and documentation
+# Modify package.json version
+# Update CHANGELOG.md
 
-# 3. 提交版本更新
+# 3. Commit version update
 git add .
-git commit -m "chore(release): 准备发布 v1.0.0"
+git commit -m "chore(release): prepare for v1.0.0 release"
 
-# 4. 合并到 master
+# 4. Merge to master
 git checkout master
 git merge --no-ff release/v1.0.0
-git tag -a v1.0.0 -m "release: v1.0.0 正式版本"
+git tag -a v1.0.0 -m "release: v1.0.0 official release"
 git push origin master --tags
 
-# 5. 同步到 develop
+# 5. Sync to develop
 git checkout develop
 git merge --no-ff release/v1.0.0
 git push origin develop
 
-# 6. 删除发布分支
+# 6. Delete release branch
 git branch -d release/v1.0.0
 ```

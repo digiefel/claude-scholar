@@ -1,174 +1,174 @@
-# Zotero MCP 集成指南
+# Zotero MCP Integration Guide
 
-通过 Zotero MCP 服务器实现文献管理的自动化集成。
+Automated literature management integration via the Zotero MCP server.
 
-## 1. 可用工具
+## 1. Available Tools
 
-### 1.1 浏览工具
+### 1.1 Browsing Tools
 
-| 工具 | 功能 | 使用场景 |
-|------|------|---------|
-| `get_collections` | 列出所有集合 | 查看已有研究项目 |
-| `get_collection_items` | 获取集合中的条目 | 浏览特定集合的论文 |
-| `search_library` | 搜索库中的条目 | 按关键词查找已有论文 |
-| `get_items_details` | 批量获取条目元数据 | 获取论文详细信息 |
-| `get_item_fulltext` | 获取 PDF 全文 | 阅读论文内容 |
+| Tool | Function | Use Case |
+|------|----------|----------|
+| `get_collections` | List all collections | View existing research projects |
+| `get_collection_items` | Get items in a collection | Browse papers in a specific collection |
+| `search_library` | Search items in the library | Find existing papers by keyword |
+| `get_items_details` | Batch get item metadata | Get detailed paper information |
+| `get_item_fulltext` | Get PDF full text | Read paper content |
 
-### 1.2 添加工具
+### 1.2 Adding Tools
 
-| 工具 | 功能 | 使用场景 |
-|------|------|---------|
-| `add_items_by_doi` | 通过 DOI 添加论文 | 自动获取元数据和 OA PDF |
-| `add_web_item` | 保存网页为条目 | 保存非论文资源 |
-| `create_collection` | 创建集合 | 组织研究项目 |
-| `import_pdf_to_zotero` | 导入 PDF | 上传本地或在线 PDF |
-| `find_and_attach_pdfs` | 批量附加 OA PDF | 为已有条目查找 PDF |
-| `add_linked_url_attachment` | 附加 URL 链接 | 关联在线资源 |
+| Tool | Function | Use Case |
+|------|----------|----------|
+| `add_items_by_doi` | Add papers by DOI | Automatically get metadata and OA PDF |
+| `add_web_item` | Save webpage as item | Save non-paper resources |
+| `create_collection` | Create collection | Organize research projects |
+| `import_pdf_to_zotero` | Import PDF | Upload local or online PDF |
+| `find_and_attach_pdfs` | Batch attach OA PDFs | Find PDFs for existing items |
+| `add_linked_url_attachment` | Attach URL link | Associate online resources |
 
-### 1.3 引用工具
+### 1.3 Citation Tools
 
-| 工具 | 功能 | 使用场景 |
-|------|------|---------|
-| `inject_citations` | 注入引用到 Word | 生成引用格式 |
+| Tool | Function | Use Case |
+|------|----------|----------|
+| `inject_citations` | Inject citations into Word | Generate citation format |
 
-## 2. 集合组织策略
+## 2. Collection Organization Strategy
 
-### 2.1 命名规范
+### 2.1 Naming Convention
 
 ```
-Research-{主题关键词}-{YYYY}
+Research-{topic-keywords}-{YYYY}
 ```
 
-示例：
+Examples:
 - `Research-TransformerInterpretability-2026`
 - `Research-BrainDecoding-2026`
 - `Research-RLHF-2026`
 
-### 2.2 标准子集合结构
+### 2.2 Standard Sub-Collection Structure
 
 ```
-📁 Research-{topic}-{date}
-  ├── 📁 Core Papers（核心论文）
-  ├── 📁 Methods（方法论文）
-  ├── 📁 Applications（应用论文）
-  ├── 📁 Baselines（基线论文）
-  └── 📁 To-Read（待读论文）
+Research-{topic}-{date}
+  ├── Core Papers
+  ├── Methods
+  ├── Applications
+  ├── Baselines
+  └── To-Read
 ```
 
-各子集合用途：
+Sub-collection purposes:
 
-| 子集合 | 收录标准 | 典型数量 |
-|--------|---------|---------|
-| Core Papers | 直接相关、高引用的关键论文 | 5-15 篇 |
-| Methods | 技术方法参考，可借鉴的方法论 | 10-20 篇 |
-| Applications | 应用场景参考，领域实践 | 5-10 篇 |
-| Baselines | 实验对比基准，需要复现的工作 | 3-8 篇 |
-| To-Read | 初步筛选，待深入阅读 | 不限 |
+| Sub-collection | Inclusion Criteria | Typical Count |
+|---------------|-------------------|---------------|
+| Core Papers | Directly relevant, highly-cited key papers | 5-15 papers |
+| Methods | Technical method references, approaches to borrow | 10-20 papers |
+| Applications | Application scenario references, domain practices | 5-10 papers |
+| Baselines | Experimental comparison baselines, work to reproduce | 3-8 papers |
+| To-Read | Initial screening, pending detailed reading | Unlimited |
 
-## 3. 自动化工作流
+## 3. Automated Workflows
 
-### 3.1 论文发现与导入
+### 3.1 Paper Discovery and Import
 
 ```
-WebSearch 搜索论文
-    ↓
-从搜索结果中提取 DOI
-    ↓
-add_items_by_doi 批量添加到 Zotero
-    ↓
-find_and_attach_pdfs 自动附加 OA PDF
-    ↓
-get_item_fulltext 读取全文进行分析
+WebSearch for papers
+    |
+Extract DOIs from search results
+    |
+add_items_by_doi batch-add to Zotero
+    |
+find_and_attach_pdfs auto-attach OA PDFs
+    |
+get_item_fulltext read full text for analysis
 ```
 
-### 3.2 DOI 提取技巧
+### 3.2 DOI Extraction Tips
 
-**从搜索结果 URL 中识别 DOI**：
-- `https://doi.org/10.xxxx/xxxxx` — 直接 DOI 链接
+**Identifying DOIs from search result URLs**:
+- `https://doi.org/10.xxxx/xxxxx` — direct DOI link
 - `https://dl.acm.org/doi/10.xxxx/xxxxx` — ACM Digital Library
-- `https://arxiv.org/abs/xxxx.xxxxx` — arXiv（DOI：`10.48550/arXiv.xxxx.xxxxx`）
+- `https://arxiv.org/abs/xxxx.xxxxx` — arXiv (DOI: `10.48550/arXiv.xxxx.xxxxx`)
 
-**常见 DOI 格式**：
-- 以 `10.` 开头，包含 `/` 分隔符
-- 例：`10.1038/s41586-023-06747-5`（Nature）
-- 例：`10.48550/arXiv.2301.00234`（arXiv）
-- 例：`10.1145/3580305.3599256`（ACM/KDD）
+**Common DOI formats**:
+- Starts with `10.`, contains `/` separator
+- Example: `10.1038/s41586-023-06747-5` (Nature)
+- Example: `10.48550/arXiv.2301.00234` (arXiv)
+- Example: `10.1145/3580305.3599256` (ACM/KDD)
 
-**CrossRef 查询**：
-- 当 URL 中没有明显 DOI 时，可通过论文标题在 CrossRef 搜索获取 DOI
+**CrossRef query**:
+- When no obvious DOI in the URL, search CrossRef using the paper title to get the DOI
 
-### 3.3 全文阅读与笔记
+### 3.3 Full-Text Reading and Notes
 
 ```
-get_item_fulltext 获取全文
-    ↓
-分析论文内容
-    ↓
-提取关键信息
-    ↓
-生成结构化笔记
+get_item_fulltext to retrieve full text
+    |
+Analyze paper content
+    |
+Extract key information
+    |
+Generate structured notes
 ```
 
-### 3.4 笔记模板
+### 3.4 Notes Template
 
-每篇论文的结构化笔记应包含：
+Structured notes for each paper should include:
 
 ```markdown
-## [论文标题]
+## [Paper Title]
 
-**基本信息**：
-- 作者：
-- 会议/期刊：
-- 年份：
-- DOI：
+**Basic Information**:
+- Authors:
+- Conference/Journal:
+- Year:
+- DOI:
 
-**研究问题**：
-- 解决什么问题？
-- 为什么重要？
+**Research Question**:
+- What problem does it solve?
+- Why is it important?
 
-**核心方法**：
-- 主要技术路线
-- 关键创新点
+**Core Method**:
+- Main technical approach
+- Key innovations
 
-**关键发现**：
-- 主要实验结果
-- 重要结论
+**Key Findings**:
+- Main experimental results
+- Important conclusions
 
-**局限性**：
-- 方法局限
-- 实验局限
+**Limitations**:
+- Method limitations
+- Experimental limitations
 
-**与本研究的关联**：
-- 可借鉴之处
-- 差异和改进空间
+**Relevance to This Research**:
+- What can be borrowed
+- Differences and room for improvement
 ```
 
-## 4. 常见问题
+## 4. Common Issues
 
-### 4.1 API 速率限制
+### 4.1 API Rate Limits
 
-Zotero API 有速率限制，批量添加时建议：
-- 每批不超过 10 篇论文
-- 批次之间适当间隔
-- 如遇到 429 错误，等待后重试
+Zotero API has rate limits; when batch-adding, it is recommended to:
+- Add no more than 10 papers per batch
+- Allow appropriate intervals between batches
+- If a 429 error occurs, wait and retry
 
-### 4.2 PDF 全文索引延迟
+### 4.2 PDF Full-Text Indexing Delay
 
-新上传的 PDF 需要时间索引：
-- `get_item_fulltext` 返回空时，稍后重试
-- Zotero 客户端需要运行才能完成索引
-- 大型 PDF 索引时间较长
+Newly uploaded PDFs take time to index:
+- If `get_item_fulltext` returns empty, retry later
+- Zotero client must be running to complete indexing
+- Large PDFs take longer to index
 
-### 4.3 DOI 无法识别
+### 4.3 DOI Not Recognized
 
-部分论文可能没有标准 DOI：
-- arXiv 预印本：使用 `10.48550/arXiv.{id}` 格式
-- Workshop 论文：尝试从出版商页面获取
-- 无法获取 DOI：使用 `add_web_item` 保存网页链接
+Some papers may not have a standard DOI:
+- arXiv preprints: use `10.48550/arXiv.{id}` format
+- Workshop papers: try to get from publisher page
+- Cannot get DOI: use `add_web_item` to save webpage link
 
-### 4.4 OA PDF 不可用
+### 4.4 OA PDF Unavailable
 
-非开放获取论文无法通过 Unpaywall 获取 PDF：
-- 检查作者主页是否有预印本版本
-- 检查 arXiv 是否有对应版本
-- 需手动上传时使用 `import_pdf_to_zotero`
+Non-open-access papers cannot be retrieved via Unpaywall:
+- Check if the author's homepage has a preprint version
+- Check if arXiv has a corresponding version
+- If manual upload is needed, use `import_pdf_to_zotero`

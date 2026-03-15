@@ -1,49 +1,49 @@
-# API 使用指南
+# API Usage Guide
 
-本文档详细说明如何使用三个主要 API 进行文献验证。
+This document explains in detail how to use three main APIs for citation verification.
 
 ## Semantic Scholar API
 
-### 概述
+### Overview
 
-Semantic Scholar 是一个免费的学术搜索引擎,提供强大的 API 用于论文检索和元数据获取。
+Semantic Scholar is a free academic search engine that provides a powerful API for paper retrieval and metadata access.
 
-**优势:**
-- 免费使用,无需 API key
-- 覆盖广泛的学科领域
-- 提供丰富的元数据
-- 支持模糊搜索
+**Advantages:**
+- Free to use, no API key required
+- Covers a wide range of academic disciplines
+- Provides rich metadata
+- Supports fuzzy search
 
-**限制:**
-- 请求频率限制:100 requests/5min
-- 部分论文可能缺失
+**Limitations:**
+- Rate limit: 100 requests/5min
+- Some papers may be missing
 
-### API 端点
+### API Endpoints
 
-**1. 通过 Paper ID 获取论文**
+**1. Get paper by Paper ID**
 ```
 GET https://api.semanticscholar.org/graph/v1/paper/{paper_id}
 ```
 
-**2. 搜索论文**
+**2. Search papers**
 ```
 GET https://api.semanticscholar.org/graph/v1/paper/search?query={query}
 ```
 
-### Python 示例
+### Python Example
 
-**安装:**
+**Installation:**
 ```bash
 pip install semanticscholar
 ```
 
-**基本用法:**
+**Basic usage:**
 ```python
 from semanticscholar import SemanticScholar
 
 sch = SemanticScholar()
 
-# 通过标题搜索
+# Search by title
 results = sch.search_paper("Attention is All You Need", limit=5)
 for paper in results:
     print(f"Title: {paper.title}")
@@ -53,78 +53,78 @@ for paper in results:
     print("---")
 ```
 
-**通过 DOI 获取:**
+**Get by DOI:**
 ```python
-# DOI 格式: DOI:10.48550/arXiv.1706.03762
+# DOI format: DOI:10.48550/arXiv.1706.03762
 paper = sch.get_paper("DOI:10.48550/arXiv.1706.03762")
 print(f"Title: {paper.title}")
 print(f"Citations: {paper.citationCount}")
 ```
 
-### 字段说明
+### Field Descriptions
 
-**返回的主要字段:**
-- `paperId` - Semantic Scholar 内部 ID
-- `title` - 论文标题
-- `authors` - 作者列表
-- `year` - 发表年份
-- `venue` - 发表场所(会议/期刊)
-- `externalIds` - 外部标识符(DOI, arXiv, PubMed 等)
-- `citationCount` - 引用次数
-- `abstract` - 摘要
+**Main returned fields:**
+- `paperId` - Semantic Scholar internal ID
+- `title` - paper title
+- `authors` - list of authors
+- `year` - publication year
+- `venue` - publication venue (conference/journal)
+- `externalIds` - external identifiers (DOI, arXiv, PubMed, etc.)
+- `citationCount` - citation count
+- `abstract` - abstract
 
-### 错误处理
+### Error Handling
 
 ```python
 try:
     paper = sch.get_paper("invalid_id")
 except Exception as e:
     print(f"Error: {e}")
-    # 处理错误:标记需要人工验证
+    # Handle error: flag for manual verification
 ```
 
 ## arXiv API
 
-### 概述
+### Overview
 
-arXiv 是预印本论文库,提供免费的 API 用于访问论文元数据。
+arXiv is a preprint repository that provides a free API for accessing paper metadata.
 
-**优势:**
-- 完全免费,无需认证
-- 覆盖物理、数学、计算机科学等领域
-- 提供完整的论文 PDF
-- 更新及时
+**Advantages:**
+- Completely free, no authentication required
+- Covers physics, mathematics, computer science, and more
+- Provides full paper PDFs
+- Updated promptly
 
-**限制:**
-- 仅限预印本论文
-- 不包含已发表的期刊版本信息
+**Limitations:**
+- Limited to preprint papers
+- Does not include published journal version information
 
-### API 端点
+### API Endpoint
 
-**查询接口:**
+**Query interface:**
 ```
 GET http://export.arxiv.org/api/query?search_query={query}&start={start}&max_results={max}
 ```
 
-### Python 示例
+### Python Example
 
-**安装:**
+**Installation:**
 ```bash
 pip install arxiv
 ```
 
-**基本用法:**
+**Basic usage:**
 ```python
 import arxiv
 
-# 通过 arXiv ID 获取
+# Get by arXiv ID
 paper = next(arxiv.Search(id_list=["1706.03762"]).results())
 print(f"Title: {paper.title}")
 print(f"Authors: {[a.name for a in paper.authors]}")
 print(f"Published: {paper.published}")
 print(f"PDF URL: {paper.pdf_url}")
 
-# 通过标题搜索
+# Search by title
 search = arxiv.Search(
     query="Attention is All You Need",
     max_results=5,
@@ -137,22 +137,22 @@ for result in search.results():
     print("---")
 ```
 
-### arXiv ID 格式
+### arXiv ID Format
 
-**识别 arXiv ID:**
-- 新格式: `YYMM.NNNNN` (如 2301.12345)
-- 旧格式: `arch-ive/YYMMNNN` (如 cs/0703001)
+**Identifying arXiv IDs:**
+- New format: `YYMM.NNNNN` (e.g., 2301.12345)
+- Old format: `arch-ive/YYMMNNN` (e.g., cs/0703001)
 
-**从 URL 提取:**
+**Extracting from URL:**
 ```python
 import re
 
 def extract_arxiv_id(text):
-    # 匹配新格式
+    # Match new format
     match = re.search(r'\d{4}\.\d{4,5}', text)
     if match:
         return match.group()
-    # 匹配旧格式
+    # Match old format
     match = re.search(r'[a-z-]+/\d{7}', text)
     if match:
         return match.group()
@@ -161,36 +161,36 @@ def extract_arxiv_id(text):
 
 ## CrossRef API
 
-### 概述
+### Overview
 
-CrossRef 是 DOI 注册机构,提供权威的学术文献元数据。
+CrossRef is a DOI registration agency that provides authoritative academic literature metadata.
 
-**优势:**
-- DOI 是最可靠的唯一标识符
-- 覆盖几乎所有正式发表的论文
-- 数据质量高,权威性强
-- 支持 BibTeX 格式直接获取
+**Advantages:**
+- DOI is the most reliable unique identifier
+- Covers almost all formally published papers
+- High data quality and authority
+- Supports direct BibTeX retrieval
 
-**限制:**
-- 仅限有 DOI 的论文
-- 预印本通常没有 DOI
+**Limitations:**
+- Limited to papers with a DOI
+- Preprints generally do not have DOIs
 
-### API 端点
+### API Endpoints
 
-**通过 DOI 获取元数据:**
+**Get metadata by DOI:**
 ```
 GET https://api.crossref.org/works/{doi}
 ```
 
-**通过 DOI 获取 BibTeX:**
+**Get BibTeX by DOI:**
 ```
 GET https://doi.org/{doi}
 Headers: Accept: application/x-bibtex
 ```
 
-### Python 示例
+### Python Example
 
-**通过 DOI 获取元数据:**
+**Get metadata by DOI:**
 ```python
 import requests
 
@@ -202,7 +202,7 @@ def get_crossref_metadata(doi):
         return data['message']
     return None
 
-# 示例
+# Example
 doi = "10.48550/arXiv.1706.03762"
 metadata = get_crossref_metadata(doi)
 if metadata:
@@ -211,7 +211,7 @@ if metadata:
     print(f"Published: {metadata['published']['date-parts'][0]}")
 ```
 
-**通过 DOI 获取 BibTeX:**
+**Get BibTeX by DOI:**
 ```python
 def doi_to_bibtex(doi):
     url = f"https://doi.org/{doi}"
@@ -221,67 +221,67 @@ def doi_to_bibtex(doi):
         return response.text
     return None
 
-# 示例
+# Example
 bibtex = doi_to_bibtex("10.48550/arXiv.1706.03762")
 print(bibtex)
 ```
 
-### DOI 格式
+### DOI Format
 
-**标准格式:**
-- `10.XXXX/suffix` (如 10.1038/nature12345)
-- 前缀 `10.` 是固定的
-- 中间是注册机构代码
-- 后缀是出版商定义的
+**Standard format:**
+- `10.XXXX/suffix` (e.g., 10.1038/nature12345)
+- Prefix `10.` is fixed
+- Middle part is the registrant code
+- Suffix is defined by the publisher
 
-**从文本中提取 DOI:**
+**Extracting DOI from text:**
 ```python
 import re
 
 def extract_doi(text):
-    # 匹配 DOI 格式
+    # Match DOI format
     match = re.search(r'10\.\d{4,}/[^\s]+', text)
     if match:
         return match.group()
     return None
 ```
 
-## API 选择策略
+## API Selection Strategy
 
-根据引用信息选择最合适的 API:
+Choose the most appropriate API based on the available citation information:
 
-### 决策流程
+### Decision Flow
 
 ```
-有 DOI?
-  ├─ 是 → CrossRef API (最可靠)
-  └─ 否 → 有 arXiv ID?
-      ├─ 是 → arXiv API
-      └─ 否 → Semantic Scholar API (通用搜索)
+Has DOI?
+  |-- Yes --> CrossRef API (most reliable)
+  +-- No  --> Has arXiv ID?
+                  |-- Yes --> arXiv API
+                  +-- No  --> Semantic Scholar API (general search)
 ```
 
-### 实现示例
+### Implementation Example
 
 ```python
 def verify_citation(citation_info):
     """
-    根据引用信息选择合适的 API 进行验证
+    Select the appropriate API for verification based on citation information
 
     Args:
         citation_info: dict with keys: doi, arxiv_id, title, authors
 
     Returns:
-        验证结果字典
+        verification result dictionary
     """
-    # 策略 1: DOI 优先
+    # Strategy 1: prefer DOI
     if citation_info.get('doi'):
         return verify_with_crossref(citation_info['doi'])
 
-    # 策略 2: arXiv ID
+    # Strategy 2: arXiv ID
     if citation_info.get('arxiv_id'):
         return verify_with_arxiv(citation_info['arxiv_id'])
 
-    # 策略 3: 通用搜索
+    # Strategy 3: general search
     if citation_info.get('title'):
         return verify_with_semantic_scholar(
             citation_info['title'],
@@ -291,26 +291,26 @@ def verify_citation(citation_info):
     return {'status': 'insufficient_info'}
 ```
 
-## 最佳实践
+## Best Practices
 
-### 1. 错误处理
+### 1. Error Handling
 
 ```python
 import time
 from requests.exceptions import RequestException
 
 def api_call_with_retry(func, max_retries=3):
-    """带重试的 API 调用"""
+    """API call with retry"""
     for i in range(max_retries):
         try:
             return func()
         except RequestException as e:
             if i == max_retries - 1:
                 raise
-            time.sleep(2 ** i)  # 指数退避
+            time.sleep(2 ** i)  # exponential backoff
 ```
 
-### 2. 速率限制
+### 2. Rate Limiting
 
 ```python
 import time
@@ -327,13 +327,13 @@ class RateLimiter:
             time.sleep(min_interval - elapsed)
         self.last_call = time.time()
 
-# 使用示例
+# Usage example
 limiter = RateLimiter(calls_per_minute=20)
 limiter.wait_if_needed()
 result = api_call()
 ```
 
-### 3. 缓存结果
+### 3. Caching Results
 
 ```python
 import json
@@ -355,19 +355,18 @@ class APICache:
         cache_file.write_text(json.dumps(value))
 ```
 
-## 总结
+## Summary
 
-### API 对比
+### API Comparison
 
-| API | 优势 | 限制 | 推荐场景 |
-|-----|------|------|----------|
-| **CrossRef** | 最权威,支持 BibTeX | 仅限有 DOI 的论文 | 有 DOI 时首选 |
-| **arXiv** | 免费,更新快 | 仅限预印本 | arXiv 论文 |
-| **Semantic Scholar** | 覆盖广,模糊搜索 | 部分论文缺失 | 通用搜索 |
+| API | Advantages | Limitations | Recommended when |
+|-----|-----------|-------------|-----------------|
+| **CrossRef** | Most authoritative, supports BibTeX | Only for papers with DOI | DOI is available |
+| **arXiv** | Free, updated quickly | Preprints only | arXiv papers |
+| **Semantic Scholar** | Wide coverage, fuzzy search | Some papers missing | General search |
 
-### 验证可靠性排序
+### Verification Reliability Ranking
 
-1. **CrossRef (DOI)** - 最可靠
-2. **arXiv (arXiv ID)** - 可靠
-3. **Semantic Scholar (标题搜索)** - 较可靠,需要人工确认
-
+1. **CrossRef (DOI)** - Most reliable
+2. **arXiv (arXiv ID)** - Reliable
+3. **Semantic Scholar (title search)** - Fairly reliable, manual confirmation recommended

@@ -1,209 +1,208 @@
-# 研究提案示例：基于稀疏注意力的长文本 Transformer
+# Research Proposal Example: Long-Text Transformer with Sparse Attention
 
-## 研究主题
+## Research Topic
 
-开发一种新的稀疏注意力机制，使 Transformer 模型能够高效处理长文本（10k+ tokens），同时保持或提升性能。
+Develop a new sparse attention mechanism that enables Transformer models to efficiently process long texts (10k+ tokens) while maintaining or improving performance.
 
-## 1. 研究问题
+## 1. Research Question
 
-### 1.1 核心问题
+### 1.1 Core Question
 
-**如何设计一种稀疏注意力机制，使 Transformer 能够在保持性能的同时，将计算复杂度从 O(n²) 降低到 O(n log n)？**
+**How to design a sparse attention mechanism that allows Transformer to reduce computational complexity from O(n²) to O(n log n) while maintaining performance?**
 
-### 1.2 子问题
+### 1.2 Sub-questions
 
-1. 哪些注意力连接对模型性能最重要？
-2. 如何自适应地选择重要的注意力连接？
-3. 稀疏化对不同任务的影响如何？
-4. 如何在训练和推理中高效实现稀疏注意力？
+1. Which attention connections are most important for model performance?
+2. How to adaptively select important attention connections?
+3. How does sparsification affect different tasks?
+4. How to efficiently implement sparse attention in training and inference?
 
-## 2. 研究目标
+## 2. Research Objectives
 
-### 2.1 主要目标
+### 2.1 Main Objectives
 
-1. **方法创新**：提出新的自适应稀疏注意力机制
-2. **性能提升**：在长文本任务上达到或超越现有方法
-3. **效率提升**：将计算和内存成本降低 50% 以上
-4. **理论理解**：分析稀疏化对模型能力的影响
+1. **Method innovation**: Propose a new adaptive sparse attention mechanism
+2. **Performance improvement**: Achieve or surpass existing methods on long-text tasks
+3. **Efficiency improvement**: Reduce computational and memory costs by more than 50%
+4. **Theoretical understanding**: Analyze the impact of sparsification on model capabilities
 
-### 2.2 预期贡献
+### 2.2 Expected Contributions
 
-**学术贡献**：
-- 新的稀疏注意力机制设计
-- 长文本处理的理论分析
-- 开源实现和预训练模型
+**Academic contributions**:
+- New sparse attention mechanism design
+- Theoretical analysis for long-text processing
+- Open-source implementation and pre-trained models
 
-**实际价值**：
-- 降低长文本处理成本
-- 使更长的上下文成为可能
-- 提高推理速度
+**Practical value**:
+- Reduce long-text processing costs
+- Enable longer contexts
+- Improve inference speed
 
-## 3. 研究方法
+## 3. Research Methods
 
-### 3.1 核心思路
+### 3.1 Core Approach
 
-**自适应稀疏注意力**：
-- 动态选择重要的注意力连接
-- 保留局部注意力（相邻 tokens）
-- 学习全局注意力模式
-- 任务自适应的稀疏化策略
+**Adaptive sparse attention**:
+- Dynamically select important attention connections
+- Retain local attention (adjacent tokens)
+- Learn global attention patterns
+- Task-adaptive sparsification strategy
 
-### 3.2 技术方案
+### 3.2 Technical Plan
 
-**阶段 1：稀疏模式设计**
-- 分析现有稀疏模式（Longformer, BigBird）
-- 设计新的自适应选择机制
-- 理论分析复杂度和表达能力
+**Phase 1: Sparse pattern design**
+- Analyze existing sparse patterns (Longformer, BigBird)
+- Design a new adaptive selection mechanism
+- Theoretically analyze complexity and expressive power
 
-**阶段 2：模型实现**
-- 实现高效的稀疏注意力算子
-- 集成到 Transformer 架构
-- 优化训练和推理效率
+**Phase 2: Model implementation**
+- Implement efficient sparse attention operators
+- Integrate into Transformer architecture
+- Optimize training and inference efficiency
 
-**阶段 3：实验验证**
-- 在多个长文本任务上评估
-- 与现有方法对比
-- 消融实验分析
+**Phase 3: Experimental validation**
+- Evaluate on multiple long-text tasks
+- Compare with existing methods
+- Ablation experiment analysis
 
-## 4. 实验计划
+## 4. Experimental Plan
 
-### 4.1 数据集
+### 4.1 Datasets
 
-| 任务 | 数据集 | 序列长度 | 评估指标 |
-|------|--------|---------|---------|
-| 文档分类 | Hyperpartisan | 4k-16k | F1 |
-| 问答 | NarrativeQA | 8k-32k | F1, EM |
-| 摘要 | arXiv | 4k-8k | ROUGE |
+| Task | Dataset | Sequence Length | Evaluation Metric |
+|------|---------|----------------|-------------------|
+| Document classification | Hyperpartisan | 4k-16k | F1 |
+| Question answering | NarrativeQA | 8k-32k | F1, EM |
+| Summarization | arXiv | 4k-8k | ROUGE |
 
-### 4.2 基线方法
+### 4.2 Baseline Methods
 
-- **Vanilla Transformer**：标准 Transformer（作为上界）
-- **Longformer**：固定稀疏模式
-- **BigBird**：随机+全局+局部
-- **Reformer**：LSH 注意力
+- **Vanilla Transformer**: Standard Transformer (as upper bound)
+- **Longformer**: Fixed sparse pattern
+- **BigBird**: Random + global + local
+- **Reformer**: LSH attention
 
-### 4.3 评估维度
+### 4.3 Evaluation Dimensions
 
-**性能**：
-- 任务准确率
-- 与基线对比
+**Performance**:
+- Task accuracy
+- Comparison with baselines
 
-**效率**：
-- 训练时间
-- 推理速度
-- 内存占用
+**Efficiency**:
+- Training time
+- Inference speed
+- Memory usage
 
-**可扩展性**：
-- 不同序列长度的表现
-- 参数量的影响
+**Scalability**:
+- Performance at different sequence lengths
+- Effect of parameter count
 
-## 5. 时间线规划
+## 5. Timeline Planning
 
-### 5.1 研究阶段划分
+### 5.1 Research Phase Division
 
-**Phase 1: 准备阶段**（第1-2个月）
-- 文献调研和综述
-- 问题定义和方法设计
-- 初步实验环境搭建
-- **里程碑**：研究提案完成
+**Phase 1: Preparation** (Months 1-2)
+- Literature review and survey
+- Problem definition and method design
+- Initial experimental environment setup
+- **Milestone**: Research proposal complete
 
-**Phase 2: 探索阶段**（第3-4个月）
-- 稀疏模式设计和理论分析
-- 初步实现和概念验证
-- 小规模实验验证可行性
-- **里程碑**：概念验证完成
+**Phase 2: Exploration** (Months 3-4)
+- Sparse pattern design and theoretical analysis
+- Initial implementation and proof of concept
+- Small-scale experiments to validate feasibility
+- **Milestone**: Proof of concept complete
 
-**Phase 3: 开发阶段**（第5-7个月）
-- 完整模型实现
-- 优化训练和推理效率
-- 在多个数据集上进行实验
-- **里程碑**：完整实验结果
+**Phase 3: Development** (Months 5-7)
+- Complete model implementation
+- Optimize training and inference efficiency
+- Experiments on multiple datasets
+- **Milestone**: Complete experimental results
 
-**Phase 4: 完成阶段**（第8-9个月）
-- 消融实验和深入分析
-- 论文撰写和修改
-- 代码整理和开源准备
-- **里程碑**：论文投稿
+**Phase 4: Completion** (Months 8-9)
+- Ablation experiments and in-depth analysis
+- Paper writing and revision
+- Code organization and open-source preparation
+- **Milestone**: Paper submission
 
-### 5.2 关键检查点
+### 5.2 Key Checkpoints
 
-**月度检查**：
-- 进度回顾和问题识别
-- 实验结果分析
-- 计划调整
+**Monthly check**:
+- Progress review and issue identification
+- Experimental result analysis
+- Plan adjustment
 
-**季度评审**：
-- 里程碑评估
-- 风险评估和应对
-- 资源需求调整
+**Quarterly review**:
+- Milestone assessment
+- Risk assessment and response
+- Resource requirement adjustment
 
-## 6. 资源需求
+## 6. Resource Requirements
 
-### 6.1 计算资源
+### 6.1 Computational Resources
 
-**GPU 需求**：
-- 探索阶段：2-4 GPU（V100 或 A100）
-- 开发阶段：4-8 GPU
-- 完成阶段：8-16 GPU（大规模实验）
+**GPU requirements**:
+- Exploration phase: 2-4 GPUs (V100 or A100)
+- Development phase: 4-8 GPUs
+- Completion phase: 8-16 GPUs (large-scale experiments)
 
-**存储需求**：
-- 数据集：200 GB
-- 模型检查点：100 GB
-- 实验日志：50 GB
-- 总计：约 350 GB
+**Storage requirements**:
+- Datasets: 200 GB
+- Model checkpoints: 100 GB
+- Experiment logs: 50 GB
+- Total: approximately 350 GB
 
-**预计计算时间**：
-- 模型训练：约 500 GPU 小时
-- 实验评估：约 200 GPU 小时
-- 总计：约 700 GPU 小时
+**Estimated compute time**:
+- Model training: approximately 500 GPU hours
+- Experimental evaluation: approximately 200 GPU hours
+- Total: approximately 700 GPU hours
 
-### 6.2 人力资源
+### 6.2 Human Resources
 
-**研究负责人**（1人）：
-- 研究规划和指导
-- 论文撰写
-- 时间投入：50%
+**Research lead** (1 person):
+- Research planning and guidance
+- Paper writing
+- Time commitment: 50%
 
-**研究助理**（1-2人）：
-- 实验实现和运行
-- 数据分析
-- 时间投入：100%
+**Research assistant** (1-2 people):
+- Experiment implementation and execution
+- Data analysis
+- Time commitment: 100%
 
-### 6.3 其他资源
+### 6.3 Other Resources
 
-**数据集**：
-- Hyperpartisan（公开）
-- NarrativeQA（公开）
-- arXiv（公开）
+**Datasets**:
+- Hyperpartisan (public)
+- NarrativeQA (public)
+- arXiv (public)
 
-**软件工具**：
+**Software tools**:
 - PyTorch
 - Transformers
-- Weights & Biases（实验跟踪）
+- Weights & Biases (experiment tracking)
 
-## 7. 总结
+## 7. Summary
 
-本研究提案旨在开发一种新的自适应稀疏注意力机制，解决 Transformer 在长文本处理中的效率问题。
+This research proposal aims to develop a new adaptive sparse attention mechanism to address the efficiency problem of Transformer in long-text processing.
 
-**核心创新**：
-- 自适应选择重要的注意力连接
-- 将计算复杂度从 O(n²) 降低到 O(n log n)
-- 在保持性能的同时提高效率
+**Core innovations**:
+- Adaptively select important attention connections
+- Reduce computational complexity from O(n²) to O(n log n)
+- Improve efficiency while maintaining performance
 
-**预期成果**：
-- 在长文本任务上达到或超越现有方法
-- 将计算和内存成本降低 50% 以上
-- 开源实现和预训练模型
+**Expected outcomes**:
+- Achieve or surpass existing methods on long-text tasks
+- Reduce computational and memory costs by more than 50%
+- Open-source implementation and pre-trained models
 
-**可行性**：
-- 基于成熟的 Transformer 架构
-- 有充足的计算资源支持
-- 9个月的研究周期合理
-- 团队具备相关技术背景
+**Feasibility**:
+- Based on the mature Transformer architecture
+- Sufficient computational resources available
+- 9-month research cycle is reasonable
+- Team has relevant technical background
 
-**影响力**：
-- 学术贡献：新的稀疏注意力机制和理论分析
-- 实际价值：降低长文本处理成本，使更长的上下文成为可能
+**Impact**:
+- Academic contribution: new sparse attention mechanism and theoretical analysis
+- Practical value: reduce long-text processing costs, enable longer contexts
 
-本研究具有明确的目标、可行的方法和充足的资源支持，预期能够产生有价值的学术成果和实际应用。
-
+This research has clear goals, a feasible methodology, and sufficient resource support, and is expected to produce valuable academic results and practical applications.

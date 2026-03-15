@@ -1,78 +1,78 @@
-# 常见错误模式
+# Common Error Patterns
 
-## 通用编程错误模式
+## General Programming Error Patterns
 
-### 1. Off-by-one Error（差一错误）
+### 1. Off-by-one Error
 
-**描述**：循环或索引中出现 ±1 的偏差
+**Description**: A ±1 discrepancy in loops or indexes
 
-**示例**：
+**Example**:
 ```python
-# ❌ 错误：范围应该是 range(n) 而不是 range(n+1)
+# Wrong: range should be range(n) not range(n+1)
 for i in range(len(items) + 1):
     print(items[i])  # IndexError
 
-# ✅ 正确
+# Correct
 for i in range(len(items)):
     print(items[i])
 ```
 
-### 2. Null/None 引用错误
+### 2. Null/None Reference Error
 
-**描述**：尝试访问 None 对象的属性或方法
+**Description**: Attempting to access attributes or methods on a None object
 
-**Python**：
+**Python**:
 ```python
-# ❌ 可能返回 None
+# May return None
 result = get_data()
 print(result.value)  # AttributeError
 
-# ✅ 检查 None
+# Correct: check for None
 result = get_data()
 if result is not None:
     print(result.value)
 ```
 
-**JavaScript**：
+**JavaScript**:
 ```javascript
-// ❌ 可能是 null
+// May be null
 const user = getUser();
 console.log(user.name);  // TypeError
 
-// ✅ 使用可选链
+// Correct: use optional chaining
 console.log(user?.name);
 ```
 
-### 3. 资源泄漏
+### 3. Resource Leak
 
-**描述**：打开的资源（文件、连接）未正确关闭
+**Description**: Opened resources (files, connections) not properly closed
 
-**Python**：
+**Python**:
 ```python
-# ❌ 文件可能未关闭
+# File may not be closed
 f = open("file.txt")
 content = f.read()
-# 如果发生异常，文件不会关闭
+# If an exception occurs, file will not be closed
 
-# ✅ 使用 with 语句
+# Correct: use with statement
 with open("file.txt") as f:
     content = f.read()
-# 文件自动关闭
+# File is automatically closed
 ```
 
-### 4. 竞态条件
+### 4. Race Condition
 
-**描述**：多线程/进程间的时序依赖问题
+**Description**: Timing dependency issue between multiple threads/processes
 
-**示例**：
+**Example**:
 ```python
-# ❌ 检查后使用（TOCTOU）
+# Check-then-use (TOCTOU)
 if os.path.exists("file.txt"):
-    # 其他进程可能在这之间删除文件
+    # Another process may delete the file in between
     with open("file.txt") as f:
         content = f.read()
 
-# ✅ 直接尝试并处理异常
+# Correct: try directly and handle exception
 try:
     with open("file.txt") as f:
         content = f.read()
@@ -80,84 +80,84 @@ except FileNotFoundError:
     content = None
 ```
 
-### 5. 忘记返回值
+### 5. Forgetting Return Value
 
-**描述**：函数没有显式返回值，导致返回 None
+**Description**: Function has no explicit return value, resulting in returning None
 
-**示例**：
+**Example**:
 ```python
-# ❌ 忘记返回结果
+# Forgot to return result
 def calculate(x, y):
     result = x + y
-    # 忘记 return
+    # forgot return
 
-# ✅ 正确返回
+# Correct: return explicitly
 def calculate(x, y):
     return x + y
 ```
 
-### 6. 错误的比较运算符
+### 6. Wrong Comparison Operator
 
-**描述**：使用 = 代替 ==，或混淆 is 和 ==
+**Description**: Using = instead of ==, or confusing is with ==
 
-**Python**：
+**Python**:
 ```python
-# ❌ 赋值而不是比较
+# Assignment instead of comparison
 if x = 5:  # SyntaxError
 
-# ❌ 使用 is 比较值
-if x is 5:  # 不保证正确
+# Using is for value comparison
+if x is 5:  # not guaranteed to be correct
 
-# ✅ 正确
+# Correct
 if x == 5:
 ```
 
-### 7. 浮点数精度问题
+### 7. Floating-Point Precision Issues
 
-**描述**：浮点数比较因精度问题失败
+**Description**: Floating-point comparison fails due to precision
 
-**示例**：
+**Example**:
 ```python
-# ❌ 直接比较浮点数
+# Direct float comparison
 if 0.1 + 0.2 == 0.3:  # False
-    print("相等")
+    print("equal")
 
-# ✅ 使用容差比较
+# Correct: use tolerance comparison
 if abs((0.1 + 0.2) - 0.3) < 1e-9:
-    print("相等")
+    print("equal")
 
-# 或使用 math.isclose()
+# Or use math.isclose()
 import math
 if math.isclose(0.1 + 0.2, 0.3):
-    print("相等")
+    print("equal")
 ```
 
-### 8. 字符串拼接性能问题
+### 8. String Concatenation Performance
 
-**描述**：在循环中使用 + 拼接字符串
+**Description**: Using + to concatenate strings inside a loop
 
-**示例**：
+**Example**:
 ```python
-# ❌ 低效：每次创建新字符串
+# Inefficient: creates new string each time
 result = ""
 for item in items:
     result += str(item)
 
-# ✅ 高效：使用列表和 join
+# Efficient: use list and join
 result = "".join(str(item) for item in items)
 ```
 
-## Python 特有模式
+## Python-Specific Patterns
 
-### 1. 可变默认参数
+### 1. Mutable Default Arguments
 
 ```python
-# ❌ 所有调用共享同一个列表
+# All calls share the same list
 def append(item, items=[]):
     items.append(item)
     return items
 
-# ✅ 使用 None 作为默认值
+# Correct: use None as default value
 def append(item, items=None):
     if items is None:
         items = []
@@ -165,104 +165,104 @@ def append(item, items=None):
     return items
 ```
 
-### 2. 闭包变量绑定问题
+### 2. Closure Variable Binding
 
 ```python
-# ❌ 所有函数使用相同的 i 值
+# All functions use the same i value
 funcs = [lambda: i for i in range(3)]
-# 所有函数都返回 2
+# All functions return 2
 
-# ✅ 使用默认参数捕获值
+# Correct: capture value using default argument
 funcs = [lambda i=i: i for i in range(3)]
 ```
 
-### 3. 修改正在迭代的序列
+### 3. Modifying a Sequence While Iterating
 
 ```python
-# ❌ 迭代时修改列表
+# Modifying list while iterating causes skipped elements
 items = [1, 2, 3, 4]
 for item in items:
     if item % 2 == 0:
         items.remove(item)
 
-# ✅ 创建新列表或使用副本
+# Correct option 1: list comprehension
 items = [item for item in items if item % 2 != 0]
 
-# 或
+# Correct option 2: iterate over a copy
 for item in items[:]:
     if item % 2 == 0:
         items.remove(item)
 ```
 
-## JavaScript/TypeScript 特有模式
+## JavaScript/TypeScript-Specific Patterns
 
-### 1. this 绑定问题
+### 1. this Binding Issues
 
 ```javascript
-// ❌ this 丢失上下文
+// this loses context
 class Counter {
   count = 0;
   increment() {
     setTimeout(function() {
-      this.count++;  // this 不是 Counter 实例
+      this.count++;  // this is not the Counter instance
     }, 100);
   }
 }
 
-// ✅ 使用箭头函数
+// Correct: use arrow function
 class Counter {
   count = 0;
   increment() {
     setTimeout(() => {
-      this.count++;  // this 正确绑定
+      this.count++;  // this is correctly bound
     }, 100);
   }
 }
 ```
 
-### 2. 异步错误处理
+### 2. Async Error Handling
 
 ```javascript
-// ❌ 没有处理 Promise 错误
+// Promise error not handled
 async function getData() {
   const response = await fetch(url);
-  return response.json();  // 如果失败会抛出异常
+  return response.json();  // throws if it fails
 }
 
-// ✅ 使用 try-catch
+// Correct: use try-catch
 async function getData() {
   try {
     const response = await fetch(url);
     return await response.json();
   } catch (error) {
-    console.error("获取数据失败:", error);
+    console.error("Failed to fetch data:", error);
     throw error;
   }
 }
 ```
 
-### 3. 数组/对象引用
+### 3. Array/Object References
 
 ```javascript
-// ❌ 直接赋值会复制引用
+// Direct assignment copies the reference
 const arr1 = [1, 2, 3];
 const arr2 = arr1;
-arr2.push(4);  // arr1 也会被修改
+arr2.push(4);  // arr1 is also modified
 
-// ✅ 创建副本
-const arr2 = [...arr1];  // 或 arr1.slice()
+// Correct: create a copy
+const arr2 = [...arr1];  // or arr1.slice()
 
-// 对象
+// Objects
 const obj1 = { a: 1 };
-const obj2 = { ...obj1 };  // 或 Object.assign({}, obj1)
+const obj2 = { ...obj1 };  // or Object.assign({}, obj1)
 ```
 
-## 并发错误模式
+## Concurrency Error Patterns
 
-### 1. 死锁
+### 1. Deadlock
 
 ```python
-# ❌ 可能死锁
+# May deadlock
 import threading
 
 lock1 = threading.Lock()
@@ -271,25 +271,25 @@ lock2 = threading.Lock()
 def thread1():
     with lock1:
         with lock2:
-            # 操作
+            # operation
 
 def thread2():
     with lock2:
-        with lock1:  # 死锁
-            # 操作
+        with lock1:  # deadlock
+            # operation
 ```
 
-### 2. 数据竞争
+### 2. Data Race
 
 ```python
-# ❌ 多个线程同时修改共享变量
+# Multiple threads simultaneously modifying shared variable
 counter = 0
 
 def increment():
     global counter
-    counter += 1  # 非原子操作
+    counter += 1  # non-atomic operation
 
-# ✅ 使用锁
+# Correct: use a lock
 counter = 0
 lock = threading.Lock()
 
@@ -299,10 +299,10 @@ def increment():
         counter += 1
 ```
 
-## 预防措施
+## Prevention Measures
 
-1. **使用类型检查**：TypeScript、Python 类型注解
-2. **编写单元测试**：覆盖边界条件
-3. **使用静态分析工具**：pylint、eslint
-4. **代码审查**：让他人检查代码
-5. **使用防御性编程**：验证输入、处理异常
+1. **Use type checking**: TypeScript, Python type annotations
+2. **Write unit tests**: cover boundary conditions
+3. **Use static analysis tools**: pylint, eslint
+4. **Code review**: have others check the code
+5. **Use defensive programming**: validate inputs, handle exceptions

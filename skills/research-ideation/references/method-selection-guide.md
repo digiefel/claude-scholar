@@ -1,217 +1,217 @@
-# 方法选择指南
+# Method Selection Guide
 
-帮助研究者选择适合的研究方法和技术路线。
+Helps researchers select appropriate research methods and technical approaches.
 
-## 1. 常见研究方法分类
+## 1. Common Research Method Categories
 
-### 1.1 理论分析方法
+### 1.1 Theoretical Analysis Methods
 
-**特点**：通过数学推导和理论分析来理解问题
+**Characteristics**: Understand problems through mathematical derivation and theoretical analysis
 
-**适用场景**：
-- 需要理论保证的问题
-- 算法复杂度分析
-- 收敛性证明
-- 泛化界分析
+**Applicable scenarios**:
+- Problems requiring theoretical guarantees
+- Algorithm complexity analysis
+- Convergence proofs
+- Generalization bound analysis
 
-**示例**：
-- PAC 学习理论
-- 优化算法收敛性分析
-- 神经网络表达能力分析
+**Examples**:
+- PAC learning theory
+- Optimization algorithm convergence analysis
+- Neural network expressivity analysis
 
-**所需技能**：
-- 数学基础（概率论、优化理论）
-- 理论计算机科学
-- 证明技巧
+**Required skills**:
+- Mathematical foundations (probability theory, optimization theory)
+- Theoretical computer science
+- Proof techniques
 
-### 1.2 实证研究方法
+### 1.2 Empirical Research Methods
 
-**特点**：通过实验验证假设和评估方法
+**Characteristics**: Validate hypotheses and evaluate methods through experiments
 
-**适用场景**：
-- 新方法性能评估
-- 假设验证
-- 方法对比
-- 参数敏感性分析
+**Applicable scenarios**:
+- New method performance evaluation
+- Hypothesis validation
+- Method comparison
+- Parameter sensitivity analysis
 
-**示例**：
-- 在多个数据集上评估新模型
-- 消融实验分析组件贡献
-- 超参数搜索和优化
+**Examples**:
+- Evaluating a new model on multiple datasets
+- Ablation experiments to analyze component contributions
+- Hyperparameter search and optimization
 
-**所需资源**：
-- 计算资源（GPU/TPU）
-- 标准数据集
-- 评估指标和工具
+**Required resources**:
+- Computational resources (GPU/TPU)
+- Standard datasets
+- Evaluation metrics and tools
 
-### 1.3 系统构建方法
+### 1.3 System Construction Methods
 
-**特点**：构建完整的系统或工具
+**Characteristics**: Build complete systems or tools
 
-**适用场景**：
-- 端到端应用系统
-- 工具和框架开发
-- 集成多个技术
-- 实际部署需求
+**Applicable scenarios**:
+- End-to-end application systems
+- Tool and framework development
+- Integration of multiple technologies
+- Real deployment requirements
 
-**示例**：
-- 对话系统
-- 推荐系统
-- 代码生成工具
-- 数据处理框架
+**Examples**:
+- Dialogue systems
+- Recommendation systems
+- Code generation tools
+- Data processing frameworks
 
-**所需资源**：
-- 工程能力
-- 系统设计经验
-- 用户反馈渠道
-- 维护和迭代能力
+**Required resources**:
+- Engineering capability
+- System design experience
+- User feedback channels
+- Maintenance and iteration capability
 
-### 1.4 数据分析方法
+### 1.4 Data Analysis Methods
 
-**特点**：通过数据分析发现规律和洞察
+**Characteristics**: Discover patterns and insights through data analysis
 
-**适用场景**：
-- 探索性研究
-- 现象分析
-- 模型行为理解
-- 错误分析
+**Applicable scenarios**:
+- Exploratory research
+- Phenomenon analysis
+- Understanding model behavior
+- Error analysis
 
-**示例**：
-- 注意力模式可视化
-- 模型预测错误分析
-- 数据集偏差分析
-- 训练动态分析
+**Examples**:
+- Attention pattern visualization
+- Model prediction error analysis
+- Dataset bias analysis
+- Training dynamics analysis
 
-**所需技能**：
-- 数据可视化
-- 统计分析
-- 模型解释技术
+**Required skills**:
+- Data visualization
+- Statistical analysis
+- Model interpretation techniques
 
-## 2. 方法选择决策框架
+## 2. Method Selection Decision Framework
 
-### 2.1 问题类型匹配
+### 2.1 Problem Type Matching
 
-| 问题类型 | 推荐方法 | 原因 |
-|---------|---------|------|
-| 理论问题 | 理论分析 | 需要严格证明 |
-| 性能提升 | 实证研究 | 需要实验验证 |
-| 实际应用 | 系统构建 | 需要端到端解决方案 |
-| 现象理解 | 数据分析 | 需要探索和发现 |
+| Problem Type | Recommended Method | Reason |
+|-------------|-------------------|--------|
+| Theoretical problem | Theoretical analysis | Requires rigorous proof |
+| Performance improvement | Empirical research | Requires experimental validation |
+| Practical application | System construction | Requires end-to-end solution |
+| Phenomenon understanding | Data analysis | Requires exploration and discovery |
 
-### 2.2 资源约束考虑
+### 2.2 Resource Constraint Considerations
 
-**计算资源有限**：
-- 优先选择轻量级方法
-- 使用预训练模型
-- 考虑模型压缩技术
-- 使用小规模数据集验证
+**Limited computational resources**:
+- Prioritize lightweight methods
+- Use pre-trained models
+- Consider model compression techniques
+- Validate with small-scale datasets
 
-**时间紧迫**：
-- 选择成熟的方法
-- 使用现有工具和框架
-- 避免从零开始
-- 优先快速原型
+**Time pressure**:
+- Choose mature methods
+- Use existing tools and frameworks
+- Avoid starting from scratch
+- Prioritize rapid prototyping
 
-**数据有限**：
-- 使用迁移学习
-- 数据增强技术
-- Few-shot 学习方法
-- 合成数据生成
+**Limited data**:
+- Use transfer learning
+- Data augmentation techniques
+- Few-shot learning methods
+- Synthetic data generation
 
-## 3. 方法优缺点对比
+## 3. Comparison of Method Pros and Cons
 
-### 3.1 理论分析方法
+### 3.1 Theoretical Analysis Methods
 
-**优点**：
-- 提供理论保证
-- 深入理解问题本质
-- 结果具有普适性
-- 不依赖大量实验
+**Pros**:
+- Provides theoretical guarantees
+- Deep understanding of the nature of the problem
+- Results have general applicability
+- Does not rely on large-scale experiments
 
-**缺点**：
-- 需要强数学背景
-- 可能与实际有差距
-- 证明过程耗时
-- 难以处理复杂系统
+**Cons**:
+- Requires strong mathematical background
+- May have gaps with reality
+- Proof process is time-consuming
+- Difficult to handle complex systems
 
-### 3.2 实证研究方法
+### 3.2 Empirical Research Methods
 
-**优点**：
-- 直接验证性能
-- 结果直观可信
-- 易于复现
-- 适用范围广
+**Pros**:
+- Directly validates performance
+- Results are intuitive and credible
+- Easy to reproduce
+- Broad applicability
 
-**缺点**：
-- 需要大量计算资源
-- 结果可能过拟合数据集
-- 缺乏理论解释
-- 超参数调优困难
+**Cons**:
+- Requires significant computational resources
+- Results may overfit datasets
+- Lacks theoretical explanation
+- Hyperparameter tuning is difficult
 
-### 3.3 系统构建方法
+### 3.3 System Construction Methods
 
-**优点**：
-- 解决实际问题
-- 产生实用价值
-- 综合多种技术
-- 易于产业化
+**Pros**:
+- Solves real problems
+- Generates practical value
+- Integrates multiple technologies
+- Easy to industrialize
 
-**缺点**：
-- 工程量大
-- 维护成本高
-- 学术贡献可能有限
-- 难以发表顶会
+**Cons**:
+- High engineering workload
+- High maintenance cost
+- Academic contribution may be limited
+- Difficult to publish at top venues
 
-### 3.4 数据分析方法
+### 3.4 Data Analysis Methods
 
-**优点**：
-- 发现新现象
-- 提供洞察
-- 成本相对较低
-- 可视化效果好
+**Pros**:
+- Discovers new phenomena
+- Provides insights
+- Relatively low cost
+- Good visualization effects
 
-**缺点**：
-- 可能缺乏深度
-- 难以量化贡献
-- 结果可能主观
-- 需要领域知识
+**Cons**:
+- May lack depth
+- Contribution is difficult to quantify
+- Results may be subjective
+- Requires domain knowledge
 
-## 4. 资源需求评估
+## 4. Resource Requirement Assessment
 
-### 4.1 计算资源
+### 4.1 Computational Resources
 
-| 方法类型 | GPU 需求 | 训练时间 | 存储需求 |
-|---------|---------|---------|---------|
-| 理论分析 | 无 | 无 | 低 |
-| 小规模实验 | 1-2 GPU | 数小时-数天 | 中 |
-| 大规模实验 | 4-8 GPU | 数天-数周 | 高 |
-| 系统构建 | 可变 | 持续 | 高 |
+| Method Type | GPU Requirement | Training Time | Storage Requirement |
+|------------|----------------|---------------|---------------------|
+| Theoretical analysis | None | None | Low |
+| Small-scale experiments | 1-2 GPU | Hours to days | Medium |
+| Large-scale experiments | 4-8 GPU | Days to weeks | High |
+| System construction | Variable | Ongoing | High |
 
-### 4.2 人力资源
+### 4.2 Human Resources
 
-**单人项目**：
-- 理论分析（如有背景）
-- 小规模实证研究
-- 数据分析
+**Single-person project**:
+- Theoretical analysis (if background exists)
+- Small-scale empirical research
+- Data analysis
 
-**团队项目**：
-- 大规模实证研究
-- 系统构建
-- 跨领域研究
+**Team project**:
+- Large-scale empirical research
+- System construction
+- Cross-domain research
 
-### 4.3 时间资源
+### 4.3 Time Resources
 
-**3个月内**：
-- 小规模实验
-- 数据分析
-- 理论分析（简单问题）
+**Within 3 months**:
+- Small-scale experiments
+- Data analysis
+- Theoretical analysis (simple problems)
 
-**6个月内**：
-- 中等规模实验
-- 系统原型
-- 理论分析（复杂问题）
+**Within 6 months**:
+- Medium-scale experiments
+- System prototype
+- Theoretical analysis (complex problems)
 
-**1年内**：
-- 大规模实验
-- 完整系统
-- 深入理论研究
+**Within 1 year**:
+- Large-scale experiments
+- Complete system
+- In-depth theoretical research

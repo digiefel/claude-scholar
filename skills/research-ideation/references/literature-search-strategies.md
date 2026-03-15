@@ -1,29 +1,29 @@
-# 文献搜索策略
+# Literature Search Strategies
 
-系统化的文献搜索方法，帮助研究者高效地找到相关文献。
+Systematic literature search methods to help researchers efficiently find relevant papers.
 
-## 1. 关键词构建
+## 1. Keyword Construction
 
-### 1.1 核心概念识别
+### 1.1 Core Concept Identification
 
-从研究兴趣中提取核心概念：
+Extract core concepts from research interests:
 
-**示例**：研究兴趣 "Transformer 模型的可解释性"
-- 核心概念 1：Transformer
-- 核心概念 2：Interpretability / Explainability
+**Example**: Research interest "Interpretability of Transformer models"
+- Core concept 1: Transformer
+- Core concept 2: Interpretability / Explainability
 
-### 1.2 同义词和变体
+### 1.2 Synonyms and Variants
 
-为每个核心概念列出同义词和变体：
+List synonyms and variants for each core concept:
 
-| 核心概念 | 同义词/变体 |
-|---------|------------|
+| Core Concept | Synonyms/Variants |
+|-------------|-------------------|
 | Transformer | Attention mechanism, Self-attention, BERT, GPT |
 | Interpretability | Explainability, Transparency, Understanding |
 
-### 1.3 布尔运算符
+### 1.3 Boolean Operators
 
-使用布尔运算符组合关键词：
+Combine keywords using Boolean operators:
 
 ```
 (Transformer OR "attention mechanism" OR BERT OR GPT)
@@ -31,171 +31,170 @@ AND
 (interpretability OR explainability OR transparency)
 ```
 
-### 1.4 领域特定术语
+### 1.4 Domain-Specific Terms
 
-添加领域特定的术语：
+Add domain-specific terminology:
 
-- **方法术语**：probing, attention visualization, saliency maps
-- **应用领域**：NLP, computer vision, speech recognition
-- **评估指标**：faithfulness, plausibility, human evaluation
+- **Method terms**: probing, attention visualization, saliency maps
+- **Application domains**: NLP, computer vision, speech recognition
+- **Evaluation metrics**: faithfulness, plausibility, human evaluation
 
-## 2. 学术数据库选择
+## 2. Selecting Academic Databases
 
-### 2.1 主要数据库
+### 2.1 Major Databases
 
-| 数据库 | 特点 | 适用场景 |
-|--------|------|---------|
-| **arXiv** | 预印本，更新快 | 获取最新研究进展 |
-| **Semantic Scholar** | AI 驱动，引用分析 | 发现相关论文，分析影响力 |
-| **Google Scholar** | 覆盖面广 | 全面搜索，找遗漏论文 |
-| **ACL Anthology** | NLP 专业 | NLP 领域深度搜索 |
-| **IEEE Xplore** | 工程技术 | 计算机视觉、硬件相关 |
+| Database | Characteristics | Use Case |
+|----------|----------------|----------|
+| **arXiv** | Preprints, fast updates | Get the latest research advances |
+| **Semantic Scholar** | AI-driven, citation analysis | Discover related papers, analyze impact |
+| **Google Scholar** | Broad coverage | Comprehensive search, catch missing papers |
+| **ACL Anthology** | NLP specialized | Deep search in NLP domain |
+| **IEEE Xplore** | Engineering/technology | Computer vision, hardware-related |
 
-### 2.2 搜索策略
+### 2.2 Search Strategies
 
-**arXiv 搜索**：
+**arXiv search**:
 ```
 cat:cs.LG AND (transformer OR attention) AND (interpretability OR explainability)
 ```
 
-**Semantic Scholar 搜索**：
-- 使用自然语言查询
-- 利用"Highly Influential Citations"筛选
-- 查看"Related Papers"发现相关工作
+**Semantic Scholar search**:
+- Use natural language queries
+- Filter using "Highly Influential Citations"
+- Check "Related Papers" to discover related work
 
-**Google Scholar 搜索**：
-- 使用引号精确匹配："transformer interpretability"
-- 限制时间范围：2020-2024
-- 排除专利：-patent
+**Google Scholar search**:
+- Use quotes for exact match: "transformer interpretability"
+- Limit time range: 2020-2024
+- Exclude patents: -patent
 
-## 3. 搜索技巧
+## 3. Search Techniques
 
-### 3.1 迭代搜索
+### 3.1 Iterative Search
 
-1. **初始搜索** - 使用核心关键词
-2. **分析结果** - 查看高引用论文的关键词
-3. **优化查询** - 添加新发现的术语
-4. **重复迭代** - 直到找到足够相关的论文
+1. **Initial search** - Use core keywords
+2. **Analyze results** - Check keywords from highly-cited papers
+3. **Refine query** - Add newly discovered terms
+4. **Repeat** - Until enough relevant papers are found
 
-### 3.2 引用追踪
+### 3.2 Citation Tracking
 
-**前向引用**（Forward Citation）：
-- 查看哪些新论文引用了这篇论文
-- 了解研究的后续发展
+**Forward citation**:
+- Check which newer papers cite a given paper
+- Understand subsequent developments of the research
 
-**后向引用**（Backward Citation）：
-- 查看这篇论文引用了哪些论文
-- 了解研究的基础和背景
+**Backward citation**:
+- Check which papers a given paper cites
+- Understand the foundations and background of the research
 
-### 3.3 作者追踪
+### 3.3 Author Tracking
 
-- 识别领域内的关键研究者
-- 查看他们的其他相关工作
-- 关注他们的最新研究
+- Identify key researchers in the field
+- Check their other related work
+- Follow their latest research
 
-## 4. 论文筛选标准
+## 4. Paper Screening Criteria
 
-### 4.1 初步筛选（基于标题和摘要）
+### 4.1 Initial Screening (Based on Title and Abstract)
 
-**包含标准**：
-- 直接相关于研究主题
-- 发表在顶级会议/期刊（NeurIPS, ICML, ICLR, ACL, AAAI）
-- 引用次数较高（相对于发表时间）
-- 作者来自知名机构或研究组
+**Inclusion criteria**:
+- Directly relevant to the research topic
+- Published at top conferences/journals (NeurIPS, ICML, ICLR, ACL, AAAI)
+- High citation count (relative to publication date)
+- Authors from well-known institutions or research groups
 
-**排除标准**：
-- 与研究主题无关
-- 发表在低质量会议/期刊
-- 明显过时的方法（除非是经典论文）
+**Exclusion criteria**:
+- Unrelated to the research topic
+- Published in low-quality conferences/journals
+- Clearly outdated methods (unless a classic paper)
 
-### 4.2 深度筛选（基于全文）
+### 4.2 Deep Screening (Based on Full Text)
 
-**质量评估**：
-1. **方法创新性** - 是否提出新方法或新视角
-2. **实验充分性** - 实验设计是否合理，结果是否可信
-3. **写作质量** - 论文是否清晰易懂
-4. **可重现性** - 是否提供代码和数据
+**Quality evaluation**:
+1. **Methodological innovation** - Does it propose a new method or perspective
+2. **Experimental rigor** - Is the experimental design sound and results credible
+3. **Writing quality** - Is the paper clear and readable
+4. **Reproducibility** - Does it provide code and data
 
-**相关性评估**：
-1. **直接相关** - 核心方法或问题直接相关
-2. **间接相关** - 相关技术或应用场景
-3. **背景知识** - 提供必要的背景和基础
+**Relevance evaluation**:
+1. **Directly relevant** - Core method or problem is directly related
+2. **Indirectly relevant** - Related techniques or application scenarios
+3. **Background knowledge** - Provides necessary background and foundations
 
-### 4.3 文献管理
+### 4.3 Literature Management
 
-**集成工具**：
-- **Zotero**（主要工具，已通过 MCP 集成）
-  - 通过 `add_items_by_doi` 自动添加论文，获取完整元数据
-  - 通过 `create_collection` 自动创建和组织集合
-  - 通过 `find_and_attach_pdfs` 自动附加 OA PDF
-  - 通过 `get_item_fulltext` 读取 PDF 全文进行分析
-  - 通过 `search_library` 搜索已有论文避免重复导入
-- Mendeley - 社交功能，PDF 标注（备选）
-- Papers - Mac 专用，界面优雅（备选）
+**Integration tools**:
+- **Zotero** (primary tool, integrated via MCP)
+  - Automatically add papers via `add_items_by_doi` to get complete metadata
+  - Automatically create and organize collections via `create_collection`
+  - Automatically attach OA PDFs via `find_and_attach_pdfs`
+  - Read PDF full text for analysis via `get_item_fulltext`
+  - Search existing papers to avoid duplicates via `search_library`
+- Mendeley - social features, PDF annotation (alternative)
+- Papers - Mac-native, elegant interface (alternative)
 
-**组织策略**：
+**Organization strategy**:
 
-使用 Zotero 集合结构组织文献：
+Use Zotero collection structure to organize literature:
 
 ```
-📁 Research-{topic}-{date}
-  ├── 📁 Core Papers（核心论文）
-  ├── 📁 Methods（方法论文）
-  ├── 📁 Applications（应用论文）
-  ├── 📁 Baselines（基线论文）
-  └── 📁 To-Read（待读论文）
+Research-{topic}-{date}
+  ├── Core Papers
+  ├── Methods
+  ├── Applications
+  ├── Baselines
+  └── To-Read
 ```
 
-- 核心论文：直接相关、高引用的关键论文
-- 方法论文：技术方法参考，可借鉴的方法论
-- 应用论文：应用场景参考，领域实践
-- 基线论文：实验对比基准，需要复现的工作
-- 待读论文：初步筛选，待深入阅读
+- Core Papers: Directly relevant, highly-cited key papers
+- Methods: Technical method references, methodological approaches to borrow
+- Applications: Application scenario references, domain practices
+- Baselines: Experimental comparison baselines, work to reproduce
+- To-Read: Initial screening, pending detailed reading
 
-## 5. DOI 提取与自动导入
+## 5. DOI Extraction and Automatic Import
 
-### 5.1 DOI 提取方法
+### 5.1 DOI Extraction Methods
 
-从 WebSearch 搜索结果中提取 DOI 的常见方式：
+Common ways to extract DOIs from WebSearch results:
 
-**URL 中的 DOI**：
-- `https://doi.org/10.xxxx/xxxxx` - 直接 DOI 链接
+**DOI in URL**:
+- `https://doi.org/10.xxxx/xxxxx` - Direct DOI link
 - `https://dl.acm.org/doi/10.xxxx/xxxxx` - ACM Digital Library
-- `https://ieeexplore.ieee.org/document/xxxxx` - IEEE（需从页面提取）
-- `https://arxiv.org/abs/xxxx.xxxxx` - arXiv（DOI 格式：`10.48550/arXiv.xxxx.xxxxx`）
+- `https://ieeexplore.ieee.org/document/xxxxx` - IEEE (extract from page)
+- `https://arxiv.org/abs/xxxx.xxxxx` - arXiv (DOI format: `10.48550/arXiv.xxxx.xxxxx`)
 
-**常见 DOI 格式**：
-- `10.xxxx/xxxxx` - 标准 DOI 前缀
-- 以 `10.` 开头，包含 `/` 分隔符
-- 例：`10.1038/s41586-023-06747-5`（Nature）
-- 例：`10.48550/arXiv.2301.00234`（arXiv）
+**Common DOI formats**:
+- `10.xxxx/xxxxx` - Standard DOI prefix
+- Starts with `10.`, contains `/` separator
+- Example: `10.1038/s41586-023-06747-5` (Nature)
+- Example: `10.48550/arXiv.2301.00234` (arXiv)
 
-### 5.2 自动导入流程
+### 5.2 Automatic Import Workflow
 
 ```
-WebSearch 搜索论文
-    ↓
-从搜索结果中提取 DOI
-    ↓
-add_items_by_doi 批量添加到 Zotero
-    ↓
-find_and_attach_pdfs 自动附加 OA PDF
-    ↓
-get_item_fulltext 读取全文进行分析
+WebSearch for papers
+    |
+Extract DOIs from search results
+    |
+add_items_by_doi batch-add to Zotero
+    |
+find_and_attach_pdfs auto-attach OA PDFs
+    |
+get_item_fulltext read full text for analysis
 ```
 
-**操作示例**：
+**Operation example**:
 
-1. 使用 WebSearch 搜索 `"transformer interpretability" site:arxiv.org OR site:doi.org`
-2. 从结果中收集 DOI 列表
-3. 调用 `add_items_by_doi` 批量导入（建议每批不超过 10 篇，避免 API 速率限制）
-4. 调用 `find_and_attach_pdfs` 为导入的论文附加 PDF
-5. 使用 `get_item_fulltext` 阅读关键论文全文
+1. Use WebSearch to search `"transformer interpretability" site:arxiv.org OR site:doi.org`
+2. Collect DOI list from results
+3. Call `add_items_by_doi` for batch import (recommend no more than 10 per batch to avoid API rate limits)
+4. Call `find_and_attach_pdfs` to attach PDFs to imported papers
+5. Use `get_item_fulltext` to read key paper full texts
 
-### 5.3 无 DOI 论文处理
+### 5.3 Handling Papers Without DOI
 
-部分论文可能没有标准 DOI：
-- **arXiv 预印本**：使用 `10.48550/arXiv.{id}` 格式
-- **会议论文集**：尝试从出版商页面获取 DOI
-- **无法获取 DOI**：使用 `add_web_item` 保存网页链接，或使用 `import_pdf_to_zotero` 直接导入 PDF
-
+Some papers may not have a standard DOI:
+- **arXiv preprints**: Use `10.48550/arXiv.{id}` format
+- **Conference proceedings**: Try to get DOI from publisher page
+- **Cannot get DOI**: Use `add_web_item` to save webpage link, or use `import_pdf_to_zotero` to import PDF directly

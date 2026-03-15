@@ -1,162 +1,161 @@
 # 5W1H Framework for Research Ideation
 
-## 概述
+## Overview
 
-5W1H 框架是一个系统化的思维工具，帮助研究者从多个维度构思和评估研究想法。通过回答6个关键问题，可以快速建立对研究主题的全面理解。
+The 5W1H framework is a systematic thinking tool that helps researchers conceptualize and evaluate research ideas from multiple dimensions. By answering six key questions, you can quickly build a comprehensive understanding of a research topic.
 
-## 框架组成
+## Framework Components
 
-### What (什么)
+### What
 
-**核心问题**: 研究什么问题或现象？
+**Core question**: What problem or phenomenon is being studied?
 
-**思考维度**:
-- 具体的研究对象是什么
-- 要解决的核心问题是什么
-- 研究的范围和边界在哪里
-- 预期的研究成果是什么
+**Dimensions to consider**:
+- What is the specific research object
+- What is the core problem to solve
+- What are the scope and boundaries of the research
+- What are the expected research outputs
 
-**示例**:
-- "研究 Transformer 模型的可解释性"
-- "探索少样本学习在医疗图像分析中的应用"
-- "分析强化学习中的样本效率问题"
-
-
-### Why (为什么)
-
-**核心问题**: 为什么这个问题重要？
-
-**思考维度**:
-- 这个问题的学术价值是什么
-- 解决这个问题有什么实际意义
-- 当前研究的局限性是什么
-- 为什么现在是研究这个问题的好时机
-
-**评估标准**:
-- **学术重要性**: 是否推动领域发展
-- **实际影响**: 是否解决真实问题
-- **时效性**: 是否符合当前研究趋势
-- **可行性**: 是否有足够的资源和技术支持
-
-### Who (谁)
-
-**核心问题**: 目标受众和利益相关者是谁？
-
-**思考维度**:
-- 谁会关心这个研究
-- 谁会使用研究成果
-- 谁会从中受益
-- 需要与谁合作
-
-**利益相关者分类**:
-- **学术界**: 同领域研究者、审稿人、引用者
-- **工业界**: 产品团队、工程师、决策者
-- **用户**: 最终使用者、受影响群体
-- **合作者**: 导师、同事、跨学科专家
-
-### When (何时)
-
-**核心问题**: 研究的时间范围和背景是什么？
-
-**思考维度**:
-- 研究的时间跨度是多久
-- 何时是最佳的研究时机
-- 相关技术和数据何时可用
-- 预期何时产出成果
-
-**时间规划**:
-- **短期** (3-6个月): 初步探索、文献综述、方法验证
-- **中期** (6-12个月): 完整实验、论文撰写、投稿
-- **长期** (1-2年): 系统研究、多篇论文、理论贡献
+**Examples**:
+- "Study the interpretability of Transformer model attention mechanisms"
+- "Explore few-shot learning in medical image analysis"
+- "Analyze sample efficiency in reinforcement learning"
 
 
-### Where (何处)
+### Why
 
-**核心问题**: 研究的应用场景和领域是什么？
+**Core question**: Why does this problem matter?
 
-**思考维度**:
-- 研究应用在哪些具体场景
-- 在哪些领域或行业有价值
-- 地理或文化背景是否重要
-- 实验在哪里进行
+**Dimensions to consider**:
+- What is the academic value of this problem
+- What practical significance does solving it have
+- What are the limitations of current research
+- Why is now a good time to study this problem
 
-**应用场景分类**:
-- **学术场景**: 理论验证、方法比较、基准测试
-- **工业场景**: 产品开发、系统优化、问题诊断
-- **社会场景**: 政策制定、公共服务、社会影响
-- **跨领域**: 多学科交叉、技术迁移
+**Evaluation criteria**:
+- **Academic importance**: Does it advance the field
+- **Practical impact**: Does it solve real problems
+- **Timeliness**: Does it align with current research trends
+- **Feasibility**: Are there sufficient resources and technical support
 
-### How (如何)
+### Who
 
-**核心问题**: 初步的研究方法思路是什么？
+**Core question**: Who are the target audience and stakeholders?
 
-**思考维度**:
-- 采用什么研究方法或技术路线
-- 需要什么数据和资源
-- 如何验证研究假设
-- 预期的技术挑战是什么
+**Dimensions to consider**:
+- Who will care about this research
+- Who will use the research outputs
+- Who will benefit from it
+- Who needs to be collaborated with
 
-**方法类型**:
-- **理论研究**: 数学证明、理论分析、模型推导
-- **实验研究**: 算法设计、实验验证、性能评估
-- **应用研究**: 系统开发、案例研究、用户测试
-- **综合研究**: 文献综述、元分析、系统评价
+**Stakeholder categories**:
+- **Academia**: Researchers in the same field, reviewers, citers
+- **Industry**: Product teams, engineers, decision makers
+- **Users**: End users, affected groups
+- **Collaborators**: Advisors, colleagues, interdisciplinary experts
 
+### When
 
-## 使用示例
+**Core question**: What is the timeframe and context of the research?
 
-### 示例 1: Transformer 可解释性研究
+**Dimensions to consider**:
+- What is the duration of the research
+- When is the optimal time to conduct the research
+- When will relevant technologies and data be available
+- When are outputs expected
 
-**What**: 研究 Transformer 模型的注意力机制可解释性
-**Why**: 提高模型透明度，增强用户信任，满足监管要求
-**Who**: NLP 研究者、模型开发者、监管机构
-**When**: 6-12个月，当前 Transformer 广泛应用但缺乏解释
-**Where**: 文本分类、机器翻译、问答系统等 NLP 任务
-**How**: 设计可视化工具，分析注意力权重，进行消融实验
-
-### 示例 2: 少样本学习在医疗影像中的应用
-
-**What**: 探索少样本学习方法在医疗图像诊断中的有效性
-**Why**: 医疗数据标注成本高，少样本学习可降低数据需求
-**Who**: 医疗 AI 研究者、放射科医生、医院
-**When**: 12-18个月，随着少样本学习技术成熟
-**Where**: X光片、CT扫描、MRI 等医疗影像诊断
-**How**: 元学习、迁移学习、数据增强，在真实医疗数据集上验证
+**Time planning**:
+- **Short-term** (3-6 months): Preliminary exploration, literature review, method validation
+- **Medium-term** (6-12 months): Full experiments, paper writing, submission
+- **Long-term** (1-2 years): Systematic research, multiple papers, theoretical contributions
 
 
-## 最佳实践
+### Where
 
-### 1. 迭代式思考
+**Core question**: What are the application scenarios and domains?
 
-不要期望一次性回答所有问题。先快速过一遍6个问题，然后反复迭代细化。
+**Dimensions to consider**:
+- In which specific scenarios does the research apply
+- In which fields or industries is it valuable
+- Is geographic or cultural context important
+- Where will experiments be conducted
 
-### 2. 优先级排序
+**Application scenario categories**:
+- **Academic**: Theory validation, method comparison, benchmarking
+- **Industrial**: Product development, system optimization, problem diagnosis
+- **Social**: Policy making, public services, social impact
+- **Cross-domain**: Multidisciplinary intersection, technology transfer
 
-根据研究阶段调整关注重点：
-- **早期**: 重点关注 What, Why, Who
-- **中期**: 重点关注 How, When, Where
-- **后期**: 全面审视所有维度
+### How
 
-### 3. 团队协作
+**Core question**: What are the preliminary research method ideas?
 
-与导师、同事讨论 5W1H 问题，获得多角度反馈。
+**Dimensions to consider**:
+- What research methods or technical approaches will be used
+- What data and resources are needed
+- How will research hypotheses be validated
+- What are the expected technical challenges
 
-### 4. 文档记录
+**Method types**:
+- **Theoretical research**: Mathematical proof, theoretical analysis, model derivation
+- **Experimental research**: Algorithm design, experimental validation, performance evaluation
+- **Applied research**: System development, case study, user testing
+- **Comprehensive research**: Literature review, meta-analysis, systematic evaluation
 
-将 5W1H 分析结果记录下来，作为研究提案的基础。
 
-## 与 superpowers:brainstorming 集成
+## Usage Examples
 
-可以调用 `superpowers:brainstorming` skill 进行交互式头脑风暴：
+### Example 1: Transformer Interpretability Research
 
-**使用场景**:
-- 需要快速生成多个研究想法
-- 需要评估想法的可行性
-- 需要团队协作式讨论
+**What**: Study the interpretability of attention mechanisms in Transformer models
+**Why**: Improve model transparency, enhance user trust, meet regulatory requirements
+**Who**: NLP researchers, model developers, regulatory bodies
+**When**: 6-12 months; Transformers are widely used but lack explanation
+**Where**: Text classification, machine translation, question answering and other NLP tasks
+**How**: Design visualization tools, analyze attention weights, conduct ablation experiments
 
-**集成方式**:
-1. 使用 5W1H 框架初步构思想法
-2. 调用 superpowers:brainstorming 进行深入探索
-3. 将头脑风暴结果整理回 5W1H 框架
-4. 形成结构化的研究提案
+### Example 2: Few-Shot Learning in Medical Imaging
 
+**What**: Explore the effectiveness of few-shot learning methods in medical image diagnosis
+**Why**: Medical data annotation is costly; few-shot learning can reduce data requirements
+**Who**: Medical AI researchers, radiologists, hospitals
+**When**: 12-18 months, as few-shot learning technology matures
+**Where**: X-rays, CT scans, MRI and other medical image diagnostics
+**How**: Meta-learning, transfer learning, data augmentation, validated on real medical datasets
+
+
+## Best Practices
+
+### 1. Iterative Thinking
+
+Do not expect to answer all questions in one pass. Quickly go through all six questions first, then iterate and refine repeatedly.
+
+### 2. Priority Ordering
+
+Adjust focus according to research stage:
+- **Early stage**: Focus on What, Why, Who
+- **Mid stage**: Focus on How, When, Where
+- **Late stage**: Comprehensively review all dimensions
+
+### 3. Team Collaboration
+
+Discuss 5W1H questions with advisors and colleagues to get multi-perspective feedback.
+
+### 4. Documentation
+
+Record the 5W1H analysis results as the basis for research proposals.
+
+## Integration with superpowers:brainstorming
+
+You can invoke the `superpowers:brainstorming` skill for interactive brainstorming:
+
+**Use cases**:
+- Need to quickly generate multiple research ideas
+- Need to evaluate the feasibility of ideas
+- Need team-collaborative discussion
+
+**Integration approach**:
+1. Use the 5W1H framework to preliminarily conceptualize ideas
+2. Call superpowers:brainstorming for in-depth exploration
+3. Organize brainstorming results back into the 5W1H framework
+4. Form a structured research proposal

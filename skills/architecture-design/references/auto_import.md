@@ -47,7 +47,7 @@ def import_modules(models_dir: str, package_name: str) -> List[str]:
 ## Benefits
 
 - **Zero maintenance**: Adding new file = auto-registration
-- **No遗漏**: Cannot forget to import new component
+- **No omissions**: Cannot forget to import new component
 - **Consistent**: All components follow same discovery path
 - **Scalable**: Works for any number of submodules
 

@@ -1,180 +1,179 @@
-# 研究问题制定
+# Research Question Formulation
 
-将研究兴趣转化为具体、可执行的研究问题的系统化方法。
+A systematic method for transforming research interests into specific, actionable research questions.
 
-## 1. SMART 原则
+## 1. SMART Principles
 
-好的研究问题应该满足 SMART 原则：
+Good research questions should satisfy the SMART principles:
 
-### 1.1 Specific (具体的)
+### 1.1 Specific
 
-**不好的问题**：
-- "如何提高模型性能？"（太宽泛）
+**Bad question**:
+- "How to improve model performance?" (too broad)
 
-**好的问题**：
-- "如何通过改进注意力机制来提高 Transformer 在长文本理解任务上的性能？"
+**Good question**:
+- "How can improving the attention mechanism enhance Transformer performance on long-text understanding tasks?"
 
-**关键要素**：
-- 明确的研究对象（Transformer）
-- 具体的改进方向（注意力机制）
-- 明确的任务场景（长文本理解）
-- 清晰的目标（提高性能）
+**Key elements**:
+- Clear research subject (Transformer)
+- Specific improvement direction (attention mechanism)
+- Clear task scenario (long-text understanding)
+- Clear goal (improve performance)
 
-### 1.2 Measurable (可衡量的)
+### 1.2 Measurable
 
-研究问题应该有明确的评估标准：
+Research questions should have clear evaluation criteria:
 
-**示例**：
-- "提高性能" → "在 SQuAD 数据集上提高 F1 分数"
-- "改善可解释性" → "提高人类评估的 faithfulness 分数"
+**Examples**:
+- "Improve performance" → "Improve F1 score on the SQuAD dataset"
+- "Improve interpretability" → "Improve human-evaluated faithfulness score"
 
-**评估维度**：
-- 定量指标：准确率、F1、BLEU、困惑度
-- 定性指标：人类评估、案例分析
-- 效率指标：训练时间、推理速度、内存占用
+**Evaluation dimensions**:
+- Quantitative metrics: accuracy, F1, BLEU, perplexity
+- Qualitative metrics: human evaluation, case analysis
+- Efficiency metrics: training time, inference speed, memory footprint
 
-### 1.3 Achievable (可实现的)
+### 1.3 Achievable
 
-考虑资源和能力限制：
+Consider resource and capability constraints:
 
-**资源评估**：
-- 计算资源：GPU 数量和类型
-- 数据资源：数据集的可获得性和质量
-- 时间资源：研究周期（3个月、6个月、1年）
-- 人力资源：团队规模和专业技能
+**Resource assessment**:
+- Computational resources: number and type of GPUs
+- Data resources: availability and quality of datasets
+- Time resources: research duration (3 months, 6 months, 1 year)
+- Human resources: team size and professional skills
 
-**可行性检查**：
-- 是否有类似工作作为基础？
-- 所需技术是否已经成熟？
-- 数据集是否公开可用？
-- 计算成本是否在预算内？
+**Feasibility check**:
+- Is there similar existing work as a foundation?
+- Is the required technology already mature?
+- Are datasets publicly available?
+- Is the computational cost within budget?
 
-### 1.4 Relevant (相关的)
+### 1.4 Relevant
 
-研究问题应该对学术界或工业界有价值：
+Research questions should have value for academia or industry:
 
-**学术价值**：
-- 填补研究空白
-- 挑战现有假设
-- 提供新的理论视角
-- 推动方法论进步
+**Academic value**:
+- Fills a research gap
+- Challenges existing assumptions
+- Provides new theoretical perspectives
+- Advances methodology
 
-**实际价值**：
-- 解决实际应用问题
-- 提高系统性能
-- 降低成本或资源消耗
-- 改善用户体验
+**Practical value**:
+- Solves real-world application problems
+- Improves system performance
+- Reduces cost or resource consumption
+- Improves user experience
 
-### 1.5 Time-bound (有时限的)
+### 1.5 Time-bound
 
-设定合理的研究时间框架：
+Set a reasonable research timeframe:
 
-**短期目标**（1-3个月）：
-- 文献调研和问题定义
-- 初步实验和概念验证
+**Short-term goals** (1-3 months):
+- Literature review and problem definition
+- Initial experiments and proof of concept
 
-**中期目标**（3-6个月）：
-- 方法开发和优化
-- 全面实验和分析
+**Medium-term goals** (3-6 months):
+- Method development and optimization
+- Full experiments and analysis
 
-**长期目标**（6-12个月）：
-- 论文撰写和投稿
-- 代码开源和社区推广
+**Long-term goals** (6-12 months):
+- Paper writing and submission
+- Code open-source and community outreach
 
-## 2. 研究问题类型
+## 2. Research Question Types
 
-### 2.1 探索性问题 (Exploratory)
+### 2.1 Exploratory Questions
 
-**特点**：探索未知领域，发现新现象
+**Characteristics**: Explore unknown territory, discover new phenomena
 
-**示例**：
-- "Transformer 的注意力机制在处理长文本时表现出什么模式？"
-- "大语言模型在推理任务中使用了哪些内部表示？"
+**Examples**:
+- "What patterns does the Transformer attention mechanism exhibit when processing long texts?"
+- "What internal representations do large language models use for reasoning tasks?"
 
-**适用场景**：
-- 新兴研究领域
-- 缺乏理论基础的现象
-- 需要深入理解的复杂系统
+**Applicable scenarios**:
+- Emerging research fields
+- Phenomena lacking theoretical foundations
+- Complex systems requiring deeper understanding
 
-### 2.2 验证性问题 (Confirmatory)
+### 2.2 Confirmatory Questions
 
-**特点**：验证假设或理论
+**Characteristics**: Validate hypotheses or theories
 
-**示例**：
-- "增加模型深度是否能提高长文本理解性能？"
-- "预训练是否对低资源语言任务有帮助？"
+**Examples**:
+- "Does increasing model depth improve long-text understanding performance?"
+- "Does pre-training help low-resource language tasks?"
 
-**适用场景**：
-- 有明确假设需要验证
-- 挑战现有理论或观点
-- 复现和扩展已有工作
+**Applicable scenarios**:
+- Clear hypotheses that need validation
+- Challenging existing theories or views
+- Reproducing and extending existing work
 
-### 2.3 应用性问题 (Applied)
+### 2.3 Applied Questions
 
-**特点**：解决实际应用问题
+**Characteristics**: Solve practical application problems
 
-**示例**：
-- "如何在保持性能的同时将模型大小减少50%？"
-- "如何使对话系统更好地理解用户意图？"
+**Examples**:
+- "How to reduce model size by 50% while maintaining performance?"
+- "How to make dialogue systems better understand user intent?"
 
-**适用场景**：
-- 有明确的应用需求
-- 需要在约束条件下优化
-- 工业界合作项目
+**Applicable scenarios**:
+- Clear application requirements
+- Optimization under constraints
+- Industry collaboration projects
 
-## 3. 研究问题评估标准
+## 3. Research Question Evaluation Criteria
 
-### 3.1 重要性 (Significance)
+### 3.1 Significance
 
-**评估维度**：
-- **学术影响**：是否推动领域发展？
-- **实际价值**：是否解决重要问题？
-- **受众规模**：有多少人关心这个问题？
+**Evaluation dimensions**:
+- **Academic impact**: Does it advance the field?
+- **Practical value**: Does it solve important problems?
+- **Audience size**: How many people care about this problem?
 
-**评分标准**（1-5分）：
-- 5分：突破性问题，影响整个领域
-- 4分：重要问题，多个研究组关注
-- 3分：有价值问题，部分研究者关注
-- 2分：边缘问题，少数人关注
-- 1分：琐碎问题，几乎无人关注
+**Scoring criteria** (1-5 points):
+- 5: Breakthrough problem affecting the entire field
+- 4: Important problem, multiple research groups paying attention
+- 3: Valuable problem, some researchers interested
+- 2: Peripheral problem, limited interest
+- 1: Trivial problem, almost no interest
 
-### 3.2 新颖性 (Novelty)
+### 3.2 Novelty
 
-**评估维度**：
-- **问题新颖性**：是否是新问题？
-- **方法新颖性**：是否用新方法？
-- **视角新颖性**：是否有新视角？
+**Evaluation dimensions**:
+- **Problem novelty**: Is it a new problem?
+- **Method novelty**: Is it using a new method?
+- **Perspective novelty**: Is there a new perspective?
 
-**评分标准**（1-5分）：
-- 5分：全新问题或突破性方法
-- 4分：新问题或显著改进的方法
-- 3分：新视角或方法组合
-- 2分：增量改进
-- 1分：重复已有工作
+**Scoring criteria** (1-5 points):
+- 5: Entirely new problem or breakthrough method
+- 4: New problem or significantly improved method
+- 3: New perspective or method combination
+- 2: Incremental improvement
+- 1: Duplicates existing work
 
-### 3.3 可行性 (Feasibility)
+### 3.3 Feasibility
 
-**评估维度**：
-- **技术可行性**：现有技术能否实现？
-- **资源可行性**：资源是否充足？
-- **时间可行性**：时间是否合理？
+**Evaluation dimensions**:
+- **Technical feasibility**: Can current technology achieve this?
+- **Resource feasibility**: Are resources sufficient?
+- **Time feasibility**: Is the timeline reasonable?
 
-**评分标准**（1-5分）：
-- 5分：完全可行，资源充足
-- 4分：基本可行，资源足够
-- 3分：有挑战，需要努力
-- 2分：困难较大，需要突破
-- 1分：几乎不可行
+**Scoring criteria** (1-5 points):
+- 5: Fully feasible, resources sufficient
+- 4: Basically feasible, resources adequate
+- 3: Has challenges, requires effort
+- 2: Relatively difficult, requires breakthroughs
+- 1: Almost infeasible
 
-### 3.4 综合评估
+### 3.4 Comprehensive Assessment
 
-**决策矩阵**：
+**Decision matrix**:
 
-| 重要性 | 新颖性 | 可行性 | 建议 |
-|--------|--------|--------|------|
-| 高 | 高 | 高 | 优先执行 |
-| 高 | 高 | 中 | 值得尝试 |
-| 高 | 中 | 高 | 稳妥选择 |
-| 中 | 高 | 高 | 可以考虑 |
-| 低 | * | * | 重新考虑 |
-
+| Significance | Novelty | Feasibility | Recommendation |
+|-------------|---------|-------------|----------------|
+| High | High | High | Execute first |
+| High | High | Medium | Worth trying |
+| High | Medium | High | Safe choice |
+| Medium | High | High | Can consider |
+| Low | * | * | Reconsider |

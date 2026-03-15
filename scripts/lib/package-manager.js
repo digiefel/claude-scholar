@@ -1,6 +1,6 @@
 /**
- * 包管理器检测系统
- * 智能检测并管理 npm、pnpm、yarn、bun 等包管理器
+ * Package manager detection system
+ * Intelligently detects and manages npm, pnpm, yarn, bun and other package managers
  *
  * @module package-manager
  */
@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const { commandExists, readJSON, getProjectRoot, getClaudeConfigDir, isWindows } = require('./utils');
 
-// 包管理器配置
+// Package manager configuration
 const PACKAGE_MANAGERS = {
   npm: {
     name: 'npm',
@@ -45,12 +45,12 @@ const PACKAGE_MANAGERS = {
   }
 };
 
-// 检测优先级
+// Detection priority
 const DETECTION_PRIORITY = ['pnpm', 'bun', 'yarn', 'npm'];
 
 /**
- * 获取项目配置文件路径
- * @returns {string} 配置文件路径
+ * Get the project configuration file path
+ * @returns {string} Configuration file path
  */
 function getProjectConfigPath() {
   const projectRoot = getProjectRoot();
@@ -61,16 +61,16 @@ function getProjectConfigPath() {
 }
 
 /**
- * 获取全局配置文件路径
- * @returns {string} 配置文件路径
+ * Get the global configuration file path
+ * @returns {string} Configuration file path
  */
 function getGlobalConfigPath() {
   return path.join(getClaudeConfigDir(), 'package-manager.json');
 }
 
 /**
- * 从环境变量检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from environment variables
+ * @returns {string|null} Package manager name or null
  */
 function detectFromEnvironment() {
   const envPm = process.env.CLAUDE_PACKAGE_MANAGER;
@@ -81,8 +81,8 @@ function detectFromEnvironment() {
 }
 
 /**
- * 从项目配置检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from project configuration
+ * @returns {string|null} Package manager name or null
  */
 function detectFromProjectConfig() {
   const configPath = getProjectConfigPath();
@@ -96,8 +96,8 @@ function detectFromProjectConfig() {
 }
 
 /**
- * 从全局配置检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from global configuration
+ * @returns {string|null} Package manager name or null
  */
 function detectFromGlobalConfig() {
   const configPath = getGlobalConfigPath();
@@ -111,8 +111,8 @@ function detectFromGlobalConfig() {
 }
 
 /**
- * 从 package.json 检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from package.json
+ * @returns {string|null} Package manager name or null
  */
 function detectFromPackageJson() {
   const projectRoot = getProjectRoot();
@@ -130,9 +130,9 @@ function detectFromPackageJson() {
     return null;
   }
 
-  // 检查 packageManager 字段
+  // Check the packageManager field
   if (packageJson.packageManager) {
-    // 格式: "npm@8.0.0" 或 "pnpm@7.0.0"
+    // Format: "npm@8.0.0" or "pnpm@7.0.0"
     const match = packageJson.packageManager.match(/^([a-zA-Z]+)@/);
     if (match && PACKAGE_MANAGERS[match[1]]) {
       return match[1];
@@ -143,8 +143,8 @@ function detectFromPackageJson() {
 }
 
 /**
- * 从锁文件检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from lock file
+ * @returns {string|null} Package manager name or null
  */
 function detectFromLockFile() {
   const projectRoot = getProjectRoot();
@@ -152,7 +152,7 @@ function detectFromLockFile() {
     return null;
   }
 
-  // 按优先级检查锁文件
+  // Check lock files in priority order
   for (const pm of DETECTION_PRIORITY) {
     const lockFile = path.join(projectRoot, PACKAGE_MANAGERS[pm].lockFile);
     if (fs.existsSync(lockFile)) {
@@ -164,8 +164,8 @@ function detectFromLockFile() {
 }
 
 /**
- * 从可用命令检测包管理器
- * @returns {string|null} 包管理器名称或 null
+ * Detect package manager from available commands
+ * @returns {string|null} Package manager name or null
  */
 function detectFromAvailableCommands() {
   for (const pm of DETECTION_PRIORITY) {
@@ -173,14 +173,14 @@ function detectFromAvailableCommands() {
       return pm;
     }
   }
-  // npm 始终可用（Node.js 自带）
+  // npm is always available (bundled with Node.js)
   return 'npm';
 }
 
 /**
- * 智能检测包管理器
- * @param {Object} options - 检测选项
- * @returns {{name: string, source: string, config: Object}} 检测结果
+ * Intelligently detect the package manager
+ * @param {Object} options - Detection options
+ * @returns {{name: string, source: string, config: Object}} Detection result
  */
 function getPackageManager(options = {}) {
   const {
@@ -192,7 +192,7 @@ function getPackageManager(options = {}) {
     skipAvailable = false
   } = options;
 
-  // 按优先级检测
+  // Detect in priority order
   const detectors = [
     !skipEnvironment && { detector: detectFromEnvironment, source: 'environment' },
     !skipProjectConfig && { detector: detectFromProjectConfig, source: 'project-config' },
@@ -213,7 +213,7 @@ function getPackageManager(options = {}) {
     }
   }
 
-  // 默认回退到 npm
+  // Default fallback to npm
   return {
     name: 'npm',
     source: 'default',
@@ -222,19 +222,19 @@ function getPackageManager(options = {}) {
 }
 
 /**
- * 设置项目包管理器
- * @param {string} packageManager - 包管理器名称
- * @returns {boolean} 是否成功
+ * Set the project package manager
+ * @param {string} packageManager - Package manager name
+ * @returns {boolean} Whether the operation succeeded
  */
 function setProjectPackageManager(packageManager) {
   if (!PACKAGE_MANAGERS[packageManager]) {
-    console.error(`不支持的包管理器: ${packageManager}`);
+    console.error(`Unsupported package manager: ${packageManager}`);
     return false;
   }
 
   const configPath = getProjectConfigPath();
   if (!configPath) {
-    console.error('无法找到项目根目录');
+    console.error('Cannot find project root directory');
     return false;
   }
 
@@ -251,19 +251,19 @@ function setProjectPackageManager(packageManager) {
     );
     return true;
   } catch (err) {
-    console.error(`写入配置失败: ${err.message}`);
+    console.error(`Failed to write configuration: ${err.message}`);
     return false;
   }
 }
 
 /**
- * 设置全局包管理器
- * @param {string} packageManager - 包管理器名称
- * @returns {boolean} 是否成功
+ * Set the global package manager
+ * @param {string} packageManager - Package manager name
+ * @returns {boolean} Whether the operation succeeded
  */
 function setGlobalPackageManager(packageManager) {
   if (!PACKAGE_MANAGERS[packageManager]) {
-    console.error(`不支持的包管理器: ${packageManager}`);
+    console.error(`Unsupported package manager: ${packageManager}`);
     return false;
   }
 
@@ -282,16 +282,16 @@ function setGlobalPackageManager(packageManager) {
     );
     return true;
   } catch (err) {
-    console.error(`写入配置失败: ${err.message}`);
+    console.error(`Failed to write configuration: ${err.message}`);
     return false;
   }
 }
 
 /**
- * 构建包管理器命令
- * @param {string} commandType - 命令类型 (install, run, exec)
- * @param {Object} options - 选项
- * @returns {string} 完整命令
+ * Build a package manager command
+ * @param {string} commandType - Command type (install, run, exec)
+ * @param {Object} options - Options
+ * @returns {string} Full command string
  */
 function buildCommand(commandType, options = {}) {
   const pm = getPackageManager();
@@ -310,8 +310,8 @@ function buildCommand(commandType, options = {}) {
 }
 
 /**
- * 获取所有可用的包管理器
- * @returns {Array<{name: string, available: boolean}>} 可用包管理器列表
+ * Get all available package managers
+ * @returns {Array<{name: string, available: boolean}>} List of available package managers
  */
 function getAvailablePackageManagers() {
   return Object.keys(PACKAGE_MANAGERS).map(name => ({
@@ -321,18 +321,18 @@ function getAvailablePackageManagers() {
 }
 
 /**
- * 打印包管理器信息
+ * Print package manager information
  */
 function printPackageManagerInfo() {
   const pm = getPackageManager();
-  console.log(`当前包管理器: ${pm.name} (来源: ${pm.source})`);
-  console.log(`配置:`);
-  console.log(`  安装命令: ${pm.config.installCmd}`);
-  console.log(`  运行命令: ${pm.config.runCmd}`);
-  console.log(`  执行命令: ${pm.config.execCmd}`);
+  console.log(`Current package manager: ${pm.name} (source: ${pm.source})`);
+  console.log(`Configuration:`);
+  console.log(`  Install command: ${pm.config.installCmd}`);
+  console.log(`  Run command: ${pm.config.runCmd}`);
+  console.log(`  Exec command: ${pm.config.execCmd}`);
 }
 
-// 导出所有函数
+// Export all functions
 module.exports = {
   PACKAGE_MANAGERS,
   DETECTION_PRIORITY,
@@ -344,11 +344,11 @@ module.exports = {
   printPackageManagerInfo,
   getProjectConfigPath,
   getGlobalConfigPath,
-  // 为 setup-package-manager.js 添加的导出
+  // Additional exports for setup-package-manager.js
   setPreferredPackageManager: setGlobalPackageManager,
   detectFromLockFile,
   detectFromPackageJson,
   getSelectionPrompt: () => {
-    return '\n💡 运行 /setup-pm 配置首选包管理器\n';
+    return '\n💡 Run /setup-pm to configure the preferred package manager\n';
   }
 };

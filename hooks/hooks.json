@@ -1,5 +1,5 @@
 {
-  "description": "Oh My Claude 自动化工作流钩子 - 跨平台 JavaScript 实现",
+  "description": "Oh My Claude automated workflow hooks - cross-platform JavaScript implementation",
   "hooks": {
     "PreToolUse": [
       {

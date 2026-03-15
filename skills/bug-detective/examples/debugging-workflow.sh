@@ -1,28 +1,28 @@
 #!/bin/bash
 #
-# Shell 脚本调试流程示例
-# 展示常见的 Bash 脚本错误和调试方法
+# Shell script debugging workflow example
+# Demonstrates common Bash script errors and debugging methods
 #
 
 # ============================================
-# 调试设置
+# Debug settings
 # ============================================
 
-# 取消注释以启用调试模式
-# set -x   # 打印每个命令
-# set -e   # 错误时退出
-# set -u   # 未定义变量报错
-# set -o pipefail  # 管道中任何命令失败则失败
+# Uncomment to enable debug mode
+# set -x   # print each command
+# set -e   # exit on error
+# set -u   # error on undefined variable
+# set -o pipefail  # fail if any pipe component fails
 
-# 或组合使用
-# set -xeuo pipefail  # 严格模式
+# Or combine them
+# set -xeuo pipefail  # strict mode
 
 
 # ============================================
-# 错误处理函数
+# Error handling functions
 # ============================================
 
-# 错误退出函数
+# Error exit function
 die() {
     local message="$1"
     local exit_code="${2:-1}"
@@ -30,7 +30,7 @@ die() {
     exit "$exit_code"
 }
 
-# 记录函数
+# Logging function
 log() {
     local level="$1"
     shift
@@ -43,231 +43,231 @@ log_error() { log "ERROR" "$@"; }
 
 
 # ============================================
-# 问题 1：未引用的变量
+# Problem 1: Unquoted variables
 # ============================================
 
-# 错误示例：变量未引用
+# Example: variable not quoted
 demo_unquoted_variable() {
-    echo "=== 问题 1：未引用的变量 ==="
-    
+    echo "=== Problem 1: Unquoted variables ==="
+
     local name="John Doe"
-    
-    # 错误：变量未引用，空值会导致语法错误
+
+    # Wrong: unquoted variable, empty value causes syntax error
     # if [ $name = "John Doe" ]; then
     #     echo "Match"
     # fi
-    
-    # 正确：始终引用变量
+
+    # Correct: always quote variables
     if [ "$name" = "John Doe" ]; then
-        log_info "变量匹配: $name"
+        log_info "Variable matched: $name"
     fi
 }
 
 
 # ============================================
-# 问题 2：命令失败继续执行
+# Problem 2: Continuing after command failure
 # ============================================
 
 demo_command_failure() {
-    echo "=== 问题 2：命令失败继续执行 ==="
-    
-    # 错误：cd 失败后继续执行
+    echo "=== Problem 2: Continuing after command failure ==="
+
+    # Wrong: continues after cd fails
     # cd /nonexistent_directory
-    # rm -rf file.txt  # 会删除当前目录的文件！
-    
-    # 正确：检查命令是否成功
-    cd /tmp || die "无法切换到 /tmp 目录"
-    log_info "成功切换到目录: $(pwd)"
-    
+    # rm -rf file.txt  # would delete files in current directory!
+
+    # Correct: check if command succeeded
+    cd /tmp || die "Cannot switch to /tmp directory"
+    log_info "Successfully changed to directory: $(pwd)"
+
     cd - > /dev/null || true
 }
 
 
 # ============================================
-# 问题 3：循环中的变量作用域（管道问题）
+# Problem 3: Variable scope in loops (pipeline issue)
 # ============================================
 
 demo_pipeline_scope() {
-    echo "=== 问题 3：管道中的变量作用域 ==="
-    
+    echo "=== Problem 3: Variable scope in pipelines ==="
+
     local count=0
-    
-    # 错误：管道创建子 shell，外部变量不改变
+
+    # Wrong: pipeline creates a subshell, outer variable is not changed
     # echo -e "1\n2\n3" | while read line; do
     #     count=$((count + 1))
     # done
-    # echo "Count: $count"  # 输出 0
-    
-    # 正确：使用重定向
+    # echo "Count: $count"  # prints 0
+
+    # Correct: use redirection
     while read line; do
         count=$((count + 1))
     done < <(echo -e "1\n2\n3")
-    log_info "计数结果: $count"
+    log_info "Count result: $count"
 }
 
 
 # ============================================
-# 问题 4：数组操作
+# Problem 4: Array operations
 # ============================================
 
 demo_array_operations() {
-    echo "=== 问题 4：数组操作 ==="
-    
+    echo "=== Problem 4: Array operations ==="
+
     local fruits=("apple" "banana" "cherry")
-    
-    # 错误的数组访问
-    # echo $fruits[1]  # 输出 apple[1]
-    
-    # 正确的数组访问
-    log_info "第一个元素: ${fruits[0]}"
-    log_info "第二个元素: ${fruits[1]}"
-    log_info "所有元素: ${fruits[@]}"
-    log_info "数组长度: ${#fruits[@]}"
-    
-    # 遍历数组
+
+    # Wrong array access
+    # echo $fruits[1]  # prints apple[1]
+
+    # Correct array access
+    log_info "First element: ${fruits[0]}"
+    log_info "Second element: ${fruits[1]}"
+    log_info "All elements: ${fruits[@]}"
+    log_info "Array length: ${#fruits[@]}"
+
+    # Iterate over array
     for fruit in "${fruits[@]}"; do
-        log_info "水果: $fruit"
+        log_info "Fruit: $fruit"
     done
 }
 
 
 # ============================================
-# 问题 5：字符串比较
+# Problem 5: String comparison
 # ============================================
 
 demo_string_comparison() {
-    echo "=== 问题 5：字符串比较 ==="
-    
+    echo "=== Problem 5: String comparison ==="
+
     local name="John"
-    
-    # 错误：数字比较使用 =
+
+    # Wrong: using = for numeric comparison
     # if [ $age = 18 ]; then
-    
-    # 正确：字符串比较
+
+    # Correct: string comparison
     if [[ "$name" == "John" ]]; then
-        log_info "字符串匹配"
+        log_info "String matched"
     fi
-    
-    # 正确：数字比较
+
+    # Correct: numeric comparison
     local age=18
     if [ "$age" -eq 18 ]; then
-        log_info "数字匹配"
+        log_info "Number matched"
     fi
 }
 
 
 # ============================================
-# 问题 6：算术运算
+# Problem 6: Arithmetic operations
 # ============================================
 
 demo_arithmetic() {
-    echo "=== 问题 6：算术运算 ==="
-    
+    echo "=== Problem 6: Arithmetic operations ==="
+
     local a=10
     local b=5
-    
-    # 错误：使用 let 或 $(())
-    # result = a + b  # 这是命令调用
-    
-    # 正确的算术运算
+
+    # Wrong: using let or $(())
+    # result = a + b  # this is a command call
+
+    # Correct arithmetic operations
     local result=$((a + b))
-    log_info "加法: $a + $b = $result"
-    
+    log_info "Addition: $a + $b = $result"
+
     result=$((a - b))
-    log_info "减法: $a - $b = $result"
-    
+    log_info "Subtraction: $a - $b = $result"
+
     result=$((a * b))
-    log_info "乘法: $a * $b = $result"
-    
+    log_info "Multiplication: $a * $b = $result"
+
     result=$((a / b))
-    log_info "除法: $a / $b = $result"
-    
-    # 使用 let
+    log_info "Division: $a / $b = $result"
+
+    # Using let
     let result=a+b
-    log_info "let 加法: $result"
+    log_info "let addition: $result"
 }
 
 
 # ============================================
-# 参数验证
+# Argument validation
 # ============================================
 
 validate_arguments() {
-    echo "=== 参数验证 ==="
-    
-    # 检查参数数量
+    echo "=== Argument validation ==="
+
+    # Check argument count
     if [ $# -lt 2 ]; then
-        die "用法: $0 <文件> <目录>" 2
+        die "Usage: $0 <file> <directory>" 2
     fi
-    
+
     local file="$1"
     local dir="$2"
-    
-    # 检查文件存在
+
+    # Check file exists
     if [ ! -f "$file" ]; then
-        die "文件不存在: $file" 3
+        die "File not found: $file" 3
     fi
-    
-    # 检查目录存在
+
+    # Check directory exists
     if [ ! -d "$dir" ]; then
-        die "目录不存在: $dir" 4
+        die "Directory not found: $dir" 4
     fi
-    
-    log_info "参数验证通过"
-    log_info "文件: $file"
-    log_info "目录: $dir"
+
+    log_info "Argument validation passed"
+    log_info "File: $file"
+    log_info "Directory: $dir"
 }
 
 
 # ============================================
-# 使用 trap 进行清理
+# Using trap for cleanup
 # ============================================
 
 demo_trap() {
-    echo "=== 使用 trap 进行清理 ==="
-    
-    # 设置清理函数
+    echo "=== Using trap for cleanup ==="
+
+    # Set cleanup function
     cleanup() {
-        log_info "执行清理操作..."
-        # 这里可以执行清理操作
+        log_info "Performing cleanup..."
+        # Cleanup operations go here
     }
-    
-    # 捕获退出信号
+
+    # Catch exit signal
     trap cleanup EXIT
-    
-    # 捕获错误信号
-    trap 'log_error "发生错误，行号: $LINENO"' ERR
-    
-    # 捕获中断信号
-    trap 'log_warn "脚本被中断"; cleanup; exit 130' INT
-    
-    log_info "执行一些操作..."
-    # 模拟操作
+
+    # Catch error signal
+    trap 'log_error "Error occurred, line: $LINENO"' ERR
+
+    # Catch interrupt signal
+    trap 'log_warn "Script interrupted"; cleanup; exit 130' INT
+
+    log_info "Performing some operations..."
+    # Simulate operations
     sleep 1
 }
 
 
 # ============================================
-# 调试技巧示例
+# Debugging technique examples
 # ============================================
 
 demo_debugging() {
-    echo "=== 调试技巧 ==="
-    
-    # 1. 使用 echo 调试
+    echo "=== Debugging techniques ==="
+
+    # 1. Use echo for debugging
     local value="test"
     echo "[DEBUG] value = $value" >&2
-    
-    # 2. 使用 printf 格式化输出
+
+    # 2. Use printf for formatted output
     printf "[DEBUG] Count: %d, Name: %s\n" 42 "John" >&2
-    
-    # 3. 检查变量是否设置
+
+    # 3. Check if variable is set
     if [ -z "${unset_var+x}" ]; then
-        log_warn "变量 unset_var 未设置"
+        log_warn "Variable unset_var is not set"
     fi
-    
-    # 4. 显示调用栈
-    log_info "调用栈:"
+
+    # 4. Show call stack
+    log_info "Call stack:"
     local i=0
     while caller $i; do
         ((i++))
@@ -276,125 +276,125 @@ demo_debugging() {
 
 
 # ============================================
-# 文件操作错误处理
+# File operation error handling
 # ============================================
 
 demo_file_operations() {
-    echo "=== 文件操作错误处理 ==="
-    
-    local tmpfile=$(mktemp) || die "无法创建临时文件"
-    
-    # 确保文件被删除
+    echo "=== File operation error handling ==="
+
+    local tmpfile=$(mktemp) || die "Cannot create temporary file"
+
+    # Ensure file is deleted
     trap "rm -f '$tmpfile'" EXIT
-    
-    # 写入文件
-    echo "Test content" > "$tmpfile" || die "无法写入文件: $tmpfile"
-    
-    # 读取文件
+
+    # Write to file
+    echo "Test content" > "$tmpfile" || die "Cannot write to file: $tmpfile"
+
+    # Read file
     local content
-    content=$(cat "$tmpfile") || die "无法读取文件: $tmpfile"
-    
-    log_info "文件内容: $content"
-    
-    # trap 会自动清理
+    content=$(cat "$tmpfile") || die "Cannot read file: $tmpfile"
+
+    log_info "File content: $content"
+
+    # trap handles cleanup automatically
 }
 
 
 # ============================================
-# 带重试的操作
+# Operation with retry
 # ============================================
 
 demo_retry() {
-    echo "=== 带重试的操作 ==="
-    
+    echo "=== Operation with retry ==="
+
     local max_attempts=3
     local attempt=1
-    
+
     while [ $attempt -le $max_attempts ]; do
-        log_info "尝试 $attempt/$max_attempts..."
-        
-        # 模拟可能失败的操作
+        log_info "Attempt $attempt/$max_attempts..."
+
+        # Simulate potentially failing operation
         if [ $attempt -eq 2 ]; then
-            log_info "成功！"
+            log_info "Success!"
             return 0
         fi
-        
-        log_warn "失败，重试..."
+
+        log_warn "Failed, retrying..."
         ((attempt++))
         sleep 1
     done
-    
-    log_error "所有尝试都失败了"
+
+    log_error "All attempts failed"
     return 1
 }
 
 
 # ============================================
-# 检查依赖
+# Check dependencies
 # ============================================
 
 check_dependencies() {
-    echo "=== 检查依赖 ==="
-    
+    echo "=== Check dependencies ==="
+
     local required_commands=("curl" "jq" "git")
-    
+
     for cmd in "${required_commands[@]}"; do
         if ! command -v "$cmd" &> /dev/null; then
-            log_error "缺少依赖: $cmd"
+            log_error "Missing dependency: $cmd"
             return 1
         fi
-        log_info "✓ $cmd 可用"
+        log_info "OK: $cmd is available"
     done
-    
-    log_info "所有依赖都已满足"
+
+    log_info "All dependencies satisfied"
 }
 
 
 # ============================================
-# 主函数
+# Main function
 # ============================================
 
 main() {
     echo "============================================"
-    echo "Shell 脚本调试示例"
+    echo "Shell Script Debugging Examples"
     echo "============================================"
-    
-    # 运行各个示例
+
+    # Run each example
     demo_unquoted_variable
     echo ""
-    
+
     demo_command_failure
     echo ""
-    
+
     demo_pipeline_scope
     echo ""
-    
+
     demo_array_operations
     echo ""
-    
+
     demo_string_comparison
     echo ""
-    
+
     demo_arithmetic
     echo ""
-    
+
     demo_trap
     echo ""
-    
+
     demo_debugging
     echo ""
-    
+
     demo_file_operations
     echo ""
-    
+
     demo_retry
     echo ""
-    
+
     check_dependencies
     echo ""
-    
-    log_info "所有示例执行完成"
+
+    log_info "All examples completed"
 }
 
-# 运行主函数
+# Run main function
 main "$@"

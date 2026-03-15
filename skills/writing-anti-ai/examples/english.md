@@ -1,7 +1,5 @@
 # English Examples - Before and After
 
-英文文本改写示例。
-
 ## Example 1: Software Update Announcement
 
 ### Before (AI-sounding):

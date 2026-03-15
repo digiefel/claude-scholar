@@ -1,174 +1,174 @@
-# 研究计划制定
+# Research Planning
 
-系统化的研究计划制定方法，确保研究项目顺利推进。
+Systematic methods for research planning to ensure smooth progress of research projects.
 
-## 1. 时间线规划
+## 1. Timeline Planning
 
-### 1.1 研究阶段划分
+### 1.1 Research Phase Division
 
-**典型研究周期**（以6个月为例）：
+**Typical research cycle** (6-month example):
 
-| 阶段 | 时间 | 主要任务 | 交付物 |
-|------|------|---------|--------|
-| **Phase 1: 准备** | 第1个月 | 文献调研、问题定义 | 文献综述、研究提案 |
-| **Phase 2: 探索** | 第2-3个月 | 初步实验、方法验证 | 概念验证、初步结果 |
-| **Phase 3: 开发** | 第4-5个月 | 方法优化、全面实验 | 完整实验结果 |
-| **Phase 4: 完成** | 第6个月 | 论文撰写、代码整理 | 论文草稿、开源代码 |
+| Phase | Time | Main Tasks | Deliverables |
+|-------|------|-----------|--------------|
+| **Phase 1: Preparation** | Month 1 | Literature review, problem definition | Literature survey, research proposal |
+| **Phase 2: Exploration** | Months 2-3 | Initial experiments, method validation | Proof of concept, preliminary results |
+| **Phase 3: Development** | Months 4-5 | Method optimization, full experiments | Complete experimental results |
+| **Phase 4: Completion** | Month 6 | Paper writing, code organization | Paper draft, open-source code |
 
-### 1.2 时间分配原则
+### 1.2 Time Allocation Principles
 
-**80/20 原则**：
-- 80% 时间用于核心工作（实验、分析、写作）
-- 20% 时间用于辅助工作（文献、工具、沟通）
+**80/20 Rule**:
+- 80% of time for core work (experiments, analysis, writing)
+- 20% of time for auxiliary work (literature, tools, communication)
 
-**缓冲时间**：
-- 每个阶段预留 20% 缓冲时间
-- 应对意外情况和延期
+**Buffer time**:
+- Reserve 20% buffer time per phase
+- To handle unexpected situations and delays
 
-**并行任务**：
-- 文献调研贯穿整个过程
-- 论文写作可以提前开始（Introduction, Related Work）
-- 代码整理与实验同步进行
+**Parallel tasks**:
+- Literature review runs throughout the entire process
+- Paper writing can start early (Introduction, Related Work)
+- Code organization proceeds in parallel with experiments
 
-## 2. 里程碑定义
+## 2. Milestone Definitions
 
-### 2.1 关键里程碑
+### 2.1 Key Milestones
 
-**Milestone 1: 研究提案完成**
-- 时间：第1个月末
-- 标准：
-  - 文献综述完成（20-30篇核心论文）
-  - 研究问题明确定义
-  - 方法路线初步确定
-  - 实验计划制定
+**Milestone 1: Research Proposal Complete**
+- Time: End of month 1
+- Criteria:
+  - Literature review complete (20-30 core papers)
+  - Research question clearly defined
+  - Method approach preliminarily determined
+  - Experimental plan established
 
-**Milestone 2: 概念验证**
-- 时间：第3个月末
-- 标准：
-  - 初步实验完成
-  - 方法可行性验证
-  - 至少一个正面结果
-  - 识别主要挑战
+**Milestone 2: Proof of Concept**
+- Time: End of month 3
+- Criteria:
+  - Initial experiments complete
+  - Method feasibility validated
+  - At least one positive result
+  - Main challenges identified
 
-**Milestone 3: 完整实验**
-- 时间：第5个月末
-- 标准：
-  - 所有实验完成
-  - 结果达到预期
-  - 消融实验完成
-  - 可视化和分析完成
+**Milestone 3: Complete Experiments**
+- Time: End of month 5
+- Criteria:
+  - All experiments complete
+  - Results meet expectations
+  - Ablation experiments done
+  - Visualizations and analysis complete
 
-**Milestone 4: 论文提交**
-- 时间：第6个月末
-- 标准：
-  - 论文草稿完成
-  - 代码开源准备
-  - 内部审阅通过
-  - 准备投稿
+**Milestone 4: Paper Submission**
+- Time: End of month 6
+- Criteria:
+  - Paper draft complete
+  - Code ready for open-source
+  - Internal review passed
+  - Ready to submit
 
-### 2.2 检查点设置
+### 2.2 Checkpoint Setup
 
-**每周检查**：
-- 进度回顾
-- 问题识别
-- 计划调整
+**Weekly check**:
+- Progress review
+- Issue identification
+- Plan adjustment
 
-**每月评审**：
-- 里程碑评估
-- 风险评估
-- 资源调整
+**Monthly review**:
+- Milestone assessment
+- Risk assessment
+- Resource adjustment
 
-## 3. 风险识别与应对
+## 3. Risk Identification and Response
 
-### 3.1 常见风险
+### 3.1 Common Risks
 
-**技术风险**：
-- 方法不work
-- 实验结果不理想
-- 计算资源不足
-- 技术难度超预期
+**Technical risks**:
+- Method does not work
+- Experimental results are poor
+- Insufficient computational resources
+- Technical difficulty exceeds expectations
 
-**应对策略**：
-- 准备备选方案
-- 早期概念验证
-- 申请额外资源
-- 寻求技术支持
+**Response strategies**:
+- Prepare alternative plans
+- Early proof of concept
+- Apply for additional resources
+- Seek technical support
 
-**时间风险**：
-- 进度延期
-- 依赖项延迟
-- 意外事件
+**Time risks**:
+- Schedule delays
+- Dependency delays
+- Unexpected events
 
-**应对策略**：
-- 预留缓冲时间
-- 并行任务
-- 优先级管理
-- 及时调整计划
+**Response strategies**:
+- Reserve buffer time
+- Parallel tasks
+- Priority management
+- Timely plan adjustment
 
-**资源风险**：
-- GPU 不可用
-- 数据集问题
-- 人员变动
+**Resource risks**:
+- GPU unavailability
+- Dataset issues
+- Personnel changes
 
-**应对策略**：
-- 多个资源渠道
-- 数据集备选
-- 知识文档化
+**Response strategies**:
+- Multiple resource channels
+- Alternative datasets
+- Knowledge documentation
 
-### 3.2 风险监控
+### 3.2 Risk Monitoring
 
-**红色预警**（立即处理）：
-- 核心方法失败
-- 关键资源缺失
-- 严重进度延期
+**Red alert** (address immediately):
+- Core method failure
+- Critical resource missing
+- Serious schedule delay
 
-**黄色预警**（密切关注）：
-- 部分实验不理想
-- 资源紧张
-- 轻微延期
+**Yellow alert** (monitor closely):
+- Some experiments underperforming
+- Resource pressure
+- Minor delay
 
-**绿色状态**（正常推进）：
-- 按计划进行
-- 资源充足
-- 结果符合预期
+**Green status** (proceed normally):
+- On schedule
+- Resources sufficient
+- Results meet expectations
 
-## 4. 资源分配
+## 4. Resource Allocation
 
-### 4.1 计算资源
+### 4.1 Computational Resources
 
-**GPU 分配**：
-- 探索阶段：1-2 GPU
-- 开发阶段：2-4 GPU
-- 完成阶段：4-8 GPU（大规模实验）
+**GPU allocation**:
+- Exploration phase: 1-2 GPU
+- Development phase: 2-4 GPU
+- Completion phase: 4-8 GPU (large-scale experiments)
 
-**存储分配**：
-- 数据集：100-500 GB
-- 模型检查点：50-200 GB
-- 实验日志：10-50 GB
+**Storage allocation**:
+- Datasets: 100-500 GB
+- Model checkpoints: 50-200 GB
+- Experiment logs: 10-50 GB
 
-### 4.2 人力分配
+### 4.2 Human Resources
 
-**单人项目**：
-- 文献调研：20%
-- 实验开发：50%
-- 论文写作：20%
-- 其他：10%
+**Single-person project**:
+- Literature review: 20%
+- Experiment development: 50%
+- Paper writing: 20%
+- Other: 10%
 
-**团队项目**：
-- 研究负责人：规划、指导、写作
-- 研究助理：实验、分析、编码
-- 合作者：特定模块、审阅
+**Team project**:
+- Research lead: planning, guidance, writing
+- Research assistant: experiments, analysis, coding
+- Collaborators: specific modules, review
 
-### 4.3 时间分配
+### 4.3 Time Allocation
 
-**每周时间**（40小时）：
-- 核心研究：25-30小时
-- 文献阅读：5-8小时
-- 会议讨论：3-5小时
-- 其他事务：2-5小时
+**Weekly time** (40 hours):
+- Core research: 25-30 hours
+- Literature reading: 5-8 hours
+- Meetings and discussions: 3-5 hours
+- Other tasks: 2-5 hours
 
-**每日时间**：
-- 深度工作：4-6小时（上午）
-- 实验监控：2-3小时
-- 文献和写作：1-2小时
-- 沟通协作：1小时
+**Daily time**:
+- Deep work: 4-6 hours (morning)
+- Experiment monitoring: 2-3 hours
+- Literature and writing: 1-2 hours
+- Communication and collaboration: 1 hour

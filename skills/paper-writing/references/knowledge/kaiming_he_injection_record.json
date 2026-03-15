@@ -82,7 +82,7 @@
     },
     "ablation_techniques": {
       "incremental_tables": {
-        "pattern": "Baseline → (a) → (b) → (c) with Δ标注",
+        "pattern": "Baseline → (a) → (b) → (c) with delta annotation",
         "source": "ViTDet Table 1"
       },
       "destructive_comparison": {

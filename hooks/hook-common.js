@@ -128,7 +128,7 @@ function getChangesDetails(cwd) {
     let modified = 0;
     let deleted = 0;
 
-    // 解析 name-status 输出，每行格式: "A\tfilename" 或 "M\tfilename"
+    // Parse name-status output, each line format: "A\tfilename" or "M\tfilename"
     const parseNameStatus = (output) => {
       for (const line of output.trim().split('\n').filter(Boolean)) {
         const status = line.charAt(0);
@@ -138,7 +138,7 @@ function getChangesDetails(cwd) {
       }
     };
 
-    // 工作区变更（unstaged）
+    // Working tree changes (unstaged)
     const unstaged = execSync('git diff --name-status', {
       cwd,
       encoding: 'utf8',
@@ -146,7 +146,7 @@ function getChangesDetails(cwd) {
     });
     parseNameStatus(unstaged);
 
-    // 暂存区变更（staged）
+    // Staging area changes (staged)
     const staged = execSync('git diff --cached --name-status', {
       cwd,
       encoding: 'utf8',
@@ -154,7 +154,7 @@ function getChangesDetails(cwd) {
     });
     parseNameStatus(staged);
 
-    // 未跟踪文件算作 added
+    // Untracked files count as added
     const untracked = execSync('git status --porcelain', {
       cwd,
       encoding: 'utf8',
@@ -188,7 +188,7 @@ function analyzeChangesByType(cwd) {
     };
   }
 
-  // 逐行匹配文件路径（git status --porcelain 格式: "XY filename"）
+  // Match file paths line by line (git status --porcelain format: "XY filename")
   const files = gitInfo.changes.map(line => line.substring(3).trim());
 
   const testRegex = /(?:^|[\/\\])tests?[\/\\]|[\/\\._]test[_.]|\.test\.|_test\./i;

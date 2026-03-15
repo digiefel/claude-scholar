@@ -2,14 +2,14 @@
 """
 BibTeX and LaTeX Format Checker
 
-独立的格式检查工具,用于验证 BibTeX 和 LaTeX 引用格式。
+A standalone format checking tool for validating BibTeX and LaTeX citation formats.
 
-功能:
-1. BibTeX 格式检查 - 验证条目结构、必填字段、字段格式
-2. LaTeX 引用检查 - 提取引用、检查一致性
-3. 快速格式验证 - 无需 API 调用的快速检查
+Features:
+1. BibTeX format check - validate entry structure, required fields, field format
+2. LaTeX citation check - extract citations, check consistency
+3. Quick format validation - fast check without API calls
 
-使用方法:
+Usage:
     python format-checker.py references.bib
     python format-checker.py paper.tex --check-latex
     python format-checker.py references.bib --strict
@@ -23,41 +23,41 @@ from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 from enum import Enum
 
-# 尝试导入 bibtexparser
+# Attempt to import bibtexparser
 try:
     import bibtexparser
     from bibtexparser.bparser import BibTexParser
     BIBTEX_AVAILABLE = True
 except ImportError:
-    print("警告: bibtexparser 未安装,BibTeX 解析功能受限")
-    print("运行: pip install bibtexparser")
+    print("Warning: bibtexparser not installed, BibTeX parsing is limited")
+    print("Run: pip install bibtexparser")
     BIBTEX_AVAILABLE = False
 
 
 class ErrorLevel(Enum):
-    """错误级别"""
-    ERROR = "error"      # 严重错误,必须修复
-    WARNING = "warning"  # 警告,建议修复
-    INFO = "info"        # 信息,可选修复
+    """Error level"""
+    ERROR = "error"      # critical error, must fix
+    WARNING = "warning"  # warning, recommended to fix
+    INFO = "info"        # informational, optional fix
 
 
 @dataclass
 class FormatError:
-    """格式错误数据类"""
+    """Format error data class"""
     level: ErrorLevel
-    location: str        # 文件位置 (如 "entry:smith2020" 或 "line:42")
-    field: Optional[str] # 字段名 (如 "author", "year")
-    message: str         # 错误描述
-    suggestion: Optional[str] = None  # 修复建议
+    location: str        # file location (e.g., "entry:smith2020" or "line:42")
+    field: Optional[str] # field name (e.g., "author", "year")
+    message: str         # error description
+    suggestion: Optional[str] = None  # fix suggestion
 
 
 def parse_arguments():
-    """解析命令行参数"""
+    """Parse command line arguments"""
     parser = argparse.ArgumentParser(
-        description='检查 BibTeX 和 LaTeX 引用格式',
+        description='Check BibTeX and LaTeX citation formats',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
-示例:
+Examples:
   %(prog)s references.bib
   %(prog)s paper.tex --check-latex
   %(prog)s references.bib --strict --output report.txt
@@ -68,63 +68,63 @@ def parse_arguments():
     parser.add_argument(
         'input_file',
         type=str,
-        help='BibTeX 文件(.bib)或 LaTeX 文件(.tex)'
+        help='BibTeX file (.bib) or LaTeX file (.tex)'
     )
 
     parser.add_argument(
         '--check-latex',
         action='store_true',
-        help='检查 LaTeX 引用(需要提供 .tex 文件)'
+        help='check LaTeX citations (requires a .tex file)'
     )
 
     parser.add_argument(
         '--strict',
         action='store_true',
-        help='严格模式 - 将警告视为错误'
+        help='strict mode - treat warnings as errors'
     )
 
     parser.add_argument(
         '--output',
         type=str,
-        help='输出报告文件路径'
+        help='output report file path'
     )
 
     parser.add_argument(
         '--fix-common',
         action='store_true',
-        help='自动修复常见格式问题'
+        help='automatically fix common format issues'
     )
 
     parser.add_argument(
         '--verbose',
         action='store_true',
-        help='显示详细信息'
+        help='show detailed information'
     )
 
     parser.add_argument(
         '--entry-type',
         type=str,
-        help='只检查特定类型的条目(如 article, inproceedings)'
+        help='only check entries of a specific type (e.g., article, inproceedings)'
     )
 
     return parser.parse_args()
 
 
 def load_bibtex_file(file_path: str) -> List[Dict]:
-    """加载 BibTeX 文件
+    """Load BibTeX file
 
     Args:
-        file_path: BibTeX 文件路径
+        file_path: BibTeX file path
 
     Returns:
-        BibTeX 条目列表
+        list of BibTeX entries
 
     Raises:
-        FileNotFoundError: 文件不存在
-        ValueError: 文件格式错误
+        FileNotFoundError: file not found
+        ValueError: file format error
     """
     if not BIBTEX_AVAILABLE:
-        raise ImportError("需要安装 bibtexparser: pip install bibtexparser")
+        raise ImportError("bibtexparser required: pip install bibtexparser")
 
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -132,44 +132,44 @@ def load_bibtex_file(file_path: str) -> List[Dict]:
             bib_database = bibtexparser.load(f, parser)
             return bib_database.entries
     except FileNotFoundError:
-        raise FileNotFoundError(f"文件不存在: {file_path}")
+        raise FileNotFoundError(f"File not found: {file_path}")
     except Exception as e:
-        raise ValueError(f"无法解析 BibTeX 文件: {e}")
+        raise ValueError(f"Cannot parse BibTeX file: {e}")
 
 
 def load_latex_file(file_path: str) -> str:
-    """加载 LaTeX 文件
+    """Load LaTeX file
 
     Args:
-        file_path: LaTeX 文件路径
+        file_path: LaTeX file path
 
     Returns:
-        文件内容
+        file contents
 
     Raises:
-        FileNotFoundError: 文件不存在
+        FileNotFoundError: file not found
     """
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             return f.read()
     except FileNotFoundError:
-        raise FileNotFoundError(f"文件不存在: {file_path}")
+        raise FileNotFoundError(f"File not found: {file_path}")
     except Exception as e:
-        raise ValueError(f"无法读取 LaTeX 文件: {e}")
+        raise ValueError(f"Cannot read LaTeX file: {e}")
 
 
 # ============================================================================
-# BibTeX 格式检查函数
+# BibTeX format check functions
 # ============================================================================
 
 def get_required_fields(entry_type: str) -> List[str]:
-    """获取 BibTeX 条目类型的必填字段
+    """Get required fields for a BibTeX entry type
 
     Args:
-        entry_type: 条目类型 (如 'article', 'inproceedings')
+        entry_type: entry type (e.g., 'article', 'inproceedings')
 
     Returns:
-        必填字段列表
+        list of required fields
     """
     required_fields = {
         'article': ['author', 'title', 'journal', 'year'],
@@ -189,13 +189,13 @@ def get_required_fields(entry_type: str) -> List[str]:
 
 
 def get_optional_fields(entry_type: str) -> List[str]:
-    """获取 BibTeX 条目类型的可选字段
+    """Get optional fields for a BibTeX entry type
 
     Args:
-        entry_type: 条目类型
+        entry_type: entry type
 
     Returns:
-        可选字段列表
+        list of optional fields
     """
     optional_fields = {
         'article': ['volume', 'number', 'pages', 'month', 'doi', 'url'],
@@ -208,38 +208,38 @@ def get_optional_fields(entry_type: str) -> List[str]:
 
 
 def check_entry_structure(entry: Dict) -> List[FormatError]:
-    """检查 BibTeX 条目基本结构
+    """Check BibTeX entry basic structure
 
     Args:
-        entry: BibTeX 条目字典
+        entry: BibTeX entry dictionary
 
     Returns:
-        错误列表
+        list of errors
     """
     errors = []
 
-    # 检查条目类型
+    # Check entry type
     if 'ENTRYTYPE' not in entry:
         errors.append(FormatError(
             level=ErrorLevel.ERROR,
             location=f"entry:{entry.get('ID', 'unknown')}",
             field='ENTRYTYPE',
-            message="缺少条目类型",
-            suggestion="添加条目类型,如 @article, @inproceedings"
+            message="Missing entry type",
+            suggestion="Add an entry type such as @article, @inproceedings"
         ))
         return errors
 
-    # 检查 ID
+    # Check ID
     if 'ID' not in entry or not entry['ID'].strip():
         errors.append(FormatError(
             level=ErrorLevel.ERROR,
             location="entry:unknown",
             field='ID',
-            message="缺少 citation key",
-            suggestion="添加唯一的 citation key"
+            message="Missing citation key",
+            suggestion="Add a unique citation key"
         ))
 
-    # 检查必填字段
+    # Check required fields
     entry_type = entry.get('ENTRYTYPE', '')
     required = get_required_fields(entry_type)
     for field in required:
@@ -248,26 +248,26 @@ def check_entry_structure(entry: Dict) -> List[FormatError]:
                 level=ErrorLevel.ERROR,
                 location=f"entry:{entry.get('ID', 'unknown')}",
                 field=field,
-                message=f"缺少必填字段: {field}",
-                suggestion=f"添加 {field} 字段"
+                message=f"Missing required field: {field}",
+                suggestion=f"Add the {field} field"
             ))
 
     return errors
 
 
 def check_field_formats(entry: Dict) -> List[FormatError]:
-    """检查字段格式
+    """Check field formats
 
     Args:
-        entry: BibTeX 条目字典
+        entry: BibTeX entry dictionary
 
     Returns:
-        错误列表
+        list of errors
     """
     errors = []
     entry_id = entry.get('ID', 'unknown')
 
-    # 年份格式检查
+    # Year format check
     if 'year' in entry:
         year = entry['year'].strip()
         if not year.isdigit():
@@ -275,16 +275,16 @@ def check_field_formats(entry: Dict) -> List[FormatError]:
                 level=ErrorLevel.ERROR,
                 location=f"entry:{entry_id}",
                 field='year',
-                message=f"年份格式错误: {year} (应为4位数字)",
-                suggestion="使用4位数字年份,如 2023"
+                message=f"Invalid year format: {year} (should be 4 digits)",
+                suggestion="Use a 4-digit year, e.g., 2023"
             ))
         elif len(year) != 4:
             errors.append(FormatError(
                 level=ErrorLevel.ERROR,
                 location=f"entry:{entry_id}",
                 field='year',
-                message=f"年份格式错误: {year} (应为4位数字)",
-                suggestion="使用4位数字年份,如 2023"
+                message=f"Invalid year format: {year} (should be 4 digits)",
+                suggestion="Use a 4-digit year, e.g., 2023"
             ))
         else:
             year_int = int(year)
@@ -293,11 +293,11 @@ def check_field_formats(entry: Dict) -> List[FormatError]:
                     level=ErrorLevel.WARNING,
                     location=f"entry:{entry_id}",
                     field='year',
-                    message=f"年份超出合理范围: {year}",
-                    suggestion="检查年份是否正确"
+                    message=f"Year outside reasonable range: {year}",
+                    suggestion="Verify that the year is correct"
                 ))
 
-    # DOI 格式检查
+    # DOI format check
     if 'doi' in entry:
         doi = entry['doi'].strip()
         if not doi.startswith('10.'):
@@ -305,32 +305,32 @@ def check_field_formats(entry: Dict) -> List[FormatError]:
                 level=ErrorLevel.ERROR,
                 location=f"entry:{entry_id}",
                 field='doi',
-                message=f"DOI 格式错误: {doi}",
-                suggestion="DOI 应以 '10.' 开头,如 10.1038/nature12345"
+                message=f"Invalid DOI format: {doi}",
+                suggestion="DOI should start with '10.', e.g., 10.1038/nature12345"
             ))
-        # 检查是否包含 URL 前缀
+        # Check for URL prefix
         if 'doi.org' in doi or 'dx.doi.org' in doi:
             errors.append(FormatError(
                 level=ErrorLevel.WARNING,
                 location=f"entry:{entry_id}",
                 field='doi',
-                message=f"DOI 包含 URL 前缀: {doi}",
-                suggestion="只保留 DOI 本身,移除 https://doi.org/ 前缀"
+                message=f"DOI contains URL prefix: {doi}",
+                suggestion="Keep only the DOI itself, remove the https://doi.org/ prefix"
             ))
 
-    # 作者名格式检查
+    # Author name format check
     if 'author' in entry:
         author = entry['author'].strip()
-        # 检查是否为空
+        # Check for empty value
         if not author:
             errors.append(FormatError(
                 level=ErrorLevel.ERROR,
                 location=f"entry:{entry_id}",
                 field='author',
-                message="作者字段为空",
-                suggestion="添加作者信息"
+                message="Author field is empty",
+                suggestion="Add author information"
             ))
-        # 检查格式一致性
+        # Check format consistency
         elif ' and ' in author:
             authors = author.split(' and ')
             formats = []
@@ -345,24 +345,24 @@ def check_field_formats(entry: Dict) -> List[FormatError]:
                     level=ErrorLevel.WARNING,
                     location=f"entry:{entry_id}",
                     field='author',
-                    message="作者名格式不一致",
-                    suggestion="统一使用 'Last, First' 或 'First Last' 格式"
+                    message="Inconsistent author name format",
+                    suggestion="Use either 'Last, First' or 'First Last' format consistently"
                 ))
 
-    # 页码格式检查
+    # Page number format check
     if 'pages' in entry:
         pages = entry['pages'].strip()
-        # 检查是否使用了正确的分隔符
+        # Check for correct separator
         if '-' in pages and '--' not in pages:
             errors.append(FormatError(
                 level=ErrorLevel.INFO,
                 location=f"entry:{entry_id}",
                 field='pages',
-                message=f"页码使用单连字符: {pages}",
-                suggestion="建议使用双连字符 '--',如 123--145"
+                message=f"Pages using single hyphen: {pages}",
+                suggestion="Use double hyphen '--', e.g., 123--145"
             ))
 
-    # URL 格式检查
+    # URL format check
     if 'url' in entry:
         url = entry['url'].strip()
         if not url.startswith(('http://', 'https://')):
@@ -370,25 +370,25 @@ def check_field_formats(entry: Dict) -> List[FormatError]:
                 level=ErrorLevel.WARNING,
                 location=f"entry:{entry_id}",
                 field='url',
-                message=f"URL 缺少协议前缀: {url}",
-                suggestion="添加 http:// 或 https:// 前缀"
+                message=f"URL missing protocol prefix: {url}",
+                suggestion="Add http:// or https:// prefix"
             ))
 
     return errors
 
 
 def check_consistency(entries: List[Dict]) -> List[FormatError]:
-    """检查条目间的一致性
+    """Check consistency between entries
 
     Args:
-        entries: BibTeX 条目列表
+        entries: list of BibTeX entries
 
     Returns:
-        错误列表
+        list of errors
     """
     errors = []
 
-    # 检查重复的 citation key
+    # Check for duplicate citation keys
     ids = [e.get('ID', '') for e in entries]
     duplicates = [id for id in ids if ids.count(id) > 1]
     if duplicates:
@@ -397,11 +397,11 @@ def check_consistency(entries: List[Dict]) -> List[FormatError]:
                 level=ErrorLevel.ERROR,
                 location=f"entry:{dup_id}",
                 field='ID',
-                message=f"重复的 citation key: {dup_id}",
-                suggestion="使用唯一的 citation key"
+                message=f"Duplicate citation key: {dup_id}",
+                suggestion="Use a unique citation key"
             ))
 
-    # 检查作者名格式一致性
+    # Check author name format consistency
     author_formats = {}
     for entry in entries:
         if 'author' in entry and ' and ' in entry['author']:
@@ -419,55 +419,55 @@ def check_consistency(entries: List[Dict]) -> List[FormatError]:
             level=ErrorLevel.WARNING,
             location="global",
             field='author',
-            message="不同条目使用了不同的作者名格式",
-            suggestion="统一使用 'Last, First' 或 'First Last' 格式"
+            message="Different entries use different author name formats",
+            suggestion="Use either 'Last, First' or 'First Last' format consistently"
         ))
 
     return errors
 
 
 # ============================================================================
-# LaTeX 引用检查函数
+# LaTeX citation check functions
 # ============================================================================
 
 def extract_latex_citations(tex_content: str) -> List[str]:
-    """从 LaTeX 文件中提取引用
+    """Extract citations from a LaTeX file
 
     Args:
-        tex_content: LaTeX 文件内容
+        tex_content: LaTeX file content
 
     Returns:
-        引用 key 列表
+        list of citation keys
     """
-    # 匹配 \cite{...} 命令
+    # Match \cite{...} commands
     cite_pattern = r'\\cite(?:\[[^\]]*\])?(?:\[[^\]]*\])?\{([^}]+)\}'
     citations = re.findall(cite_pattern, tex_content)
 
-    # 展开多个引用
+    # Expand multiple citations
     all_keys = []
     for cite in citations:
         keys = [k.strip() for k in cite.split(',')]
         all_keys.extend(keys)
 
-    return list(set(all_keys))  # 去重
+    return list(set(all_keys))  # deduplicate
 
 
 def check_latex_consistency(tex_keys: List[str], bib_keys: List[str]) -> List[FormatError]:
-    """检查 LaTeX 引用与 BibTeX 的一致性
+    """Check consistency between LaTeX citations and BibTeX
 
     Args:
-        tex_keys: LaTeX 中的引用 key 列表
-        bib_keys: BibTeX 中的 key 列表
+        tex_keys: list of citation keys in LaTeX
+        bib_keys: list of keys in BibTeX
 
     Returns:
-        错误列表
+        list of errors
     """
     errors = []
 
     tex_set = set(tex_keys)
     bib_set = set(bib_keys)
 
-    # 未定义的引用
+    # Undefined citations
     undefined = tex_set - bib_set
     if undefined:
         for key in sorted(undefined):
@@ -475,11 +475,11 @@ def check_latex_consistency(tex_keys: List[str], bib_keys: List[str]) -> List[Fo
                 level=ErrorLevel.ERROR,
                 location=f"latex:cite",
                 field=key,
-                message=f"未定义的引用: {key}",
-                suggestion=f"在 BibTeX 文件中添加 {key} 条目"
+                message=f"Undefined citation: {key}",
+                suggestion=f"Add a {key} entry to the BibTeX file"
             ))
 
-    # 未使用的引用
+    # Unused citations
     unused = bib_set - tex_set
     if unused:
         for key in sorted(unused):
@@ -487,29 +487,29 @@ def check_latex_consistency(tex_keys: List[str], bib_keys: List[str]) -> List[Fo
                 level=ErrorLevel.WARNING,
                 location=f"bibtex:entry",
                 field=key,
-                message=f"未使用的引用: {key}",
-                suggestion=f"在 LaTeX 文件中引用 {key} 或从 BibTeX 中删除"
+                message=f"Unused citation: {key}",
+                suggestion=f"Cite {key} in the LaTeX file or remove it from BibTeX"
             ))
 
     return errors
 
 
 # ============================================================================
-# 报告生成函数
+# Report generation functions
 # ============================================================================
 
 def print_errors(errors: List[FormatError], verbose: bool = False):
-    """打印错误列表
+    """Print list of errors
 
     Args:
-        errors: 错误列表
-        verbose: 是否显示详细信息
+        errors: list of errors
+        verbose: whether to show detailed information
     """
     if not errors:
-        print("✅ 未发现格式错误")
+        print("No format errors found")
         return
 
-    # 按级别分组
+    # Group by level
     errors_by_level = {
         ErrorLevel.ERROR: [],
         ErrorLevel.WARNING: [],
@@ -519,28 +519,28 @@ def print_errors(errors: List[FormatError], verbose: bool = False):
     for error in errors:
         errors_by_level[error.level].append(error)
 
-    # 打印统计
+    # Print summary
     print("\n" + "="*60)
-    print("格式检查结果")
+    print("Format Check Results")
     print("="*60)
-    print(f"❌ 错误: {len(errors_by_level[ErrorLevel.ERROR])}")
-    print(f"⚠️  警告: {len(errors_by_level[ErrorLevel.WARNING])}")
-    print(f"ℹ️  信息: {len(errors_by_level[ErrorLevel.INFO])}")
+    print(f"Errors: {len(errors_by_level[ErrorLevel.ERROR])}")
+    print(f"Warnings: {len(errors_by_level[ErrorLevel.WARNING])}")
+    print(f"Info: {len(errors_by_level[ErrorLevel.INFO])}")
     print("="*60)
 
-    # 打印详细错误
+    # Print detailed errors
     for level in [ErrorLevel.ERROR, ErrorLevel.WARNING, ErrorLevel.INFO]:
         level_errors = errors_by_level[level]
         if not level_errors:
             continue
 
-        level_symbol = {
-            ErrorLevel.ERROR: "❌",
-            ErrorLevel.WARNING: "⚠️",
-            ErrorLevel.INFO: "ℹ️"
+        level_label = {
+            ErrorLevel.ERROR: "ERROR",
+            ErrorLevel.WARNING: "WARNING",
+            ErrorLevel.INFO: "INFO"
         }[level]
 
-        print(f"\n{level_symbol} {level.value.upper()} ({len(level_errors)}):\n")
+        print(f"\n{level_label} ({len(level_errors)}):\n")
 
         for error in level_errors:
             print(f"  [{error.location}]", end="")
@@ -549,18 +549,18 @@ def print_errors(errors: List[FormatError], verbose: bool = False):
             print(f" {error.message}")
 
             if verbose and error.suggestion:
-                print(f"    💡 建议: {error.suggestion}")
+                print(f"    Suggestion: {error.suggestion}")
             print()
 
 
 def generate_report(errors: List[FormatError], output_file: str):
-    """生成文本格式的检查报告
+    """Generate a text format check report
 
     Args:
-        errors: 错误列表
-        output_file: 输出文件路径
+        errors: list of errors
+        output_file: output file path
     """
-    # 按级别分组
+    # Group by level
     errors_by_level = {
         ErrorLevel.ERROR: [],
         ErrorLevel.WARNING: [],
@@ -571,24 +571,24 @@ def generate_report(errors: List[FormatError], output_file: str):
         errors_by_level[error.level].append(error)
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("# BibTeX/LaTeX 格式检查报告\n\n")
+        f.write("# BibTeX/LaTeX Format Check Report\n\n")
 
-        # 总体统计
-        f.write("## 总体统计\n\n")
-        f.write(f"- **错误**: {len(errors_by_level[ErrorLevel.ERROR])}\n")
-        f.write(f"- **警告**: {len(errors_by_level[ErrorLevel.WARNING])}\n")
-        f.write(f"- **信息**: {len(errors_by_level[ErrorLevel.INFO])}\n\n")
+        # Overall statistics
+        f.write("## Summary\n\n")
+        f.write(f"- **Errors**: {len(errors_by_level[ErrorLevel.ERROR])}\n")
+        f.write(f"- **Warnings**: {len(errors_by_level[ErrorLevel.WARNING])}\n")
+        f.write(f"- **Info**: {len(errors_by_level[ErrorLevel.INFO])}\n\n")
 
-        # 详细错误
+        # Detailed errors
         for level in [ErrorLevel.ERROR, ErrorLevel.WARNING, ErrorLevel.INFO]:
             level_errors = errors_by_level[level]
             if not level_errors:
                 continue
 
             level_name = {
-                ErrorLevel.ERROR: "错误",
-                ErrorLevel.WARNING: "警告",
-                ErrorLevel.INFO: "信息"
+                ErrorLevel.ERROR: "Errors",
+                ErrorLevel.WARNING: "Warnings",
+                ErrorLevel.INFO: "Info"
             }[level]
 
             f.write(f"## {level_name} ({len(level_errors)})\n\n")
@@ -598,8 +598,8 @@ def generate_report(errors: List[FormatError], output_file: str):
                 if error.field:
                     f.write(f" {error.field}")
                 f.write("\n\n")
-                f.write(f"**问题**: {error.message}\n\n")
+                f.write(f"**Problem**: {error.message}\n\n")
                 if error.suggestion:
-                    f.write(f"**建议**: {error.suggestion}\n\n")
+                    f.write(f"**Suggestion**: {error.suggestion}\n\n")
 
-    print(f"\n报告已保存到: {output_file}")
+    print(f"\nReport saved to: {output_file}")

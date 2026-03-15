@@ -2,16 +2,16 @@
 """
 API Clients for Citation Verification
 
-提供三个主要 API 客户端:
-1. CrossRefClient - DOI 验证
-2. ArXivClient - arXiv 论文验证
-3. SemanticScholarClient - 通用学术搜索
+Provides three main API clients:
+1. CrossRefClient - DOI verification
+2. ArXivClient - arXiv paper verification
+3. SemanticScholarClient - general academic search
 
-每个客户端都包含:
-- 错误处理
-- 重试机制
-- 速率限制
-- 结果标准化
+Each client includes:
+- Error handling
+- Retry mechanism
+- Rate limiting
+- Result normalization
 """
 
 import time
@@ -21,7 +21,7 @@ from abc import ABC, abstractmethod
 
 
 class RateLimiter:
-    """速率限制器"""
+    """Rate limiter"""
 
     def __init__(self, calls_per_minute: int):
         self.calls_per_minute = calls_per_minute
@@ -29,7 +29,7 @@ class RateLimiter:
         self.min_interval = 60.0 / calls_per_minute
 
     def wait_if_needed(self):
-        """如果需要,等待以满足速率限制"""
+        """Wait if necessary to satisfy rate limit"""
         elapsed = time.time() - self.last_call
         if elapsed < self.min_interval:
             time.sleep(self.min_interval - elapsed)
@@ -37,22 +37,22 @@ class RateLimiter:
 
 
 class APIClient(ABC):
-    """API 客户端基类"""
+    """Base API client class"""
 
     def __init__(self, rate_limit: int = 20):
         """
         Args:
-            rate_limit: 每分钟最大请求数
+            rate_limit: maximum requests per minute
         """
         self.rate_limiter = RateLimiter(rate_limit)
 
     @abstractmethod
     def search(self, **kwargs) -> Optional[Dict]:
-        """搜索论文"""
+        """Search for a paper"""
         pass
 
     def _retry_request(self, func, max_retries: int = 3):
-        """带重试的请求"""
+        """Request with retry"""
         for i in range(max_retries):
             try:
                 self.rate_limiter.wait_if_needed()
@@ -60,34 +60,34 @@ class APIClient(ABC):
             except requests.exceptions.RequestException as e:
                 if i == max_retries - 1:
                     raise
-                time.sleep(2 ** i)  # 指数退避
+                time.sleep(2 ** i)  # exponential backoff
         return None
 
 
 class CrossRefClient(APIClient):
-    """CrossRef API 客户端
+    """CrossRef API client
 
-    用于通过 DOI 验证论文信息
+    Used to verify paper information via DOI
 
-    API 文档: https://api.crossref.org/
+    API documentation: https://api.crossref.org/
     """
 
     def __init__(self, rate_limit: int = 50):
         """
         Args:
-            rate_limit: 每分钟最大请求数 (CrossRef 限制较宽松)
+            rate_limit: maximum requests per minute (CrossRef limits are more lenient)
         """
         super().__init__(rate_limit)
         self.base_url = "https://api.crossref.org"
 
     def search_by_doi(self, doi: str) -> Optional[Dict]:
-        """通过 DOI 搜索论文
+        """Search for a paper by DOI
 
         Args:
-            doi: DOI 标识符 (如 10.1038/nature12345)
+            doi: DOI identifier (e.g., 10.1038/nature12345)
 
         Returns:
-            标准化的论文信息字典,如果未找到则返回 None
+            Normalized paper information dictionary, or None if not found
         """
         def request():
             url = f"{self.base_url}/works/{doi}"
@@ -101,21 +101,21 @@ class CrossRefClient(APIClient):
                 return self._normalize_result(data['message'])
             return None
         except Exception as e:
-            print(f"CrossRef API 错误: {e}")
+            print(f"CrossRef API error: {e}")
             return None
 
     def search(self, doi: str = None, **kwargs) -> Optional[Dict]:
-        """搜索论文 (统一接口)"""
+        """Search for a paper (unified interface)"""
         if doi:
             return self.search_by_doi(doi)
         return None
 
     def _normalize_result(self, data: Dict) -> Dict:
-        """标准化 CrossRef 返回结果"""
-        # 提取标题
+        """Normalize CrossRef response"""
+        # Extract title
         title = data.get('title', [''])[0] if 'title' in data else ''
 
-        # 提取作者
+        # Extract authors
         authors = []
         if 'author' in data:
             for author in data['author']:
@@ -126,7 +126,7 @@ class CrossRefClient(APIClient):
                 elif family:
                     authors.append(family)
 
-        # 提取年份
+        # Extract year
         year = None
         if 'published' in data:
             date_parts = data['published'].get('date-parts', [[]])[0]
@@ -137,7 +137,7 @@ class CrossRefClient(APIClient):
             if date_parts:
                 year = date_parts[0]
 
-        # 提取期刊/会议名称
+        # Extract journal/conference name
         venue = ''
         if 'container-title' in data:
             venue = data['container-title'][0] if data['container-title'] else ''
@@ -153,13 +153,13 @@ class CrossRefClient(APIClient):
         }
 
     def get_bibtex(self, doi: str) -> Optional[str]:
-        """通过 DOI 获取 BibTeX
+        """Get BibTeX by DOI
 
         Args:
-            doi: DOI 标识符
+            doi: DOI identifier
 
         Returns:
-            BibTeX 字符串,如果失败则返回 None
+            BibTeX string, or None if failed
         """
         def request():
             url = f"https://doi.org/{doi}"
@@ -171,38 +171,38 @@ class CrossRefClient(APIClient):
         try:
             return self._retry_request(request)
         except Exception as e:
-            print(f"获取 BibTeX 失败: {e}")
+            print(f"Failed to get BibTeX: {e}")
             return None
 
 
 class ArXivClient(APIClient):
-    """arXiv API 客户端
+    """arXiv API client
 
-    用于验证 arXiv 预印本论文
+    Used to verify arXiv preprint papers
 
-    API 文档: https://info.arxiv.org/help/api/
+    API documentation: https://info.arxiv.org/help/api/
     """
 
     def __init__(self, rate_limit: int = 20):
         """
         Args:
-            rate_limit: 每分钟最大请求数
+            rate_limit: maximum requests per minute
         """
         super().__init__(rate_limit)
         try:
             import arxiv
             self.arxiv = arxiv
         except ImportError:
-            raise ImportError("需要安装 arxiv 库: pip install arxiv")
+            raise ImportError("arxiv library required: pip install arxiv")
 
     def search_by_id(self, arxiv_id: str) -> Optional[Dict]:
-        """通过 arXiv ID 搜索论文
+        """Search for a paper by arXiv ID
 
         Args:
-            arxiv_id: arXiv 标识符 (如 2301.12345 或 cs/0703001)
+            arxiv_id: arXiv identifier (e.g., 2301.12345 or cs/0703001)
 
         Returns:
-            标准化的论文信息字典,如果未找到则返回 None
+            Normalized paper information dictionary, or None if not found
         """
         def request():
             search = self.arxiv.Search(id_list=[arxiv_id])
@@ -214,21 +214,21 @@ class ArXivClient(APIClient):
             paper = request()
             return self._normalize_result(paper)
         except StopIteration:
-            print(f"arXiv 论文未找到: {arxiv_id}")
+            print(f"arXiv paper not found: {arxiv_id}")
             return None
         except Exception as e:
-            print(f"arXiv API 错误: {e}")
+            print(f"arXiv API error: {e}")
             return None
 
     def search_by_title(self, title: str, max_results: int = 5) -> Optional[Dict]:
-        """通过标题搜索论文
+        """Search for a paper by title
 
         Args:
-            title: 论文标题
-            max_results: 最大返回结果数
+            title: paper title
+            max_results: maximum number of results to return
 
         Returns:
-            标准化的论文信息字典(第一个结果),如果未找到则返回 None
+            Normalized paper information dictionary (first result), or None if not found
         """
         def request():
             search = self.arxiv.Search(
@@ -246,11 +246,11 @@ class ArXivClient(APIClient):
                 return self._normalize_result(paper)
             return None
         except Exception as e:
-            print(f"arXiv API 错误: {e}")
+            print(f"arXiv API error: {e}")
             return None
 
     def search(self, arxiv_id: str = None, title: str = None, **kwargs) -> Optional[Dict]:
-        """搜索论文 (统一接口)"""
+        """Search for a paper (unified interface)"""
         if arxiv_id:
             return self.search_by_id(arxiv_id)
         elif title:
@@ -258,8 +258,8 @@ class ArXivClient(APIClient):
         return None
 
     def _normalize_result(self, paper) -> Dict:
-        """标准化 arXiv 返回结果"""
-        # 提取 arXiv ID
+        """Normalize arXiv response"""
+        # Extract arXiv ID
         arxiv_id = paper.entry_id.split('/')[-1]
 
         return {
@@ -276,22 +276,22 @@ class ArXivClient(APIClient):
 
     @staticmethod
     def extract_arxiv_id(text: str) -> Optional[str]:
-        """从文本中提取 arXiv ID
+        """Extract arXiv ID from text
 
         Args:
-            text: 包含 arXiv ID 的文本
+            text: text containing an arXiv ID
 
         Returns:
-            arXiv ID,如果未找到则返回 None
+            arXiv ID, or None if not found
         """
         import re
 
-        # 匹配新格式: YYMM.NNNNN
+        # Match new format: YYMM.NNNNN
         match = re.search(r'\d{4}\.\d{4,5}', text)
         if match:
             return match.group()
 
-        # 匹配旧格式: arch-ive/YYMMNNN
+        # Match old format: arch-ive/YYMMNNN
         match = re.search(r'[a-z-]+/\d{7}', text)
         if match:
             return match.group()
@@ -300,34 +300,34 @@ class ArXivClient(APIClient):
 
 
 class SemanticScholarClient(APIClient):
-    """Semantic Scholar API 客户端
+    """Semantic Scholar API client
 
-    用于通用学术论文搜索和验证
+    Used for general academic paper search and verification
 
-    API 文档: https://api.semanticscholar.org/api-docs/
+    API documentation: https://api.semanticscholar.org/api-docs/
     """
 
     def __init__(self, rate_limit: int = 20):
         """
         Args:
-            rate_limit: 每分钟最大请求数 (Semantic Scholar 限制: 100 requests/5min)
+            rate_limit: maximum requests per minute (Semantic Scholar limit: 100 requests/5min)
         """
         super().__init__(rate_limit)
         try:
             from semanticscholar import SemanticScholar
             self.sch = SemanticScholar()
         except ImportError:
-            raise ImportError("需要安装 semanticscholar 库: pip install semanticscholar")
+            raise ImportError("semanticscholar library required: pip install semanticscholar")
 
     def search_by_title(self, title: str, max_results: int = 5) -> Optional[Dict]:
-        """通过标题搜索论文
+        """Search for a paper by title
 
         Args:
-            title: 论文标题
-            max_results: 最大返回结果数
+            title: paper title
+            max_results: maximum number of results to return
 
         Returns:
-            标准化的论文信息字典(第一个结果),如果未找到则返回 None
+            Normalized paper information dictionary (first result), or None if not found
         """
         try:
             self.rate_limiter.wait_if_needed()
@@ -336,21 +336,21 @@ class SemanticScholarClient(APIClient):
             if not results:
                 return None
 
-            # 返回第一个结果
+            # Return first result
             paper = results[0]
             return self._normalize_result(paper)
         except Exception as e:
-            print(f"Semantic Scholar API 错误: {e}")
+            print(f"Semantic Scholar API error: {e}")
             return None
 
     def search_by_doi(self, doi: str) -> Optional[Dict]:
-        """通过 DOI 搜索论文
+        """Search for a paper by DOI
 
         Args:
-            doi: DOI 标识符
+            doi: DOI identifier
 
         Returns:
-            标准化的论文信息字典,如果未找到则返回 None
+            Normalized paper information dictionary, or None if not found
         """
         try:
             self.rate_limiter.wait_if_needed()
@@ -359,11 +359,11 @@ class SemanticScholarClient(APIClient):
                 return self._normalize_result(paper)
             return None
         except Exception as e:
-            print(f"Semantic Scholar API 错误: {e}")
+            print(f"Semantic Scholar API error: {e}")
             return None
 
     def search(self, title: str = None, doi: str = None, **kwargs) -> Optional[Dict]:
-        """搜索论文 (统一接口)"""
+        """Search for a paper (unified interface)"""
         if doi:
             return self.search_by_doi(doi)
         elif title:
@@ -371,13 +371,13 @@ class SemanticScholarClient(APIClient):
         return None
 
     def _normalize_result(self, paper) -> Dict:
-        """标准化 Semantic Scholar 返回结果"""
-        # 提取作者
+        """Normalize Semantic Scholar response"""
+        # Extract authors
         authors = []
         if paper.authors:
             authors = [a.name for a in paper.authors]
 
-        # 提取外部 ID
+        # Extract external IDs
         external_ids = paper.externalIds if hasattr(paper, 'externalIds') else {}
         doi = external_ids.get('DOI') if external_ids else None
         arxiv_id = external_ids.get('ArXiv') if external_ids else None
@@ -397,60 +397,60 @@ class SemanticScholarClient(APIClient):
 
 
 class CitationAPIManager:
-    """统一的 API 管理器
+    """Unified API manager
 
-    协调三个 API 客户端,实现智能的 API 选择策略
+    Coordinates the three API clients and implements an intelligent API selection strategy
     """
 
     def __init__(self):
-        """初始化所有 API 客户端"""
+        """Initialize all API clients"""
         self.crossref = None
         self.arxiv = None
         self.semantic_scholar = None
 
-        # 尝试初始化各个客户端
+        # Attempt to initialize each client
         try:
             self.crossref = CrossRefClient()
         except Exception as e:
-            print(f"警告: CrossRef 客户端初始化失败: {e}")
+            print(f"Warning: CrossRef client initialization failed: {e}")
 
         try:
             self.arxiv = ArXivClient()
         except Exception as e:
-            print(f"警告: arXiv 客户端初始化失败: {e}")
+            print(f"Warning: arXiv client initialization failed: {e}")
 
         try:
             self.semantic_scholar = SemanticScholarClient()
         except Exception as e:
-            print(f"警告: Semantic Scholar 客户端初始化失败: {e}")
+            print(f"Warning: Semantic Scholar client initialization failed: {e}")
 
     def verify_citation(self, citation_info: Dict) -> tuple[bool, Optional[str], Optional[Dict]]:
-        """验证引用
+        """Verify a citation
 
-        实现 API 选择策略:
-        1. DOI 优先 → CrossRef
-        2. arXiv ID → arXiv
-        3. 标题搜索 → Semantic Scholar
+        Implements API selection strategy:
+        1. Prefer DOI -> CrossRef
+        2. arXiv ID -> arXiv
+        3. Title search -> Semantic Scholar
 
         Args:
-            citation_info: 引用信息字典,可能包含 doi, arxiv_id, title, authors 等字段
+            citation_info: citation information dictionary, may contain doi, arxiv_id, title, authors, etc.
 
         Returns:
             (exists, api_source, api_data)
-            - exists: 论文是否存在
-            - api_source: 验证来源 ('crossref', 'arxiv', 'semantic_scholar')
-            - api_data: API 返回的标准化数据
+            - exists: whether the paper exists
+            - api_source: verification source ('crossref', 'arxiv', 'semantic_scholar')
+            - api_data: normalized data returned by the API
         """
-        # 策略 1: DOI 优先
+        # Strategy 1: prefer DOI
         if 'doi' in citation_info and self.crossref:
             data = self.crossref.search_by_doi(citation_info['doi'])
             if data:
                 return True, 'crossref', data
 
-        # 策略 2: arXiv ID
+        # Strategy 2: arXiv ID
         arxiv_id = citation_info.get('arxiv_id')
         if not arxiv_id and 'note' in citation_info:
-            # 尝试从 note 字段提取 arXiv ID
+            # Try to extract arXiv ID from note field
             arxiv_id = ArXivClient.extract_arxiv_id(citation_info['note'])
 
         if arxiv_id and self.arxiv:
@@ -458,7 +458,7 @@ class CitationAPIManager:
             if data:
                 return True, 'arxiv', data
 
-        # 策略 3: 通用搜索 (Semantic Scholar)
+        # Strategy 3: general search (Semantic Scholar)
         if 'title' in citation_info and self.semantic_scholar:
             data = self.semantic_scholar.search_by_title(citation_info['title'])
             if data:
@@ -467,13 +467,13 @@ class CitationAPIManager:
         return False, None, None
 
     def get_bibtex(self, doi: str) -> Optional[str]:
-        """通过 DOI 获取 BibTeX
+        """Get BibTeX by DOI
 
         Args:
-            doi: DOI 标识符
+            doi: DOI identifier
 
         Returns:
-            BibTeX 字符串,如果失败则返回 None
+            BibTeX string, or None if failed
         """
         if self.crossref:
             return self.crossref.get_bibtex(doi)
@@ -481,52 +481,52 @@ class CitationAPIManager:
 
 
 # ============================================================================
-# 使用示例
+# Usage examples
 # ============================================================================
 
 if __name__ == '__main__':
-    # 示例 1: 使用 CrossRef 客户端
-    print("示例 1: CrossRef 客户端")
+    # Example 1: using CrossRef client
+    print("Example 1: CrossRef client")
     print("-" * 60)
     crossref = CrossRefClient()
     result = crossref.search_by_doi("10.48550/arXiv.1706.03762")
     if result:
-        print(f"标题: {result['title']}")
-        print(f"作者: {', '.join(result['authors'][:3])}")
-        print(f"年份: {result['year']}")
+        print(f"Title: {result['title']}")
+        print(f"Authors: {', '.join(result['authors'][:3])}")
+        print(f"Year: {result['year']}")
     print()
 
-    # 示例 2: 使用 arXiv 客户端
-    print("示例 2: arXiv 客户端")
+    # Example 2: using arXiv client
+    print("Example 2: arXiv client")
     print("-" * 60)
     try:
         arxiv_client = ArXivClient()
         result = arxiv_client.search_by_id("1706.03762")
         if result:
-            print(f"标题: {result['title']}")
-            print(f"作者: {', '.join(result['authors'][:3])}")
-            print(f"年份: {result['year']}")
+            print(f"Title: {result['title']}")
+            print(f"Authors: {', '.join(result['authors'][:3])}")
+            print(f"Year: {result['year']}")
     except ImportError as e:
-        print(f"跳过: {e}")
+        print(f"Skipped: {e}")
     print()
 
-    # 示例 3: 使用 Semantic Scholar 客户端
-    print("示例 3: Semantic Scholar 客户端")
+    # Example 3: using Semantic Scholar client
+    print("Example 3: Semantic Scholar client")
     print("-" * 60)
     try:
         ss_client = SemanticScholarClient()
         result = ss_client.search_by_title("Attention is All You Need")
         if result:
-            print(f"标题: {result['title']}")
-            print(f"作者: {', '.join(result['authors'][:3])}")
-            print(f"年份: {result['year']}")
-            print(f"引用数: {result['citationCount']}")
+            print(f"Title: {result['title']}")
+            print(f"Authors: {', '.join(result['authors'][:3])}")
+            print(f"Year: {result['year']}")
+            print(f"Citations: {result['citationCount']}")
     except ImportError as e:
-        print(f"跳过: {e}")
+        print(f"Skipped: {e}")
     print()
 
-    # 示例 4: 使用统一管理器
-    print("示例 4: 统一 API 管理器")
+    # Example 4: using the unified manager
+    print("Example 4: Unified API manager")
     print("-" * 60)
     manager = CitationAPIManager()
     citation_info = {
@@ -536,7 +536,7 @@ if __name__ == '__main__':
     }
     exists, source, data = manager.verify_citation(citation_info)
     if exists:
-        print(f"验证成功!")
-        print(f"来源: {source}")
-        print(f"标题: {data['title']}")
-        print(f"年份: {data['year']}")
+        print(f"Verification succeeded!")
+        print(f"Source: {source}")
+        print(f"Title: {data['title']}")
+        print(f"Year: {data['year']}")

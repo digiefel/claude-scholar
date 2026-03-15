@@ -1,126 +1,127 @@
 """
-调试流程示例
+Debugging workflow example
 
-这个示例展示了完整的调试流程，从发现问题到解决问题。
+This example demonstrates a complete debugging workflow,
+from identifying a problem to resolving it.
 """
 
 import logging
 
-# 配置日志
+# Configure logging
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
 # ============================================
-# 问题 1：IndexError
+# Problem 1: IndexError
 # ============================================
 
 def get_item(items, index):
     """
-    问题：直接访问索引可能导致 IndexError
-    
-    错误现象：
+    Problem: Directly accessing an index may cause IndexError
+
+    Error symptom:
     IndexError: list index out of range
     """
-    # ❌ 有问题的代码
+    # Problematic code
     # return items[index]
-    
-    # ✅ 修复后的代码
+
+    # Fixed code
     if 0 <= index < len(items):
         return items[index]
     else:
-        logger.warning(f"索引 {index} 超出范围 [0, {len(items)})")
+        logger.warning(f"Index {index} out of range [0, {len(items)})")
         return None
 
 
 # ============================================
-# 问题 2：TypeError - 字符串拼接
+# Problem 2: TypeError - string concatenation
 # ============================================
 
 def format_message(name, count):
     """
-    问题：尝试拼接字符串和数字
-    
-    错误现象：
+    Problem: Attempting to concatenate a string and a number
+
+    Error symptom:
     TypeError: can only concatenate str (not "int") to str
     """
-    # ❌ 有问题的代码
+    # Problematic code
     # return name + ": " + count
-    
-    # ✅ 修复后的代码
+
+    # Fixed code
     return f"{name}: {count}"
-    # 或
+    # Or
     # return name + ": " + str(count)
 
 
 # ============================================
-# 问题 3：KeyError
+# Problem 3: KeyError
 # ============================================
 
 def get_user_info(users, user_id):
     """
-    问题：直接访问字典中可能不存在的键
-    
-    错误现象：
+    Problem: Directly accessing a key that may not exist in the dictionary
+
+    Error symptom:
     KeyError: 'user_123'
     """
-    # ❌ 有问题的代码
+    # Problematic code
     # return users[user_id]
-    
-    # ✅ 修复后的代码 - 方法1：使用 get()
+
+    # Fixed code option 1: use get()
     return users.get(user_id, None)
-    
-    # ✅ 修复后的代码 - 方法2：检查键是否存在
+
+    # Fixed code option 2: check if key exists
     # if user_id in users:
     #     return users[user_id]
     # return None
 
 
 # ============================================
-# 问题 4：AttributeError - None 对象
+# Problem 4: AttributeError - None object
 # ============================================
 
 def process_data(data_provider):
     """
-    问题：data_provider 可能返回 None
-    
-    错误现象：
+    Problem: data_provider may return None
+
+    Error symptom:
     AttributeError: 'NoneType' object has no attribute 'process'
     """
     data = data_provider.get_data()
-    
-    # ❌ 有问题的代码
+
+    # Problematic code
     # return data.process()
-    
-    # ✅ 修复后的代码
+
+    # Fixed code
     if data is not None:
         return data.process()
     else:
-        logger.error("数据为 None，无法处理")
+        logger.error("Data is None, cannot process")
         return None
 
 
 # ============================================
-# 问题 5：修改正在迭代的列表
+# Problem 5: Modifying list while iterating
 # ============================================
 
 def remove_even_numbers(numbers):
     """
-    问题：迭代时修改列表导致跳过元素
-    
-    错误现象：
-    某些偶数没有被移除
+    Problem: Modifying list during iteration causes elements to be skipped
+
+    Error symptom:
+    Some even numbers are not removed
     """
-    # ❌ 有问题的代码
+    # Problematic code
     # for num in numbers:
     #     if num % 2 == 0:
     #         numbers.remove(num)
     # return numbers
-    
-    # ✅ 修复后的代码 - 方法1：列表推导式
+
+    # Fixed code option 1: list comprehension
     return [num for num in numbers if num % 2 != 0]
-    
-    # ✅ 修复后的代码 - 方法2：使用副本
+
+    # Fixed code option 2: use a copy
     # for num in numbers[:]:
     #     if num % 2 == 0:
     #         numbers.remove(num)
@@ -128,114 +129,114 @@ def remove_even_numbers(numbers):
 
 
 # ============================================
-# 调试技巧示例
+# Debugging technique example
 # ============================================
 
 def debug_with_logging(data):
     """
-    使用日志追踪问题
+    Use logging to trace the problem
     """
-    logger.debug(f"输入数据: {data}")
-    
-    # 步骤 1
+    logger.debug(f"Input data: {data}")
+
+    # Step 1
     processed = step1(data)
-    logger.debug(f"步骤1结果: {processed}")
-    
-    # 步骤 2
+    logger.debug(f"Step 1 result: {processed}")
+
+    # Step 2
     result = step2(processed)
-    logger.debug(f"步骤2结果: {result}")
-    
+    logger.debug(f"Step 2 result: {result}")
+
     return result
 
 
 def step1(data):
-    """模拟步骤1"""
+    """Simulate step 1"""
     return [x * 2 for x in data]
 
 
 def step2(data):
-    """模拟步骤2"""
+    """Simulate step 2"""
     return sum(data)
 
 
 # ============================================
-# 异常处理示例
+# Exception handling example
 # ============================================
 
 def safe_divide(a, b):
     """
-    正确的异常处理模式
+    Correct exception handling pattern
     """
     try:
         result = a / b
         logger.info(f"{a} / {b} = {result}")
         return result
     except ZeroDivisionError:
-        logger.error(f"除数不能为零: {b}")
+        logger.error(f"Divisor cannot be zero: {b}")
         return None
     except TypeError as e:
-        logger.error(f"类型错误: {e}")
+        logger.error(f"Type error: {e}")
         return None
 
 
 # ============================================
-# 使用断言进行调试
+# Using assertions for debugging
 # ============================================
 
 def calculate_discount(price, discount_rate):
     """
-    使用断言验证假设
+    Use assertions to verify assumptions
     """
-    # 断言：价格应该是正数
-    assert price > 0, f"价格应该是正数，实际: {price}"
-    
-    # 断言：折扣率应该在 0-1 之间
-    assert 0 <= discount_rate <= 1, f"折扣率应该在 0-1 之间，实际: {discount_rate}"
-    
+    # Assert: price should be positive
+    assert price > 0, f"Price should be positive, got: {price}"
+
+    # Assert: discount rate should be between 0 and 1
+    assert 0 <= discount_rate <= 1, f"Discount rate should be between 0 and 1, got: {discount_rate}"
+
     discounted_price = price * (1 - discount_rate)
-    
-    # 断言：折扣后的价格应该小于原价
-    assert discounted_price <= price, "折扣价格应该小于原价"
-    
+
+    # Assert: discounted price should be less than original
+    assert discounted_price <= price, "Discounted price should be less than original"
+
     return discounted_price
 
 
 # ============================================
-# 测试代码
+# Test code
 # ============================================
 
 if __name__ == "__main__":
     print("=" * 50)
-    print("调试示例")
+    print("Debugging Examples")
     print("=" * 50)
-    
-    # 测试 get_item
-    print("\n1. 测试 get_item:")
+
+    # Test get_item
+    print("\n1. Test get_item:")
     items = ['a', 'b', 'c']
     print(f"get_item(items, 1) = {get_item(items, 1)}")
     print(f"get_item(items, 10) = {get_item(items, 10)}")
-    
-    # 测试 format_message
-    print("\n2. 测试 format_message:")
+
+    # Test format_message
+    print("\n2. Test format_message:")
     print(f"format_message('Count', 42) = {format_message('Count', 42)}")
-    
-    # 测试 get_user_info
-    print("\n3. 测试 get_user_info:")
+
+    # Test get_user_info
+    print("\n3. Test get_user_info:")
     users = {'user_1': 'Alice', 'user_2': 'Bob'}
     print(f"get_user_info(users, 'user_1') = {get_user_info(users, 'user_1')}")
     print(f"get_user_info(users, 'user_999') = {get_user_info(users, 'user_999')}")
-    
-    # 测试 remove_even_numbers
-    print("\n4. 测试 remove_even_numbers:")
+
+    # Test remove_even_numbers
+    print("\n4. Test remove_even_numbers:")
     numbers = [1, 2, 3, 4, 5, 6]
-    print(f"原始: {numbers}")
-    print(f"结果: {remove_even_numbers(numbers)}")
-    
-    # 测试 safe_divide
-    print("\n5. 测试 safe_divide:")
+    print(f"Original: {numbers}")
+    print(f"Result: {remove_even_numbers(numbers)}")
+
+    # Test safe_divide
+    print("\n5. Test safe_divide:")
     print(f"safe_divide(10, 2) = {safe_divide(10, 2)}")
     print(f"safe_divide(10, 0) = {safe_divide(10, 0)}")
-    
-    # 测试 calculate_discount
-    print("\n6. 测试 calculate_discount:")
+
+    # Test calculate_discount
+    print("\n6. Test calculate_discount:")
     print(f"calculate_discount(100, 0.2) = {calculate_discount(100, 0.2)}")

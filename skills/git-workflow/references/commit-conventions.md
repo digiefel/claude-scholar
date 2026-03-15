@@ -1,8 +1,8 @@
-# Commit Message 详细规范
+# Commit Message Detailed Conventions
 
-## Conventional Commits 格式
+## Conventional Commits Format
 
-采用 **Conventional Commits** 规范，提交消息格式如下：
+Following the **Conventional Commits** specification, commit message format:
 
 ```
 <type>(<scope>): <subject>
@@ -12,117 +12,117 @@
 <footer>
 ```
 
-## 字段说明
+## Field Descriptions
 
-| 字段    | 必填 | 说明     |
-| :------ | :--- | :------- |
-| type    | ✅    | 提交类型 |
-| scope   | ❌    | 影响范围 |
-| subject | ✅    | 简短描述 |
-| body    | ❌    | 详细描述 |
-| footer  | ❌    | 脚注信息 |
+| Field | Required | Description |
+|:------|:---------|:------------|
+| type | Yes | Commit type |
+| scope | No | Affected scope |
+| subject | Yes | Short description |
+| body | No | Detailed description |
+| footer | No | Footer information |
 
-## Type 类型
+## Type Values
 
-| 类型       | 说明     | 示例                                |
-| :--------- | :------- | :---------------------------------- |
-| `feat`     | 新功能   | `feat(user): 新增用户导出功能`      |
-| `fix`      | 修复Bug  | `fix(login): 修复验证码不刷新问题`  |
-| `docs`     | 文档更新 | `docs(api): 更新接口文档`           |
-| `style`    | 代码格式 | `style: 调整代码缩进`               |
-| `refactor` | 重构     | `refactor(utils): 重构日期工具函数` |
-| `perf`     | 性能优化 | `perf(list): 优化列表渲染性能`      |
-| `test`     | 测试相关 | `test(user): 添加用户模块单元测试`  |
-| `build`    | 构建相关 | `build: 升级 vite 到 5.0`           |
-| `ci`       | CI配置   | `ci: 添加 GitHub Actions`           |
-| `chore`    | 其他修改 | `chore: 更新依赖版本`               |
-| `revert`   | 回滚提交 | `revert: 回滚 feat(user)`           |
+| Type | Description | Example |
+|:-----|:------------|:--------|
+| `feat` | New feature | `feat(user): add user export feature` |
+| `fix` | Bug fix | `fix(login): fix CAPTCHA not refreshing` |
+| `docs` | Documentation update | `docs(api): update API documentation` |
+| `style` | Code formatting | `style: adjust code indentation` |
+| `refactor` | Refactoring | `refactor(utils): refactor date utility functions` |
+| `perf` | Performance optimization | `perf(list): optimize list rendering performance` |
+| `test` | Tests | `test(user): add user module unit tests` |
+| `build` | Build-related | `build: upgrade vite to 5.0` |
+| `ci` | CI configuration | `ci: add GitHub Actions` |
+| `chore` | Other changes | `chore: update dependency versions` |
+| `revert` | Revert commit | `revert: revert feat(user)` |
 
-## Scope 范围
+## Scope Values
 
-Scope 用于说明提交影响的范围，常用的 scope 包括：
+Scope describes the area affected by the commit. Common scopes include:
 
-- `data` - 数据处理
-- `utils` - 工具函数
-- `model` - 模型架构
-- `config` - 参数配置
-- `trainer` - 训练
-- `evaluator` - 测评
-- `workflow` - 工作流
+- `data` - Data processing
+- `utils` - Utility functions
+- `model` - Model architecture
+- `config` - Parameter configuration
+- `trainer` - Training
+- `evaluator` - Evaluation
+- `workflow` - Workflow
 
-## Subject 规范
+## Subject Standards
 
-- 使用动词开头：添加、修复、更新、移除、优化
-- 不超过50个字符
-- 不以句号结尾
-- 使用中文或英文，保持一致
+- Start with a verb: add, fix, update, remove, optimize
+- No more than 50 characters
+- Do not end with a period
+- Use English consistently
 
-### 正确与错误示例
-
-```
-# ✅ 正确示例
-feat(user): 添加用户导出功能
-fix(login): 修复验证码不刷新问题
-
-# ❌ 错误示例
-feat(user): 添加用户导出功能。     # 不要句号
-feat(user): 用户导出              # 要用动词开头
-feat: 添加了一个新的用户导出功能   # 太长
-```
-
-## Body 详细描述
-
-当改动较大或需要说明原因时，使用 Body 提供详细描述：
+### Correct and Incorrect Examples
 
 ```
-feat(user): 添加用户批量导入功能
+# Correct examples
+feat(user): add user export feature
+fix(login): fix CAPTCHA not refreshing
 
-- 支持 Excel 文件导入
-- 支持数据校验和错误提示
-- 支持导入进度显示
-
-相关需求: #123
+# Incorrect examples
+feat(user): add user export feature.    # no period
+feat(user): user export                 # must start with verb
+feat: added a new user export feature   # too long
 ```
 
-## Footer 脚注
+## Body Detailed Description
 
-用于关联 Issue 或说明破坏性变更：
+When the change is large or the reason needs to be explained, use Body for detailed description:
 
 ```
-# 关联 Issue
+feat(user): add batch user import feature
+
+- Supports Excel file import
+- Supports data validation and error messages
+- Supports import progress display
+
+Related issue: #123
+```
+
+## Footer
+
+Used to link Issues or describe breaking changes:
+
+```
+# Link Issue
 Closes #123, #456
 
-# 破坏性变更
-BREAKING CHANGE: 用户接口返回格式变更
-旧格式: { data: user }
-新格式: { code: 200, data: user, msg: 'success' }
+# Breaking change
+BREAKING CHANGE: user interface return format changed
+Old format: { data: user }
+New format: { code: 200, data: user, msg: 'success' }
 ```
 
-## 完整示例
+## Complete Examples
 
-### 简单提交
+### Simple Commit
 
 ```bash
-git commit -m "feat(user): 添加用户导出功能"
+git commit -m "feat(user): add user export feature"
 ```
 
-### 带 Body 的提交
+### Commit with Body
 
 ```bash
-git commit -m "fix(login): 修复验证码不刷新问题
+git commit -m "fix(login): fix CAPTCHA not refreshing
 
-原因: 缓存时间设置过长导致验证码一直显示同一张图片
-方案: 将缓存时间从5分钟调整为1分钟"
+Cause: Cache time was set too long, causing the CAPTCHA to always show the same image
+Solution: Reduced cache time from 5 minutes to 1 minute"
 ```
 
-### 带 Footer 的提交
+### Commit with Footer
 
 ```bash
-git commit -m "feat(api): 重构用户接口
+git commit -m "feat(api): refactor user interface
 
-BREAKING CHANGE: 用户查询接口路径变更
-旧路径: /api/user/list
-新路径: /api/system/user/list
+BREAKING CHANGE: user query API path changed
+Old path: /api/user/list
+New path: /api/system/user/list
 
 Closes #789"
 ```

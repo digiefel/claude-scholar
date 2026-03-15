@@ -1,50 +1,50 @@
-# 好的 Commit Message 示例
+# Good Commit Message Examples
 
-## 简单提交
+## Simple commits
 
-feat(user): 添加用户导出功能
+feat(user): add user export feature
 
-fix(login): 修复验证码不刷新问题
+fix(login): fix CAPTCHA not refreshing
 
-docs(readme): 更新安装说明
+docs(readme): update installation instructions
 
-## 带 Body 的提交
+## Commits with Body
 
-feat(user): 添加用户批量导入功能
+feat(user): add batch user import feature
 
-- 支持 Excel 文件导入
-- 支持数据校验和错误提示
-- 支持导入进度显示
+- Supports Excel file import
+- Supports data validation and error messages
+- Supports import progress display
 
-相关需求: #123
+Related issue: #123
 
-fix(login): 修复验证码不刷新问题
+fix(login): fix CAPTCHA not refreshing
 
-原因: 缓存时间设置过长导致验证码一直显示同一张图片
-方案: 将缓存时间从5分钟调整为1分钟
+Cause: Cache time was set too long, causing the CAPTCHA to always show the same image
+Solution: Reduced cache time from 5 minutes to 1 minute
 
-## 带 Footer 的提交
+## Commits with Footer
 
-feat(api): 重构用户接口
+feat(api): refactor user interface
 
-BREAKING CHANGE: 用户查询接口路径变更
-旧路径: /api/user/list
-新路径: /api/system/user/list
+BREAKING CHANGE: user query API path changed
+Old path: /api/user/list
+New path: /api/system/user/list
 
 Closes #789
 
-## 特殊类型提交
+## Special type commits
 
-revert: 回滚 feat(user)
+revert: revert feat(user)
 
-回滚提交 abc123，因为引入了性能问题
+Reverts commit abc123 because it introduced performance issues
 
-chore(release): 准备发布 v1.0.0
+chore(release): prepare for v1.0.0 release
 
-- 更新版本号到 1.0.0
-- 更新 CHANGELOG.md
-- 更新 README.md
+- Update version number to 1.0.0
+- Update CHANGELOG.md
+- Update README.md
 
-test(user): 添加用户模块单元测试
+test(user): add user module unit tests
 
-覆盖用户注册、登录、资料修改功能
+Covers user registration, login, and profile update features

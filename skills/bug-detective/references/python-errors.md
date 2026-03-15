@@ -1,204 +1,204 @@
-# Python 错误详解
+# Python Error Reference
 
-## 常见内置异常类型
+## Common Built-in Exception Types
 
-### 1. SyntaxError（语法错误）
+### 1. SyntaxError
 
-**特征**：代码无法解析，在运行前就被检测到
+**Characteristic**: Code cannot be parsed; detected before execution
 
-**常见原因**：
-- 括号不匹配
-- 缺少冒号
-- 缩进不正确
-- 引号不匹配
+**Common causes**:
+- Mismatched parentheses
+- Missing colon
+- Incorrect indentation
+- Mismatched quotes
 
-**示例**：
+**Example**:
 ```python
-# ❌ 缺少冒号
+# Missing colon
 if True
     print("missing colon")
 
-# ✅ 正确
+# Correct
 if True:
     print("has colon")
 ```
 
-### 2. IndentationError（缩进错误）
+### 2. IndentationError
 
-**特征**：缩进不一致或使用错误的缩进
+**Characteristic**: Inconsistent indentation or wrong indentation type
 
-**常见原因**：
-- 混用 Tab 和空格
-- 缩进级别不正确
+**Common causes**:
+- Mixing tabs and spaces
+- Wrong indentation level
 
-**示例**：
+**Example**:
 ```python
-# ❌ 混用空格和 Tab
+# Mixing spaces and tabs
 def test():
-	    print("mixed")  # Tab
-    print("spaces")    # 空格
+	    print("mixed")  # tab
+    print("spaces")    # spaces
 
-# ✅ 统一使用 4 个空格
+# Correct: use 4 spaces consistently
 def test():
     print("spaces")
     print("consistent")
 ```
 
-### 3. NameError（名称错误）
+### 3. NameError
 
-**特征**：变量或函数名不存在
+**Characteristic**: Variable or function name does not exist
 
-**常见原因**：
-- 变量未定义就使用
-- 函数名拼写错误
-- 变量作用域问题
+**Common causes**:
+- Using a variable before defining it
+- Misspelled function name
+- Variable scope issue
 
-**示例**：
+**Example**:
 ```python
-# ❌ 变量未定义
+# Variable not defined
 print(undefined_var)
 
-# ✅ 先定义再使用
+# Correct: define before use
 my_var = 42
 print(my_var)
 ```
 
-### 4. TypeError（类型错误）
+### 4. TypeError
 
-**特征**：操作或函数应用于错误的数据类型
+**Characteristic**: Operation or function applied to wrong data type
 
-**常见原因**：
-- 拼接不同类型
-- 函数参数类型错误
-- 对不支持的操作使用运算符
+**Common causes**:
+- Concatenating incompatible types
+- Wrong argument type for function
+- Using operator on unsupported types
 
-**示例**：
+**Example**:
 ```python
-# ❌ 拼接字符串和数字
+# Concatenating string and number
 result = "Value: " + 42
 
-# ✅ 转换类型
+# Correct: convert type
 result = "Value: " + str(42)
-# 或使用 f-string
+# Or use f-string
 result = f"Value: {42}"
 ```
 
-### 5. AttributeError（属性错误）
+### 5. AttributeError
 
-**特征**：对象没有指定的属性或方法
+**Characteristic**: Object does not have the specified attribute or method
 
-**常见原因**：
-- 属性名拼写错误
-- 对象类型不是预期的
-- 大小写错误
+**Common causes**:
+- Misspelled attribute name
+- Object is not the expected type
+- Wrong capitalization
 
-**示例**：
+**Example**:
 ```python
-# ❌ 列表没有 append 以外的方法
+# List has no push method
 my_list = [1, 2, 3]
-my_list.push(4)  # 列表没有 push 方法
+my_list.push(4)  # list has no push method
 
-# ✅ 使用正确的方法
+# Correct: use the right method
 my_list.append(4)
 ```
 
-### 6. KeyError（键错误）
+### 6. KeyError
 
-**特征**：字典中不存在指定的键
+**Characteristic**: Specified key does not exist in dictionary
 
-**常见原因**：
-- 键名拼写错误
-- 键不存在于字典中
+**Common causes**:
+- Misspelled key name
+- Key does not exist in dictionary
 
-**示例**：
+**Example**:
 ```python
 data = {"name": "Alice"}
 
-# ❌ 直接访问不存在的键
+# Directly accessing non-existent key
 age = data["age"]  # KeyError
 
-# ✅ 使用 get() 方法
-age = data.get("age", 0)  # 返回默认值 0
+# Correct: use get() method
+age = data.get("age", 0)  # returns default value 0
 ```
 
-### 7. IndexError（索引错误）
+### 7. IndexError
 
-**特征**：序列索引超出范围
+**Characteristic**: Sequence index out of range
 
-**常见原因**：
-- 索引为负数（除非是有意为之）
-- 索引大于序列长度-1
-- 序列为空时访问索引
+**Common causes**:
+- Negative index (unless intentional)
+- Index greater than sequence length minus 1
+- Accessing index on empty sequence
 
-**示例**：
+**Example**:
 ```python
 items = [1, 2, 3]
 
-# ❌ 索引超出范围
+# Index out of range
 item = items[5]  # IndexError
 
-# ✅ 检查长度后再访问
+# Correct: check length before accessing
 if len(items) > 5:
     item = items[5]
 else:
     item = None
 ```
 
-### 8. ValueError（值错误）
+### 8. ValueError
 
-**特征**：参数类型正确但值不合适
+**Characteristic**: Argument type is correct but value is inappropriate
 
-**常见原因**：
-- 字符串转整数失败
-- 数学运算值域错误
-- 参数值不在允许范围内
+**Common causes**:
+- String to integer conversion fails
+- Math operation value out of domain
+- Argument value outside allowed range
 
-**示例**：
+**Example**:
 ```python
-# ❌ 无法转换为整数
+# Cannot convert to integer
 num = int("abc")
 
-# ✅ 处理可能的错误
+# Correct: handle possible error
 try:
     num = int(input())
 except ValueError:
     num = 0
 ```
 
-### 9. ImportError / ModuleNotFoundError（导入错误）
+### 9. ImportError / ModuleNotFoundError
 
-**特征**：无法导入模块
+**Characteristic**: Cannot import module
 
-**常见原因**：
-- 模块未安装
-- 模块路径不在 PYTHONPATH 中
-- 模块名拼写错误
+**Common causes**:
+- Module not installed
+- Module path not in PYTHONPATH
+- Misspelled module name
 
-**示例**：
+**Example**:
 ```python
-# ❌ 模块未安装
+# Module not installed
 import missing_module
 
-# 解决方法：安装模块
+# Solution: install the module
 # pip install missing-module
 ```
 
-### 10. FileNotFoundError（文件未找到错误）
+### 10. FileNotFoundError
 
-**特征**：尝试打开不存在的文件
+**Characteristic**: Attempting to open a file that does not exist
 
-**常见原因**：
-- 文件路径错误
-- 文件不存在
-- 相对路径使用错误
+**Common causes**:
+- Wrong file path
+- File does not exist
+- Incorrect relative path usage
 
-**示例**：
+**Example**:
 ```python
-# ❌ 文件不存在
+# File does not exist
 with open("missing.txt") as f:
     content = f.read()
 
-# ✅ 使用 try-except 或检查文件存在
+# Correct: use try-except or check existence
 try:
     with open("file.txt") as f:
         content = f.read()
@@ -206,25 +206,25 @@ except FileNotFoundError:
     content = ""
 ```
 
-## 异常处理最佳实践
+## Exception Handling Best Practices
 
-### 1. 捕获具体异常
+### 1. Catch specific exceptions
 
 ```python
-# ❌ 捕获所有异常（不良实践）
+# Catch all exceptions (bad practice)
 try:
     result = dangerous_operation()
 except:
     pass
 
-# ✅ 捕获具体异常
+# Correct: catch specific exceptions
 try:
     result = dangerous_operation()
 except (ValueError, TypeError) as e:
-    logger.error(f"操作失败: {e}")
+    logger.error(f"Operation failed: {e}")
 ```
 
-### 2. 使用 finally 清理资源
+### 2. Use finally to clean up resources
 
 ```python
 try:
@@ -233,33 +233,33 @@ try:
 except FileNotFoundError:
     content = ""
 finally:
-    # 无论是否发生异常都会执行
+    # Executes regardless of whether an exception occurred
     if 'file' in locals():
         file.close()
 ```
 
-### 3. 使用上下文管理器
+### 3. Use context managers
 
 ```python
-# ✅ 推荐：使用 with 语句
+# Recommended: use with statement
 with open("data.txt", "r") as file:
     content = file.read()
-# 文件会自动关闭
+# File is automatically closed
 ```
 
-### 4. 链式异常
+### 4. Chained exceptions
 
 ```python
 try:
     process_data(data)
 except ValueError as e:
-    # 使用 raise from 保留原始异常
-    raise RuntimeError("数据处理失败") from e
+    # Use raise from to preserve original exception
+    raise RuntimeError("Data processing failed") from e
 ```
 
-## 调试技巧
+## Debugging Techniques
 
-### 1. 使用 traceback 模块
+### 1. Use the traceback module
 
 ```python
 import traceback
@@ -267,23 +267,23 @@ import traceback
 try:
     risky_operation()
 except Exception:
-    # 打印完整的堆栈跟踪
+    # Print full stack trace
     traceback.print_exc()
 ```
 
-### 2. 使用 pdb 调试器
+### 2. Use the pdb debugger
 
 ```python
 import pdb
 
-# 在代码中设置断点
+# Set a breakpoint in code
 pdb.set_trace()
 
-# 或使用 breakpoint() (Python 3.7+)
+# Or use breakpoint() (Python 3.7+)
 breakpoint()
 ```
 
-### 3. 使用 logging 模块
+### 3. Use the logging module
 
 ```python
 import logging
@@ -291,21 +291,21 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-logger.debug("调试信息")
-logger.info("普通信息")
-logger.warning("警告")
-logger.error("错误")
-logger.critical("严重错误")
+logger.debug("Debug information")
+logger.info("General information")
+logger.warning("Warning")
+logger.error("Error")
+logger.critical("Critical error")
 ```
 
-## 常见错误排查清单
+## Common Error Troubleshooting Checklist
 
-- [ ] 检查拼写（变量名、函数名、属性名）
-- [ ] 检查数据类型（使用 type() 函数）
-- [ ] 检查变量值（使用 print() 或调试器）
-- [ ] 检查索引和键是否在范围内
-- [ ] 检查文件路径是否正确
-- [ ] 检查缩进是否一致
-- [ ] 检查括号、引号是否匹配
-- [ ] 检查是否正确导入了模块
-- [ ] 检查异常是否被正确处理
+- [ ] Check spelling (variable names, function names, attribute names)
+- [ ] Check data types (use type() function)
+- [ ] Check variable values (use print() or debugger)
+- [ ] Check that indexes and keys are within range
+- [ ] Check that file paths are correct
+- [ ] Check that indentation is consistent
+- [ ] Check that parentheses and quotes are matched
+- [ ] Check that modules are correctly imported
+- [ ] Check that exceptions are properly handled

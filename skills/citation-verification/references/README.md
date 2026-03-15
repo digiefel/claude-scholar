@@ -1,71 +1,71 @@
 # Citation Verification Reference Files
 
-## 文件用途
+## File Purpose
 
-本目录中的文件提供**背景知识和参考信息**，用于理解引用验证的原理和常见问题。
+The files in this directory provide **background knowledge and reference information** for understanding citation verification principles and common issues.
 
-**重要**: 这些文件不是主要工作流的一部分。实际的引用验证使用 WebSearch 和 Google Scholar。
+**Important**: These files are not part of the main workflow. Actual citation verification uses WebSearch and Google Scholar.
 
-## 文件说明
+## File Descriptions
 
 ### common-errors.md
 
-**内容**: 常见引用错误模式和修复方法
+**Content**: Common citation error patterns and how to fix them
 
-**用途**:
-- 了解学术写作中常见的引用错误
-- 学习如何识别和修复这些错误
-- 理解为什么需要验证引用
+**Purpose**:
+- Understand common citation errors in academic writing
+- Learn how to identify and fix these errors
+- Understand why citation verification is necessary
 
-**何时参考**: 当需要了解引用错误的类型和修复方法时
+**When to consult**: When you need to understand types of citation errors and how to fix them
 
 ### verification-rules.md
 
-**内容**: 详细的验证规则和匹配算法
+**Content**: Detailed verification rules and matching algorithms
 
-**用途**:
-- 理解引用验证的完整逻辑
-- 了解如何匹配标题、作者、年份等信息
-- 学习验证的技术细节
+**Purpose**:
+- Understand the complete citation verification logic
+- Learn how to match titles, authors, years, and other information
+- Learn the technical details of verification
 
-**何时参考**: 当需要深入了解验证逻辑时
+**When to consult**: When you need to understand the verification logic in depth
 
 ### api-usage.md
 
-**内容**: API 使用指南（CrossRef、arXiv、Semantic Scholar）
+**Content**: API usage guide (CrossRef, arXiv, Semantic Scholar)
 
-**用途**:
-- 了解学术API的使用方法
-- 理解API验证的原理
-- 参考高级用例的实现
+**Purpose**:
+- Understand how to use academic APIs
+- Understand the principles of API-based verification
+- Reference implementations for advanced use cases
 
-**何时参考**: 当需要了解API验证方法时（注意：主要工作流使用 WebSearch）
+**When to consult**: When you need to understand API verification methods (note: the main workflow uses WebSearch)
 
-## 主要工作流
+## Main Workflow
 
-**实际的引用验证应该使用 `ml-paper-writing` skill 中的 Citation Workflow：**
+**For actual citation verification, use the Citation Workflow in the `paper-writing` skill:**
 
-1. 使用 WebSearch 查找论文
-2. 在 Google Scholar 上验证
-3. 从 Google Scholar 获取 BibTeX
-4. 验证声明（如需要）
-5. 添加到 bibliography
+1. Use WebSearch to find papers
+2. Verify on Google Scholar
+3. Get BibTeX from Google Scholar
+4. Verify claims (if needed)
+5. Add to bibliography
 
-详见 `ml-paper-writing` skill 的 "Citation Workflow (Hallucination Prevention)" 部分。
+See the "Citation Workflow (Hallucination Prevention)" section of the `paper-writing` skill.
 
-## 使用建议
+## Usage Recommendations
 
-**对于日常论文写作**:
-- ✅ 使用 `ml-paper-writing` skill 的 Citation Workflow
-- ✅ 使用 WebSearch 和 Google Scholar
-- ✅ 参考这些文件了解背景知识
-- ❌ 不要使用API方法作为主要工作流
+**For day-to-day paper writing**:
+- Use the `paper-writing` skill's Citation Workflow
+- Use WebSearch and Google Scholar
+- Consult these files for background knowledge
+- Do not use API methods as the main workflow
 
-**对于理解验证原理**:
-- 阅读 `common-errors.md` 了解常见错误
-- 阅读 `verification-rules.md` 了解验证逻辑
-- 阅读 `api-usage.md` 了解API方法（参考用）
+**For understanding verification principles**:
+- Read `common-errors.md` for common errors
+- Read `verification-rules.md` for verification logic
+- Read `api-usage.md` for API methods (for reference)
 
-## 更多信息
+## More Information
 
-详见 `citation-verification` skill 的 SKILL.md 文件。
+See the SKILL.md file in the `citation-verification` skill.

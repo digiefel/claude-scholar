@@ -4,123 +4,123 @@ description: Check and update CLAUDE.md memory based on changes to skills, comma
 
 # Update Memory
 
-检查并更新 CLAUDE.md 全局记忆文件，确保其内容与 skills、commands、agents、hooks 的源文件保持同步。
+Check and update the CLAUDE.md global memory file to ensure its content stays in sync with the source files for skills, commands, agents, and hooks.
 
-## 功能概述
+## Feature Overview
 
-CLAUDE.md 是一个汇总记忆文件，包含：
-- 技能目录结构（来自 `skills/`）
-- 命令列表（来自 `commands/`）
-- 代理配置（来自 `agents/`）
-- 钩子定义（来自 `hooks/`）
+CLAUDE.md is a consolidated memory file containing:
+- Skills directory structure (from `skills/`)
+- Command list (from `commands/`)
+- Agent configuration (from `agents/`)
+- Hook definitions (from `hooks/`)
 
-当这些源文件发生变化时，CLAUDE.md 需要同步更新。
+When these source files change, CLAUDE.md needs to be updated accordingly.
 
-## 检测逻辑
+## Detection Logic
 
-1. **扫描源文件修改时间**
+1. **Scan source file modification times**
    - `~/.claude/skills/**/skill.md`
    - `~/.claude/commands/**/*.md`
    - `~/.claude/agents/**/*.md`
    - `~/.claude/hooks/**/*.{js,json}`
 
-2. **对比 CLAUDE.md 最后修改时间**
-   - 如果任意源文件比 CLAUDE.md 新 → 需要更新
-   - 记录上次同步时间戳（`~/.claude/.last-memory-sync`）
+2. **Compare against CLAUDE.md last modification time**
+   - If any source file is newer than CLAUDE.md → update needed
+   - Record last sync timestamp (`~/.claude/.last-memory-sync`)
 
-3. **生成报告**
-   - 列出所有变更的源文件
-   - 显示需要更新的 CLAUDE.md 章节
+3. **Generate report**
+   - List all changed source files
+   - Show CLAUDE.md sections that need updating
 
-## 更新流程
+## Update Workflow
 
-### 1. 扫描阶段
-
-```
-扫描 Skills: X 个
-扫描 Commands: Y 个
-扫描 Agents: Z 个
-扫描 Hooks: W 个
-```
-
-### 2. 对比阶段
+### 1. Scan Phase
 
 ```
-需要更新的章节:
-- [ ] 技能目录结构 (3 个技能变更)
-- [ ] 命令列表 (1 个命令新增)
-- [ ] 代理配置 (无变更)
-- [ ] 钩子定义 (2 个钩子修改)
+Scanning Skills: X items
+Scanning Commands: Y items
+Scanning Agents: Z items
+Scanning Hooks: W items
 ```
 
-### 3. 确认更新
-
-询问用户是否执行更新：
-```
-是否更新 CLAUDE.md? (yes/no/diff)
-- yes: 执行更新
-- no: 取消
-- diff: 显示详细差异
-```
-
-### 4. 执行更新
-
-- 保留用户手动编辑的内容（如"用户背景"、"技术栈偏好"）
-- 仅更新 AUTO-GENERATED 标记的章节
-- 更新时间戳
-
-## 使用方式
+### 2. Comparison Phase
 
 ```
-/update-memory          # 检查并提示更新
-/update-memory --check  # 仅检查，不更新
-/update-memory --force  # 强制更新，不询问
-/update-memory --diff   # 显示差异对比
+Sections to update:
+- [ ] Skills directory structure (3 skills changed)
+- [ ] Command list (1 command added)
+- [ ] Agent configuration (no changes)
+- [ ] Hook definitions (2 hooks modified)
 ```
 
-## 输出示例
+### 3. Confirm Update
 
-### 检查结果
-
+Ask the user whether to execute the update:
 ```
-📋 CLAUDE.md 记忆状态检查
-
-源文件状态:
-✅ Skills: 24 个 (最近修改: ml-paper-writing)
-✅ Commands: 14 个 (最近修改: update-readme)
-✅ Agents: 7 个 (无变更)
-✅ Hooks: 5 个 (最近修改: session-summary)
-
-时间对比:
-- CLAUDE.md 最后更新: 2024-01-15 10:30
-- 源文件最后修改: 2024-01-16 14:22
-
-⚠️ 检测到变更，建议更新 CLAUDE.md
-
-变更详情:
-1. skills/ml-paper-writing/skill.md (修改于 14:22)
-2. commands/update-readme.md (修改于 13:15)
-3. hooks/session-summary.js (修改于 11:45)
-
-是否执行更新? (yes/no/diff)
+Update CLAUDE.md? (yes/no/diff)
+- yes: execute update
+- no: cancel
+- diff: show detailed diff
 ```
 
-### 更新完成
+### 4. Execute Update
+
+- Preserve user-edited content (e.g., "User Background", "Tech Stack Preferences")
+- Only update sections marked AUTO-GENERATED
+- Update timestamp
+
+## Usage
 
 ```
-✅ CLAUDE.md 已更新
-
-更新内容:
-- 技能目录: 同步 24 个技能
-- 命令列表: 同步 14 个命令
-- 代理配置: 无变更
-- 钩子定义: 同步 5 个钩子
-
-下次同步时间戳已更新。
+/update-memory          # check and prompt to update
+/update-memory --check  # check only, no update
+/update-memory --force  # force update without prompting
+/update-memory --diff   # show diff comparison
 ```
 
-## 集成建议
+## Output Example
 
-- 在 `session-summary.js` 中集成检查提醒
-- 在 PostToolUse 钩子中实时检测
-- 建议定期执行（如每次会话结束时）
+### Check Result
+
+```
+CLAUDE.md Memory Status Check
+
+Source file status:
+Skills: 24 items (most recently modified: paper-writing)
+Commands: 14 items (most recently modified: update-readme)
+Agents: 7 items (no changes)
+Hooks: 5 items (most recently modified: session-summary)
+
+Timestamp comparison:
+- CLAUDE.md last updated: 2024-01-15 10:30
+- Source files last modified: 2024-01-16 14:22
+
+Changes detected, CLAUDE.md update recommended
+
+Change details:
+1. skills/paper-writing/skill.md (modified at 14:22)
+2. commands/update-readme.md (modified at 13:15)
+3. hooks/session-summary.js (modified at 11:45)
+
+Execute update? (yes/no/diff)
+```
+
+### Update Complete
+
+```
+CLAUDE.md updated
+
+Updated content:
+- Skills directory: synced 24 skills
+- Command list: synced 14 commands
+- Agent configuration: no changes
+- Hook definitions: synced 5 hooks
+
+Next sync timestamp updated.
+```
+
+## Integration Recommendations
+
+- Integrate check reminder in `session-summary.js`
+- Detect in real time via PostToolUse hook
+- Recommended to run periodically (e.g., at the end of each session)

@@ -1,120 +1,119 @@
-# 文献综述示例：Transformer 模型可解释性研究
+# Literature Review Example: Transformer Model Interpretability Research
 
-## 研究主题
+## Research Topic
 
-本文献综述聚焦于 Transformer 模型的可解释性研究，特别是注意力机制的解释和理解。
+This literature review focuses on interpretability research for Transformer models, particularly the explanation and understanding of attention mechanisms.
 
-## 1. 引言
+## 1. Introduction
 
-### 1.1 研究背景
+### 1.1 Research Background
 
-Transformer 模型自 2017 年提出以来，已成为自然语言处理领域的主流架构。然而，其内部工作机制仍然不够透明，限制了模型的可信度和在关键应用中的部署。
+Since the Transformer model was proposed in 2017, it has become the dominant architecture in natural language processing. However, its internal working mechanisms remain insufficiently transparent, limiting model trustworthiness and deployment in critical applications.
 
-### 1.2 研究重要性
+### 1.2 Research Importance
 
-**学术价值**：
-- 深入理解深度学习模型的工作原理
-- 为模型改进提供理论指导
-- 推动可解释 AI 领域发展
+**Academic value**:
+- Deep understanding of how deep learning models work
+- Providing theoretical guidance for model improvement
+- Advancing the field of explainable AI
 
-**实际价值**：
-- 提高模型可信度
-- 辅助模型调试和优化
-- 满足监管和伦理要求
+**Practical value**:
+- Improving model trustworthiness
+- Assisting model debugging and optimization
+- Meeting regulatory and ethical requirements
 
-### 1.3 综述范围
+### 1.3 Review Scope
 
-本综述涵盖 2020-2024 年间发表的相关工作，重点关注：
-- 注意力机制的可视化和分析
-- 模型内部表示的探测
-- 可解释性评估方法
-- 应用案例研究
+This review covers relevant work published between 2020 and 2024, focusing on:
+- Visualization and analysis of attention mechanisms
+- Probing of model internal representations
+- Interpretability evaluation methods
+- Application case studies
 
-## 2. 主要研究方向
+## 2. Main Research Directions
 
-### 2.1 注意力可视化方法
+### 2.1 Attention Visualization Methods
 
-**代表性工作**：
+**Representative work**:
 
 **Clark et al. (2019) - "What Does BERT Look At?"**
-- 会议：ACL 2019
-- 贡献：系统分析 BERT 的注意力模式
-- 发现：不同层的注意力关注不同语言现象
-- 引用次数：1200+
+- Conference: ACL 2019
+- Contribution: Systematic analysis of BERT's attention patterns
+- Findings: Different layers attend to different linguistic phenomena
+- Citations: 1200+
 
 **Vig (2019) - "A Multiscale Visualization of Attention"**
-- 会议：ACL 2019 Demo
-- 贡献：开发交互式注意力可视化工具
-- 工具：BertViz（开源）
-- 影响：广泛使用的可视化工具
+- Conference: ACL 2019 Demo
+- Contribution: Developed an interactive attention visualization tool
+- Tool: BertViz (open-source)
+- Impact: Widely used visualization tool
 
-**主要发现**：
-- 早期层关注句法结构
-- 中间层关注语义关系
-- 后期层关注任务相关特征
+**Main findings**:
+- Early layers focus on syntactic structure
+- Middle layers focus on semantic relationships
+- Later layers focus on task-relevant features
 
-### 2.2 模型探测方法
+### 2.2 Model Probing Methods
 
-**代表性工作**：
+**Representative work**:
 
 **Tenney et al. (2019) - "BERT Rediscovers the Classical NLP Pipeline"**
-- 会议：ACL 2019
-- 贡献：使用探测任务分析 BERT 的语言知识
-- 方法：Edge probing tasks
-- 发现：BERT 隐式学习了传统 NLP 流程
+- Conference: ACL 2019
+- Contribution: Used probing tasks to analyze linguistic knowledge in BERT
+- Method: Edge probing tasks
+- Findings: BERT implicitly learns the traditional NLP pipeline
 
 **Rogers et al. (2020) - "A Primer on BERTology"**
-- 期刊：TACL 2020
-- 贡献：系统综述 BERT 的可解释性研究
-- 影响：成为该领域的重要参考文献
-- 引用次数：800+
+- Journal: TACL 2020
+- Contribution: Systematic survey of BERT interpretability research
+- Impact: Became an important reference in the field
+- Citations: 800+
 
-**主要发现**：
-- 模型学习了丰富的语言知识
-- 不同层编码不同层次的信息
-- 知识分布在多个层中
+**Main findings**:
+- Models learn rich linguistic knowledge
+- Different layers encode information at different levels
+- Knowledge is distributed across multiple layers
 
-## 3. 研究趋势与空白
+## 3. Research Trends and Gaps
 
-### 3.1 当前研究趋势
+### 3.1 Current Research Trends
 
-**从静态分析到动态分析**：
-- 早期工作主要分析训练好的模型
-- 近期工作开始关注训练过程中的动态变化
+**From static to dynamic analysis**:
+- Early work primarily analyzed trained models
+- Recent work is beginning to focus on dynamics during training
 
-**从单一方法到综合方法**：
-- 结合多种可解释性技术
-- 跨层次、跨模态的分析
+**From single to combined methods**:
+- Combining multiple interpretability techniques
+- Cross-layer and cross-modal analysis
 
-**从理解到应用**：
-- 将可解释性用于模型改进
-- 辅助模型调试和优化
+**From understanding to application**:
+- Using interpretability for model improvement
+- Assisting model debugging and optimization
 
-### 3.2 研究空白
+### 3.2 Research Gaps
 
-**理论基础不足**：
-- 缺乏统一的可解释性理论框架
-- 注意力权重与模型行为的因果关系不明确
+**Insufficient theoretical foundations**:
+- Lack of a unified interpretability theoretical framework
+- Causal relationship between attention weights and model behavior is unclear
 
-**评估标准缺失**：
-- 缺乏标准化的评估方法
-- 人类评估成本高且主观性强
+**Missing evaluation standards**:
+- Lack of standardized evaluation methods
+- Human evaluation is costly and highly subjective
 
-**长文本处理**：
-- 现有方法主要针对短文本
-- 长文本的注意力模式更复杂
+**Long-text processing**:
+- Existing methods are mainly for short texts
+- Attention patterns in long texts are more complex
 
-## 4. 总结
+## 4. Summary
 
-本综述系统梳理了 Transformer 模型可解释性研究的主要方向和代表性工作。主要发现包括：
+This review systematically surveys the main directions and representative work in Transformer model interpretability research. Key findings include:
 
-1. **注意力机制**：不同层关注不同语言现象，但注意力权重不能完全解释模型行为
-2. **内部表示**：模型隐式学习了丰富的语言知识，分布在多个层中
-3. **研究空白**：理论基础、评估标准、长文本处理等方面仍需深入研究
+1. **Attention mechanism**: Different layers attend to different linguistic phenomena, but attention weights cannot fully explain model behavior
+2. **Internal representations**: Models implicitly learn rich linguistic knowledge distributed across multiple layers
+3. **Research gaps**: Theoretical foundations, evaluation standards, and long-text processing all require further research
 
-**未来研究方向**：
-- 建立统一的可解释性理论框架
-- 开发标准化的评估方法
-- 探索长文本的可解释性
-- 将可解释性用于模型改进
-
+**Future research directions**:
+- Establish a unified interpretability theoretical framework
+- Develop standardized evaluation methods
+- Explore interpretability for long texts
+- Use interpretability for model improvement

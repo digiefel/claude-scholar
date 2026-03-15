@@ -1,10 +1,10 @@
-# Rebuttal 模板库
+# Rebuttal Template Library
 
-本文档提供系统化的rebuttal模板，帮助快速撰写专业、结构清晰的审稿响应。
+This document provides systematic rebuttal templates to help quickly write professional, well-structured review responses.
 
-## 基本结构
+## Basic Structure
 
-### 标准Rebuttal结构
+### Standard Rebuttal Structure
 
 ```markdown
 # Response to Reviewers
@@ -17,260 +17,260 @@ We sincerely thank all reviewers for their valuable feedback and constructive su
 
 ### Major Comments
 
-**Comment 1.1**: [审稿人的原始意见]
+**Comment 1.1**: [Reviewer's original comment]
 
-**Response**: [我们的回复]
+**Response**: [Our response]
 
-**Changes**: [具体修改内容和位置]
+**Changes**: [Specific changes and location]
 
 ---
 
-**Comment 1.2**: [审稿人的原始意见]
+**Comment 1.2**: [Reviewer's original comment]
 
-**Response**: [我们的回复]
+**Response**: [Our response]
 
-**Changes**: [具体修改内容和位置]
+**Changes**: [Specific changes and location]
 
 ---
 
 ### Minor Comments
 
-**Comment 1.3**: [审稿人的原始意见]
+**Comment 1.3**: [Reviewer's original comment]
 
-**Response**: [我们的回复]
+**Response**: [Our response]
 
-**Changes**: [具体修改内容和位置]
+**Changes**: [Specific changes and location]
 
 ---
 
 ## Response to Reviewer 2
 
-[同样的结构]
+[Same structure]
 
 ---
 
 ## Response to Reviewer 3
 
-[同样的结构]
+[Same structure]
 
 ---
 
 ## Summary of Major Changes
 
-1. [主要修改1]
-2. [主要修改2]
-3. [主要修改3]
+1. [Major change 1]
+2. [Major change 2]
+3. [Major change 3]
 
 We believe these revisions have significantly strengthened the manuscript and addressed all concerns raised by the reviewers.
 ```
 
 ---
 
-## 开场白模板
+## Opening Templates
 
-### 模板 1: 标准感谢
+### Template 1: Standard Thanks
 
 ```
 We sincerely thank all reviewers for their valuable feedback and constructive suggestions. We have carefully addressed all comments and made substantial revisions to improve the manuscript. Below, we provide detailed responses to each reviewer's comments.
 ```
 
-### 模板 2: 强调改进
+### Template 2: Emphasize Improvements
 
 ```
 We are grateful to the reviewers for their thorough and insightful comments. Their feedback has helped us significantly improve the quality and clarity of our work. We have made extensive revisions to address all concerns, and we believe the manuscript is now substantially stronger.
 ```
 
-### 模板 3: 突出重点
+### Template 3: Highlight Key Points
 
 ```
-We thank the reviewers for their careful evaluation and constructive feedback. We have addressed all comments and made major revisions, including [关键改进1], [关键改进2], and [关键改进3]. We provide detailed responses below.
-```
-
-
----
-
-## 回复模板（按策略分类）
-
-### Accept 策略模板
-
-**模板 1: 简单接受**
-```
-We thank the reviewer for this valuable suggestion. We have [具体修改]. [修改位置].
-```
-
-**模板 2: 接受并扩展**
-```
-We appreciate this insightful comment. We agree that [问题描述] is important. We have [具体修改1] and [具体修改2]. These changes are reflected in [位置1] and [位置2].
-```
-
-**模板 3: 接受拼写/格式错误**
-```
-We thank the reviewer for catching this. We have corrected [错误类型] throughout the manuscript.
-```
-
----
-
-### Defend 策略模板
-
-**模板 1: 礼貌辩护**
-```
-We appreciate the reviewer's concern. However, we respectfully note that [我们的做法] is motivated by [理由]. Specifically, [详细解释]. We have added this clarification to Section [X].
-```
-
-**模板 2: 对比说明**
-```
-We thank the reviewer for this suggestion. While [审稿人建议的方法] has advantages in [场景A], we chose [我们的方法] because [理由1] and [理由2]. Our preliminary experiments showed that [实验结果]. We have added this discussion to [位置].
-```
-
-**模板 3: 技术限制**
-```
-We appreciate this suggestion. However, [建议的方法] is not feasible in our setting due to [限制1] and [限制2]. Instead, we [我们的替代方案], which [优势]. We have clarified this in [位置].
+We thank the reviewers for their careful evaluation and constructive feedback. We have addressed all comments and made major revisions, including [key improvement 1], [key improvement 2], and [key improvement 3]. We provide detailed responses below.
 ```
 
 
 ---
 
-### Clarify 策略模板
+## Response Templates (by Strategy)
 
-**模板 1: 礼貌澄清**
-```
-We thank the reviewer for raising this point. We would like to respectfully clarify that [已有内容]. This is discussed in [具体位置]. To make this clearer, we have [改进措施].
-```
+### Accept Strategy Templates
 
-**模板 2: 指出已有内容**
+**Template 1: Simple Accept**
 ```
-We appreciate this comment. We would like to note that we did [已完成的工作] in our study. Specifically, [详细说明]. These results are presented in [位置]. To make this more prominent, we have [改进措施].
+We thank the reviewer for this valuable suggestion. We have [specific change]. [Location of change].
 ```
 
-**模板 3: 承认表述不清**
+**Template 2: Accept and Expand**
 ```
-We thank the reviewer for this comment. We apologize for the confusion. What we meant is [澄清说明]. We have revised [位置] to make this clearer.
-```
-
----
-
-### Experiment 策略模板
-
-**模板 1: 已完成实验**
-```
-We thank the reviewer for this excellent suggestion. We have conducted additional experiments on [实验内容]. The results show that [主要发现]. Specifically, [详细结果]. These new results have been added to [位置] and discussed in [位置].
+We appreciate this insightful comment. We agree that [problem description] is important. We have [specific change 1] and [specific change 2]. These changes are reflected in [location 1] and [location 2].
 ```
 
-**模板 2: 承诺进行实验**
+**Template 3: Accept Typo/Formatting Error**
 ```
-We appreciate this valuable suggestion. We agree that [实验的重要性]. We are currently conducting [实验内容] and will include the results in the revised manuscript. We expect to complete these experiments within [时间] and will update the manuscript accordingly.
-```
-
-**模板 3: 实验不可行但提供替代**
-```
-We thank the reviewer for this suggestion. While [建议的实验] would be valuable, it is not feasible due to [限制]. However, we have conducted [替代实验], which provides similar insights. The results show [发现]. These have been added to [位置].
-```
-
-
----
-
-## 特殊场景模板
-
-### 多个审稿人提出相同意见
-
-**模板**:
-```
-We thank Reviewers [X] and [Y] for raising this important point. We agree that [问题描述]. We have [具体修改]. These changes address both reviewers' concerns and are reflected in [位置].
-```
-
-**示例**:
-```
-We thank Reviewers 1 and 3 for raising this important point about the lack of ablation studies. We agree that ablation studies are crucial for understanding component contributions. We have conducted comprehensive ablation experiments examining [组件1], [组件2], and [组件3]. These changes address both reviewers' concerns and are reflected in Table 4 and Section 4.5.
+We thank the reviewer for catching this. We have corrected [error type] throughout the manuscript.
 ```
 
 ---
 
-### 审稿人意见相互矛盾
+### Defend Strategy Templates
 
-**模板**:
+**Template 1: Polite Defense**
 ```
-We appreciate both reviewers' perspectives on [问题]. Reviewer [X] suggests [建议X], while Reviewer [Y] suggests [建议Y]. After careful consideration, we have [我们的选择] because [理由]. We believe this approach [优势] while addressing [关注点].
+We appreciate the reviewer's concern. However, we respectfully note that [our approach] is motivated by [reason]. Specifically, [detailed explanation]. We have added this clarification to Section [X].
 ```
 
-**示例**:
+**Template 2: Comparative Explanation**
+```
+We thank the reviewer for this suggestion. While [reviewer's suggested method] has advantages in [scenario A], we chose [our method] because [reason 1] and [reason 2]. Our preliminary experiments showed that [experimental result]. We have added this discussion to [location].
+```
+
+**Template 3: Technical Constraint**
+```
+We appreciate this suggestion. However, [suggested method] is not feasible in our setting due to [constraint 1] and [constraint 2]. Instead, we [our alternative], which [advantage]. We have clarified this in [location].
+```
+
+
+---
+
+### Clarify Strategy Templates
+
+**Template 1: Polite Clarification**
+```
+We thank the reviewer for raising this point. We would like to respectfully clarify that [existing content]. This is discussed in [specific location]. To make this clearer, we have [improvement action].
+```
+
+**Template 2: Point to Existing Content**
+```
+We appreciate this comment. We would like to note that we did [completed work] in our study. Specifically, [detailed description]. These results are presented in [location]. To make this more prominent, we have [improvement action].
+```
+
+**Template 3: Acknowledge Unclear Writing**
+```
+We thank the reviewer for this comment. We apologize for the confusion. What we meant is [clarification]. We have revised [location] to make this clearer.
+```
+
+---
+
+### Experiment Strategy Templates
+
+**Template 1: Experiments Completed**
+```
+We thank the reviewer for this excellent suggestion. We have conducted additional experiments on [experiment content]. The results show that [main findings]. Specifically, [detailed results]. These new results have been added to [location] and discussed in [location].
+```
+
+**Template 2: Commit to Experiments**
+```
+We appreciate this valuable suggestion. We agree that [importance of experiment]. We are currently conducting [experiment content] and will include the results in the revised manuscript. We expect to complete these experiments within [timeframe] and will update the manuscript accordingly.
+```
+
+**Template 3: Experiments Not Feasible but Provide Alternative**
+```
+We thank the reviewer for this suggestion. While [suggested experiment] would be valuable, it is not feasible due to [constraint]. However, we have conducted [alternative experiment], which provides similar insights. The results show [findings]. These have been added to [location].
+```
+
+
+---
+
+## Special Scenario Templates
+
+### Multiple Reviewers Raise the Same Point
+
+**Template**:
+```
+We thank Reviewers [X] and [Y] for raising this important point. We agree that [problem description]. We have [specific change]. These changes address both reviewers' concerns and are reflected in [location].
+```
+
+**Example**:
+```
+We thank Reviewers 1 and 3 for raising this important point about the lack of ablation studies. We agree that ablation studies are crucial for understanding component contributions. We have conducted comprehensive ablation experiments examining [component 1], [component 2], and [component 3]. These changes address both reviewers' concerns and are reflected in Table 4 and Section 4.5.
+```
+
+---
+
+### Conflicting Reviewer Opinions
+
+**Template**:
+```
+We appreciate both reviewers' perspectives on [issue]. Reviewer [X] suggests [suggestion X], while Reviewer [Y] suggests [suggestion Y]. After careful consideration, we have [our choice] because [reason]. We believe this approach [advantage] while addressing [concern].
+```
+
+**Example**:
 ```
 We appreciate both reviewers' perspectives on the dataset choice. Reviewer 1 suggests using dataset A for broader applicability, while Reviewer 2 suggests using dataset B for more controlled evaluation. After careful consideration, we have added experiments on both datasets. We believe this approach provides both breadth (dataset A) and depth (dataset B) while addressing both reviewers' concerns. The new results are presented in Table 5.
 ```
 
 ---
 
-### 无法完全满足要求
+### Cannot Fully Meet the Request
 
-**模板**:
+**Template**:
 ```
-We thank the reviewer for this suggestion. While we agree that [建议的价值], [完全实现的困难]. However, we have [部分实现或替代方案], which [效果]. We acknowledge this limitation in [位置] and discuss it as future work.
+We thank the reviewer for this suggestion. While we agree that [value of suggestion], [difficulty of full implementation]. However, we have [partial implementation or alternative], which [effect]. We acknowledge this limitation in [location] and discuss it as future work.
 ```
 
-**示例**:
+**Example**:
 ```
-We thank the reviewer for suggesting experiments on dataset X. While we agree that this would be valuable, dataset X is not publicly available and requires institutional access that we currently do not have. However, we have conducted experiments on dataset Y, which has similar characteristics and is widely used in the community. The results show [发现]. We acknowledge this limitation in Section 5.3 and discuss experiments on dataset X as future work.
+We thank the reviewer for suggesting experiments on dataset X. While we agree that this would be valuable, dataset X is not publicly available and requires institutional access that we currently do not have. However, we have conducted experiments on dataset Y, which has similar characteristics and is widely used in the community. The results show [findings]. We acknowledge this limitation in Section 5.3 and discuss experiments on dataset X as future work.
 ```
 
 
 ---
 
-## 结尾模板
+## Closing Templates
 
-### 单个审稿人的结尾
+### Closing for Individual Reviewer
 
-**模板 1: 标准结尾**
+**Template 1: Standard Closing**
 ```
 We hope our responses and revisions have adequately addressed all of your concerns. We are grateful for your valuable feedback, which has helped us improve the manuscript significantly.
 ```
 
-**模板 2: 强调改进**
+**Template 2: Emphasize Improvements**
 ```
 We believe the revisions we have made in response to your comments have substantially strengthened the manuscript. We thank you again for your thorough review and constructive suggestions.
 ```
 
 ---
 
-### 整体Rebuttal的结尾
+### Overall Rebuttal Closing
 
-**模板 1: 总结主要修改**
+**Template 1: Summarize Major Changes**
 ```
 ## Summary of Major Changes
 
 In response to the reviewers' feedback, we have made the following major revisions:
 
-1. [主要修改1] (Reviewers [X, Y])
-2. [主要修改2] (Reviewer [Z])
-3. [主要修改3] (All reviewers)
+1. [Major change 1] (Reviewers [X, Y])
+2. [Major change 2] (Reviewer [Z])
+3. [Major change 3] (All reviewers)
 
 We believe these revisions have significantly strengthened the manuscript and addressed all concerns raised by the reviewers. We are grateful for the reviewers' valuable feedback and hope that the revised manuscript is now suitable for publication.
 ```
 
-**模板 2: 强调新增内容**
+**Template 2: Emphasize New Content**
 ```
 ## Summary of Major Changes
 
 We have made substantial revisions to address all reviewers' comments:
 
-**New Experiments**: [新实验描述]
-**Expanded Discussions**: [扩展讨论描述]
-**Clarifications**: [澄清内容描述]
+**New Experiments**: [description of new experiments]
+**Expanded Discussions**: [description of expanded discussions]
+**Clarifications**: [description of clarifications]
 
-These changes have improved the manuscript's [质量方面], and we believe it now meets the high standards of [期刊/会议名称].
+These changes have improved the manuscript's [quality aspect], and we believe it now meets the high standards of [journal/conference name].
 ```
 
 
 ---
 
-## 完整Rebuttal示例
+## Complete Rebuttal Example
 
-### 示例场景
+### Example Scenario
 
-假设收到3位审稿人的意见：
-- Reviewer 1: 2个Major comments, 3个Minor comments
-- Reviewer 2: 1个Major comment, 2个Minor comments  
-- Reviewer 3: 3个Minor comments
+Assume three reviewers with the following comments:
+- Reviewer 1: 2 Major comments, 3 Minor comments
+- Reviewer 2: 1 Major comment, 2 Minor comments
+- Reviewer 3: 3 Minor comments
 
-### 完整Rebuttal文档
+### Complete Rebuttal Document
 
 ```markdown
 # Response to Reviewers
@@ -439,42 +439,42 @@ We believe these revisions have significantly strengthened the manuscript and ad
 
 ---
 
-## 使用指南
+## Usage Guide
 
-### 如何使用这些模板
+### How to Use These Templates
 
-1. **选择合适的结构**: 根据审稿人数量和意见复杂度选择基本结构
-2. **分类意见**: 将每个审稿人的意见分为Major和Minor
-3. **选择策略**: 根据意见类型选择Accept/Defend/Clarify/Experiment策略
-4. **套用模板**: 使用对应策略的模板撰写回复
-5. **添加具体内容**: 填充模板中的占位符（[具体修改]、[位置]等）
-6. **检查一致性**: 确保所有回复的语气和格式一致
+1. **Choose the appropriate structure**: Select the basic structure based on the number of reviewers and complexity of comments
+2. **Classify comments**: Divide each reviewer's comments into Major and Minor
+3. **Choose strategy**: Select Accept/Defend/Clarify/Experiment strategy based on comment type
+4. **Apply template**: Use the corresponding strategy template to write responses
+5. **Add specific content**: Fill in the placeholders in the templates ([specific change], [location], etc.)
+6. **Check consistency**: Ensure the tone and format of all responses are consistent
 
-### 模板定制建议
+### Template Customization Recommendations
 
-**根据会议/期刊调整**:
-- 顶会（NeurIPS, ICML）: 更注重技术细节和实验结果
-- 期刊（Nature, Science）: 更注重broader impact和清晰表达
-- 领域会议: 根据领域特点调整专业术语
+**Adjust by conference/journal**:
+- Top conferences (NeurIPS, ICML): More focus on technical details and experimental results
+- Journals (Nature, Science): More focus on broader impact and clear expression
+- Domain conferences: Adjust professional terminology according to field characteristics
 
-**根据审稿轮次调整**:
-- 第一轮: 更详细的解释和更多的新实验
-- 第二轮: 重点回应未解决的问题，简洁明了
-- 第三轮: 强调已做的改进，表达合作态度
+**Adjust by review round**:
+- First round: More detailed explanations and more new experiments
+- Second round: Focus on unresolved issues, be concise and clear
+- Third round: Emphasize improvements already made, express cooperative attitude
 
-### 常见错误
+### Common Errors
 
-❌ **避免**:
-- 过于简短的回复（"Done" 或 "Fixed"）
-- 没有具体位置引用
-- 防御性或攻击性语气
-- 承诺无法完成的实验
-- 忽略某些意见
+Avoid:
+- Overly brief responses ("Done" or "Fixed")
+- No specific location references
+- Defensive or aggressive tone
+- Committing to infeasible experiments
+- Ignoring some comments
 
-✅ **推荐**:
-- 每个回复都包含Response和Changes两部分
-- 提供具体的章节、页码、表格、图表引用
-- 保持礼貌和专业的语气
-- 只承诺可行的改进
-- 回应所有意见，即使是小的typo
+Recommended:
+- Every response includes both Response and Changes sections
+- Provide specific section, page number, table, and figure references
+- Maintain polite and professional tone
+- Only commit to feasible improvements
+- Respond to all comments, even minor typos
 

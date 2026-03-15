@@ -1,21 +1,21 @@
-# 成功Rebuttal案例库
+# Successful Rebuttal Case Library
 
-本文档收集真实的成功rebuttal案例，提供可参考的实战模式。
+This document collects real successful rebuttal cases, providing practical patterns for reference.
 
-## 案例来源
+## Case Sources
 
-- ICLR 2024 Spotlight论文
-- NeurIPS 2023 接收论文
-- ICML 2023 接收论文
+- ICLR 2024 Spotlight papers
+- NeurIPS 2023 accepted papers
+- ICML 2023 accepted papers
 
 ---
 
-## 案例 1: 回应清晰度问题
+## Case 1: Responding to Clarity Issues
 
-### 审稿意见
+### Review Comment
 > "The algorithm description in Section 3.2 is unclear. I cannot understand how the attention mechanism is applied to the graph structure."
 
-### 成功回复
+### Successful Response
 ```markdown
 We apologize for the confusion. We have completely rewritten Section 3.2 to clarify the attention mechanism:
 
@@ -35,20 +35,20 @@ We also added:
 These additions make the mechanism explicit and reproducible.
 ```
 
-### 成功要素
-- ✅ 承认问题
-- ✅ 对比原文和修订文本
-- ✅ 提供多种形式的说明（公式、算法、图示、示例）
-- ✅ 说明具体位置
+### Success Factors
+- Acknowledge the problem
+- Compare original and revised text
+- Provide multiple forms of explanation (formulas, algorithms, figures, examples)
+- Specify locations
 
 ---
 
-## 案例 2: 回应缺失实验
+## Case 2: Responding to Missing Experiments
 
-### 审稿意见
+### Review Comment
 > "The paper lacks comparison with the recent state-of-the-art method GraphTransformer (Dwivedi et al., 2022). This comparison is essential for evaluating the proposed method."
 
-### 成功回复
+### Successful Response
 ```markdown
 We thank the reviewer for this excellent suggestion. We have added comprehensive comparisons with GraphTransformer on all three datasets:
 
@@ -65,21 +65,21 @@ We also added ablation studies showing that our improvement comes from:
 This demonstrates that our method's advantage is not just from better optimization, but from fundamental architectural improvements.
 ```
 
-### 成功要素
-- ✅ 感谢建议
-- ✅ 提供具体数值结果
-- ✅ 说明结果位置
-- ✅ 添加分析解释改进来源
-- ✅ 强调方法的本质优势
+### Success Factors
+- Thank for the suggestion
+- Provide specific numerical results
+- Specify result locations
+- Add analysis explaining the source of improvement
+- Emphasize the essential advantage of the method
 
 ---
 
-## 案例 3: 回应统计显著性质疑
+## Case 3: Responding to Questions About Statistical Significance
 
-### 审稿意见
+### Review Comment
 > "The improvements shown in Table 2 are marginal (0.5-1%). Are these differences statistically significant?"
 
-### 成功回复
+### Successful Response
 ```markdown
 We agree that statistical testing is important. We have added comprehensive statistical analysis:
 
@@ -103,21 +103,21 @@ While the improvements are 0.5-1%, we note that:
 We believe both statistical and practical significance support our claims.
 ```
 
-### 成功要素
-- ✅ 承认统计检验的重要性
-- ✅ 提供多种统计指标
-- ✅ 区分统计显著性和实际显著性
-- ✅ 提供领域背景支持
-- ✅ 更新表格展示完整信息
+### Success Factors
+- Acknowledge the importance of statistical testing
+- Provide multiple statistical metrics
+- Distinguish statistical significance from practical significance
+- Provide domain context support
+- Update the table to show complete information
 
 ---
 
-## 案例 4: 回应基线不足
+## Case 4: Responding to Insufficient Baselines
 
-### 审稿意见
+### Review Comment
 > "Why didn't you compare with Method X and Method Y? These are important baselines in this area."
 
-### 成功回复
+### Successful Response
 ```markdown
 We thank the reviewer for raising this point. We have:
 
@@ -134,20 +134,20 @@ Method Y is designed for static graphs, while our work focuses on dynamic graphs
 We have added this clarification to Section 4.1 (page 6).
 ```
 
-### 成功要素
-- ✅ 添加可比较的基线
-- ✅ 解释排除原因（引用原文）
-- ✅ 提供具体的技术理由
-- ✅ 说明修改位置
+### Success Factors
+- Add comparable baselines
+- Explain the reason for exclusion (cite the original paper)
+- Provide specific technical justification
+- Specify the location of the revision
 
 ---
 
-## 案例 5: 回应过度声明
+## Case 5: Responding to Overclaiming
 
-### 审稿意见
+### Review Comment
 > "The claim 'our method achieves state-of-the-art on all tasks' is too strong. Your method performs worse than Baseline X on Task 3."
 
-### 成功回复
+### Successful Response
 ```markdown
 We accept that our original claim was too strong. We have revised throughout the paper:
 
@@ -167,21 +167,21 @@ We added a dedicated limitations section acknowledging:
 We believe these revisions accurately reflect our contributions without overclaiming.
 ```
 
-### 成功要素
-- ✅ 承认问题
-- ✅ 展示具体修改（原文 vs 修订文本）
-- ✅ 添加限制性说明
-- ✅ 提供技术解释
-- ✅ 保持诚实和准确
+### Success Factors
+- Acknowledge the problem
+- Show specific revisions (original vs revised text)
+- Add qualification statements
+- Provide technical explanation
+- Maintain honesty and accuracy
 
 ---
 
-## 案例 6: 回应写作质量问题
+## Case 6: Responding to Writing Quality Issues
 
-### 审稿意见
+### Review Comment
 > "The paper is hard to follow. Section 3 jumps between concepts without clear transitions. There are also several grammatical errors."
 
-### 成功回复
+### Successful Response
 ```markdown
 We apologize for the writing issues. We have made substantial revisions:
 
@@ -207,18 +207,18 @@ We apologize for the writing issues. We have made substantial revisions:
 The revised manuscript is significantly more readable while maintaining technical precision.
 ```
 
-### 成功要素
-- ✅ 承认问题
-- ✅ 提供具体改进措施
-- ✅ 展示结构性改进
-- ✅ 说明专业编辑
-- ✅ 强调可读性提升
+### Success Factors
+- Acknowledge the problem
+- Provide specific improvement measures
+- Show structural improvements
+- Mention professional editing
+- Emphasize improvement in readability
 
 ---
 
-## 通用成功模式总结
+## Summary of General Success Patterns
 
-### 模式 1: 感谢 + 行动 + 证据
+### Pattern 1: Thank + Action + Evidence
 
 ```markdown
 We thank the reviewer for [specific point].
@@ -226,7 +226,7 @@ We have [specific action taken].
 [Evidence: results/figures/citations]
 ```
 
-### 模式 2: 承认 + 修正 + 说明
+### Pattern 2: Acknowledge + Revise + Explain
 
 ```markdown
 We agree that [issue].
@@ -236,7 +236,7 @@ We have revised [specific location]:
 This addresses the concern by [explanation].
 ```
 
-### 模式 3: 解释 + 证据 + 引用
+### Pattern 3: Explain + Evidence + Citation
 
 ```markdown
 We respectfully note that [our position].
@@ -246,7 +246,7 @@ This is supported by:
 3. [Citation]
 ```
 
-### 模式 4: 添加 + 位置 + 影响
+### Pattern 4: Add + Location + Impact
 
 ```markdown
 We have added [new content].
@@ -256,92 +256,92 @@ This strengthens our claims by [impact].
 
 ---
 
-## 会议特定策略
+## Conference-Specific Strategies
 
 ### NeurIPS Rebuttal
 
-**侧重点**:
-- 强调概念新颖性
-- 突出broader impact
-- 展示reproducibility
+**Focus**:
+- Emphasize conceptual novelty
+- Highlight broader impact
+- Show reproducibility
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank the reviewers for their constructive feedback. Our key contributions advance the field by [conceptual innovation]. We have strengthened the paper with [new experiments] and clarified [methodology]. All code and data will be released upon acceptance.
 ```
 
 ### ICML Rebuttal
 
-**侧重点**:
-- 强调理论严谨性
-- 提供数学证明
-- 展示方法论贡献
+**Focus**:
+- Emphasize theoretical rigor
+- Provide mathematical proofs
+- Show methodological contributions
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We appreciate the reviewers' thorough evaluation. We have added theoretical analysis (Theorem 2, Appendix C) proving [property]. Our method's soundness is further validated by [experiments]. We have also expanded the broader impact statement.
 ```
 
 ### ICLR Rebuttal
 
-**侧重点**:
-- 强调实验彻底性
-- 承认局限性
-- 披露LLM使用
+**Focus**:
+- Emphasize experimental thoroughness
+- Acknowledge limitations
+- Disclose LLM usage
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank the reviewers for their detailed comments. We have conducted additional experiments (Tables 4-6) addressing all concerns. We have also expanded the Limitations section and added LLM usage disclosure. These revisions significantly strengthen the empirical validation.
 ```
 
 ---
 
-## 避免的错误模式
+## Error Patterns to Avoid
 
-### ❌ 错误 1: 防御性语气
+### Error 1: Defensive tone
 
-**不好的回复**:
+**Bad response**:
 > "The reviewer clearly misunderstood our method. If they had read Section 3 carefully, they would see that..."
 
-**好的回复**:
+**Good response**:
 > "We apologize for the confusion. We have clarified Section 3 to make this point more explicit..."
 
-### ❌ 错误 2: 模糊承诺
+### Error 2: Vague commitment
 
-**不好的回复**:
+**Bad response**:
 > "We will add more experiments in the final version."
 
-**好的回复**:
+**Good response**:
 > "We have added experiments comparing with Method X on datasets A, B, C (Table 4, page 8)."
 
-### ❌ 错误 3: 忽略问题
+### Error 3: Ignoring the issue
 
-**不好的回复**:
+**Bad response**:
 > "This is beyond the scope of our paper."
 
-**好的回复**:
+**Good response**:
 > "While [suggestion] is valuable, it is beyond our current scope due to [specific constraint]. However, we have added [alternative] which addresses the core concern."
 
-### ❌ 错误 4: 过度技术化
+### Error 4: Over-technical
 
-**不好的回复**:
+**Bad response**:
 > "Our method uses a novel attention mechanism with learnable parameters θ = {W_q, W_k, W_v, W_o} where..."
 
-**好的回复**:
+**Good response**:
 > "We have clarified the attention mechanism in Section 3.2 with pseudocode (Algorithm 1) and a concrete example (Figure 3)."
 
 ---
 
-## 使用建议
+## Usage Recommendations
 
-1. **选择相似案例** - 找到与你的审稿意见类似的案例
-2. **适配具体情况** - 不要直接复制，根据实际情况调整
-3. **保持诚实** - 只承诺能做到的事情
-4. **提供证据** - 每个声明都要有支持
-5. **说明位置** - 明确指出修改的具体位置
+1. **Choose similar cases** - Find cases similar to your review comments
+2. **Adapt to specific situation** - Do not copy directly; adjust for actual circumstances
+3. **Stay honest** - Only commit to things you can deliver
+4. **Provide evidence** - Every claim needs support
+5. **Specify locations** - Clearly indicate specific locations of revisions
 
 ---
 
-## 持续更新
+## Ongoing Updates
 
-本文档会持续更新，添加更多成功案例。如果你有好的rebuttal案例，欢迎补充。
+This document will be continuously updated with more successful cases.

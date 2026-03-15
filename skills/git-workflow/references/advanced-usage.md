@@ -1,59 +1,58 @@
-# Git 高级用法
+# Git Advanced Usage
 
-## 标签管理
+## Tag Management
 
-### 版本号规范
+### Version Numbering Convention
 
-采用 **语义化版本**（Semantic Versioning）：
+Use **Semantic Versioning**:
 
 ```
-主版本号.次版本号.修订号[-预发布标识]
 MAJOR.MINOR.PATCH[-PRERELEASE]
 ```
 
-| 版本变化 | 说明               | 示例              |
-| :------- | :----------------- | :---------------- |
-| 主版本号 | 不兼容的 API 修改  | `v1.0.0 → v2.0.0` |
-| 次版本号 | 向下兼容的功能新增 | `v1.0.0 → v1.1.0` |
-| 修订号   | 向下兼容的问题修正 | `v1.0.0 → v1.0.1` |
+| Version Change | Description | Example |
+|:--------------|:------------|:--------|
+| Major version | Incompatible API changes | `v1.0.0 → v2.0.0` |
+| Minor version | Backward-compatible feature additions | `v1.0.0 → v1.1.0` |
+| Patch version | Backward-compatible bug fixes | `v1.0.0 → v1.0.1` |
 
-### 预发布标识
+### Pre-release Identifiers
 
-- `alpha` - 内测版本
-- `beta` - 公测版本
-- `rc` - 候选版本
+- `alpha` - Alpha version
+- `beta` - Beta version
+- `rc` - Release candidate
 
 ```
-v1.0.0-alpha.1    # 第一个内测版本
-v1.0.0-beta.1     # 第一个公测版本
-v1.0.0-rc.1       # 第一个候选版本
-v1.0.0            # 正式版本
+v1.0.0-alpha.1    # First alpha version
+v1.0.0-beta.1     # First beta version
+v1.0.0-rc.1       # First release candidate
+v1.0.0            # Official release
 ```
 
-### 标签操作
+### Tag Operations
 
-#### 创建附注标签（推荐）
+#### Create Annotated Tag (Recommended)
 
 ```bash
-git tag -a v1.0.0 -m "release: v1.0.0 正式版本
+git tag -a v1.0.0 -m "release: v1.0.0 official release
 
-主要更新:
-- 新增用户管理模块
-- 新增支付功能
-- 优化查询性能"
+Major updates:
+- Added user management module
+- Added payment feature
+- Optimized query performance"
 ```
 
-#### 推送标签
+#### Push Tags
 
 ```bash
-# 推送单个标签
+# Push a single tag
 git push origin v1.0.0
 
-# 推送所有标签
+# Push all tags
 git push origin --tags
 ```
 
-#### 查看标签
+#### View Tags
 
 ```bash
 git tag
@@ -61,235 +60,235 @@ git tag -l "v1.*"
 git show v1.0.0
 ```
 
-#### 删除标签
+#### Delete Tags
 
 ```bash
-# 删除本地标签
+# Delete local tag
 git tag -d v1.0.0
 
-# 删除远程标签
+# Delete remote tag
 git push origin :refs/tags/v1.0.0
 ```
 
-## Git 性能优化
+## Git Performance Optimization
 
-### 大型仓库优化
+### Large Repository Optimization
 
 ```bash
-# 浅克隆（只获取最近的提交）
+# Shallow clone (get only recent commits)
 git clone --depth 1 https://github.com/repo/project.git
 
-# 部分克隆（按需获取）
+# Partial clone (fetch on demand)
 git clone --filter=blob:none https://github.com/repo/project.git
 
-# 稀疏检出（只检出需要的目录）
+# Sparse checkout (check out only needed directories)
 git clone --filter=blob:none --sparse https://github.com/repo/project.git
 cd project
 git sparse-checkout init --cone
 git sparse-checkout set src/frontend
 ```
 
-### 清理仓库
+### Repository Cleanup
 
 ```bash
-# 查看仓库大小
+# Check repository size
 git count-objects -vH
 
-# 清理无用对象
+# Clean up unused objects
 git gc --aggressive --prune=now
 
-# 清理远程已删除的分支引用
+# Clean up remote-deleted branch references
 git remote prune origin
 
-# 清理本地已合并的分支
+# Clean up locally merged branches
 git branch --merged master | grep -v "\\*\\|master\\|develop" | xargs -n 1 git branch -d
 ```
 
-### 提升操作速度
+### Improve Operation Speed
 
 ```bash
-# 启用文件系统缓存
+# Enable file system cache
 git config --global core.fscache true
 
-# 启用并行获取
+# Enable parallel fetching
 git config --global fetch.parallel 4
 
-# 启用未跟踪文件缓存
+# Enable untracked file cache
 git config --global core.untrackedCache true
 ```
 
-## Git 安全规范
+## Git Security Standards
 
-### 敏感信息保护
+### Sensitive Information Protection
 
 ```bash
-# 检查历史提交中的敏感信息
+# Check historical commits for sensitive information
 git log -p | grep -E "(password|secret|api_key)"
 
-# 从历史记录中删除敏感文件
+# Remove sensitive files from history
 git filter-branch --force --index-filter \
   'git rm --cached --ignore-unmatch config/secrets.yml' \
   --prune-empty --tag-name-filter cat -- --all
 
-# 使用 git-secrets 预防敏感信息提交
+# Use git-secrets to prevent committing sensitive information
 git secrets --install
 git secrets --register-aws
 ```
 
-### 签名验证
+### Signature Verification
 
 ```bash
-# 配置 GPG 签名
+# Configure GPG signature
 git config --global user.signingkey YOUR_KEY_ID
 git config --global commit.gpgsign true
 
-# 创建签名提交
-git commit -S -m "feat: 签名提交"
+# Create signed commit
+git commit -S -m "feat: signed commit"
 
-# 验证签名
+# Verify signature
 git log --show-signature
 ```
 
-### 仓库权限控制
+### Repository Permission Control
 
-| 规则             | master | develop | feature/* |
-| :--------------- | :----- | :------ | :-------- |
-| 禁止强制推送     | ✅      | ✅       | ❌         |
-| 禁止删除         | ✅      | ✅       | ❌         |
-| 必须 Code Review | ✅      | ✅       | ❌         |
-| 必须通过 CI      | ✅      | ✅       | ❌         |
-| 必须签名提交     | ✅      | ❌       | ❌         |
+| Rule | master | develop | feature/* |
+|:-----|:-------|:--------|:----------|
+| No force push | Yes | Yes | No |
+| No delete | Yes | Yes | No |
+| Code Review required | Yes | Yes | No |
+| CI must pass | Yes | Yes | No |
+| Signed commits required | Yes | No | No |
 
-## 子模块管理
+## Submodule Management
 
-### 添加子模块
+### Add Submodule
 
 ```bash
 git submodule add https://github.com/user/repo.git libs/repo
 
-# 克隆包含子模块的项目
+# Clone project with submodules
 git clone --recurse-submodules https://github.com/user/project.git
 
-# 初始化已有项目的子模块
+# Initialize submodules for existing project
 git submodule init
 git submodule update
 ```
 
-### 更新子模块
+### Update Submodule
 
 ```bash
-# 更新单个子模块
+# Update a single submodule
 cd libs/repo
 git pull origin main
 
-# 更新所有子模块
+# Update all submodules
 git submodule update --remote
 
-# 提交子模块更新
+# Commit submodule update
 cd ..
 git add libs/repo
-git commit -m "chore: 更新子模块版本"
+git commit -m "chore: update submodule version"
 ```
 
-### 删除子模块
+### Delete Submodule
 
 ```bash
-# 删除子模块条目
+# Remove submodule entry
 git submodule deinit -f libs/repo
 
-# 删除 .git/modules 中的缓存
+# Remove cache in .git/modules
 rm -rf .git/modules/libs/repo
 
-# 删除子模块目录
+# Remove submodule directory
 git rm -f libs/repo
 ```
 
-## 常见问题解决
+## Common Problem Solving
 
-### 1. 修改最后一次提交
+### 1. Amend Last Commit
 
 ```bash
-# 修改提交内容（未推送）
+# Amend commit content (not yet pushed)
 git add forgotten-file.ts
 git commit --amend --no-edit
 
-# 修改提交消息
-git commit --amend -m "新的提交消息"
+# Amend commit message
+git commit --amend -m "new commit message"
 
-# 回滚最后一次提交，保留更改
+# Roll back last commit, keep changes
 git reset --soft HEAD~1
 ```
 
-### 2. 推送被拒绝
+### 2. Push Rejected
 
 ```bash
-# 先拉取再推送
+# Pull then push
 git pull origin master
 git push origin master
 
-# 使用 rebase 保持历史清晰
+# Use rebase for clean history
 git pull --rebase origin master
 git push origin master
 ```
 
-### 3. 回滚到之前版本
+### 3. Roll Back to Previous Version
 
 ```bash
-# 重置到指定提交（丢弃之后的提交）
+# Reset to specified commit (discards subsequent commits)
 git reset --hard abc123
 
-# 创建反向提交（推荐，保留历史）
+# Create reverse commit (recommended, preserves history)
 git revert abc123
 ```
 
-### 4. 恢复误删的分支
+### 4. Recover Accidentally Deleted Branch
 
 ```bash
-# 查看操作历史
+# View operation history
 git reflog
 
-# 恢复分支
+# Restore branch
 git checkout -b feature/xxx def456
 ```
 
-### 5. 合并多个提交
+### 5. Merge Multiple Commits
 
 ```bash
-# 交互式 rebase（只能合并未推送的提交）
+# Interactive rebase (only for unpushed commits)
 git rebase -i HEAD~5
 
-# 在编辑器中将要合并的提交标记为 squash
+# Mark commits to merge as "squash" in the editor
 ```
 
-### 6. 暂存当前工作
+### 6. Stash Current Work
 
 ```bash
-git stash save "工作进行中"
+git stash save "work in progress"
 git stash list
 git stash pop
 git stash apply stash@{0}
 ```
 
-### 7. 查看文件修改历史
+### 7. View File Modification History
 
 ```bash
-git log -- <file>             # 提交历史
-git log -p -- <file>          # 详细内容
-git blame <file>              # 每行修改人
+git log -- <file>             # commit history
+git log -p -- <file>          # detailed content
+git blame <file>              # who modified each line
 ```
 
-### 8. 处理大文件
+### 8. Handle Large Files
 
 ```bash
-# 使用 Git LFS
+# Use Git LFS
 git lfs install
 git lfs track "*.zip"
 git add .gitattributes
 ```
 
-## 实用技巧
+## Useful Tips
 
-### 配置别名
+### Configure Aliases
 
 ```bash
 git config --global alias.co checkout
@@ -299,94 +298,94 @@ git config --global alias.st status
 git config --global alias.lg "log --graph --oneline --all"
 ```
 
-### 美化日志
+### Beautify Logs
 
 ```bash
-# 图形化历史
+# Graphical history
 git log --graph --oneline --all
 
-# 搜索提交消息
-git log --grep="用户管理"
+# Search commit messages
+git log --grep="user management"
 
-# 搜索代码变更
+# Search code changes
 git log -S"function_name"
 ```
 
-### 快速操作
+### Quick Operations
 
 ```bash
-# 放弃所有未提交更改
+# Discard all uncommitted changes
 git reset --hard HEAD
 
-# 放弃某个文件更改
+# Discard changes to a specific file
 git checkout -- filename
 
-# 删除未跟踪文件
+# Delete untracked files
 git clean -fd
 
-# 批量删除已合并分支
+# Batch delete merged branches
 git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d
 ```
 
-### 安全操作
+### Safe Operations
 
 ```bash
-# 查看将要推送的内容
+# Preview what will be pushed
 git push --dry-run
 
-# 安全的强制推送
+# Safe force push
 git push --force-with-lease
 
-# 备份分支
+# Backup branch
 git branch backup-master master
 ```
 
-### 查找问题提交
+### Find Problem Commits
 
 ```bash
-# 二分查找引入Bug的提交
+# Binary search for commit that introduced a bug
 git bisect start
-git bisect bad              # 标记当前有问题
-git bisect good v1.0.0      # 标记某版本是好的
-# Git会自动切换提交，测试后标记 good/bad
-git bisect reset            # 结束查找
+git bisect bad              # Mark current as broken
+git bisect good v1.0.0      # Mark a known-good version
+# Git auto-switches commits; mark each as good/bad after testing
+git bisect reset            # End search
 ```
 
-## CHANGELOG 管理
+## CHANGELOG Management
 
-### 自动生成 CHANGELOG
+### Auto-generate CHANGELOG
 
-使用 `conventional-changelog` 自动生成：
+Use `conventional-changelog`:
 
 ```bash
-# 安装
+# Install
 pnpm install -D conventional-changelog-cli
 
-# 生成 CHANGELOG
+# Generate CHANGELOG
 npx conventional-changelog -p angular -i CHANGELOG.md -s
 ```
 
-### CHANGELOG 格式
+### CHANGELOG Format
 
 ```markdown
-# 更新日志
+# Changelog
 
 ## [1.2.0] - 2024-01-15
 
-### 新增
-- 新增用户导出功能 (#123)
-- 新增数据备份模块
+### Added
+- Added user export feature (#123)
+- Added data backup module
 
-### 修复
-- 修复登录验证码不刷新问题 (#456)
-- 修复列表分页异常
+### Fixed
+- Fixed login CAPTCHA not refreshing (#456)
+- Fixed list pagination anomaly
 
-### 变更
-- 优化用户查询性能
-- 调整菜单权限校验逻辑
+### Changed
+- Optimized user query performance
+- Adjusted menu permission validation logic
 
-### 移除
-- 移除废弃的API接口
+### Removed
+- Removed deprecated API endpoints
 
 ## [1.1.0] - 2024-01-01
 ...

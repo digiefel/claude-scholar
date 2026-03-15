@@ -38,9 +38,9 @@ function buildMessage() {
       const changesDetails = common.getChangesDetails(cwd);
 
       msg += '  Changes:\n';
-      if (changesDetails.added > 0) msg += `    增加: ${changesDetails.added} files\n`;
-      if (changesDetails.modified > 0) msg += `    修改: ${changesDetails.modified} files\n`;
-      if (changesDetails.deleted > 0) msg += `    删除: ${changesDetails.deleted} files\n`;
+      if (changesDetails.added > 0) msg += `    Added: ${changesDetails.added} files\n`;
+      if (changesDetails.modified > 0) msg += `    Modified: ${changesDetails.modified} files\n`;
+      if (changesDetails.deleted > 0) msg += `    Deleted: ${changesDetails.deleted} files\n`;
     } else {
       msg += '  Status: clean\n';
     }

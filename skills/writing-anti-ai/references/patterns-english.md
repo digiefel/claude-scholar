@@ -1,10 +1,8 @@
 # English AI Writing Patterns - Complete Reference
 
-完整的英文 AI 写作模式参考指南。
+## CONTENT PATTERNS
 
-## CONTENT PATTERNS (内容模式)
-
-### 1. Undue Emphasis on Significance (过度强调意义)
+### 1. Undue Emphasis on Significance
 
 **Words to watch**: stands/serves as, is a testament/reminder, a vital/significant/crucial/pivotal/key role/moment, underscores/highlights its importance/significance, reflects broader, symbolizing its ongoing/enduring/lasting, contributing to the, setting the stage for, marking/shaping the, represents/marks a shift, key turning point, evolving landscape, focal point, indelible mark, deeply rooted
 
@@ -16,7 +14,7 @@
 
 ---
 
-### 2. Undue Emphasis on Notability (过度强调知名度)
+### 2. Undue Emphasis on Notability
 
 **Words to watch**: independent coverage, local/regional/national media outlets, written by a leading expert, active social media presence
 
@@ -28,7 +26,7 @@
 
 ---
 
-### 3. Superficial Analyses with -ing Endings (-ing 结尾的肤浅分析)
+### 3. Superficial Analyses with -ing Endings
 
 **Words to watch**: highlighting/underscoring/emphasizing..., ensuring..., reflecting/symbolizing..., contributing to..., cultivating/fostering..., encompassing..., showcasing...
 
@@ -40,7 +38,7 @@
 
 ---
 
-### 4. Promotional Language (宣传性语言)
+### 4. Promotional Language
 
 **Words to watch**: boasts a, vibrant, rich (figurative), profound, enhancing its, showcasing, exemplifies, commitment to, natural beauty, nestled, in the heart of, groundbreaking (figurative), renowned, breathtaking, must-visit, stunning
 
@@ -52,7 +50,7 @@
 
 ---
 
-### 5. Vague Attributions (模糊归因)
+### 5. Vague Attributions
 
 **Words to watch**: Industry reports, Observers have cited, Experts argue, Some critics argue, several sources/publications (when few cited)
 
@@ -64,7 +62,7 @@
 
 ---
 
-### 6. Formulaic "Challenges" Sections (公式化的"挑战"部分)
+### 6. Formulaic "Challenges" Sections
 
 **Words to watch**: Despite its... faces several challenges..., Despite these challenges, Challenges and Legacy, Future Outlook
 
@@ -76,9 +74,9 @@
 
 ---
 
-## LANGUAGE PATTERNS (语言模式)
+## LANGUAGE PATTERNS
 
-### 7. AI Vocabulary (AI 词汇表)
+### 7. AI Vocabulary
 
 **High-frequency AI words**: Additionally, align with, crucial, delve, emphasizing, enduring, enhance, fostering, garner, highlight (verb), interplay, intricate/intricacies, key (adjective), landscape (abstract noun), pivotal, showcase, tapestry (abstract noun), testament, underscore (verb), valuable, vibrant
 
@@ -90,7 +88,7 @@
 
 ---
 
-### 8. Copula Avoidance (回避系动词)
+### 8. Copula Avoidance
 
 **Words to watch**: serves as/stands as/marks/represents [a], boasts/features/offers [a]
 
@@ -102,7 +100,7 @@
 
 ---
 
-### 9. Negative Parallelisms (否定式排比)
+### 9. Negative Parallelisms
 
 **Before**:
 > It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song, it's a statement.
@@ -112,7 +110,7 @@
 
 ---
 
-### 10. Rule of Three (三段式法则)
+### 10. Rule of Three
 
 **Before**:
 > The event features keynote sessions, panel discussions, and networking opportunities. Attendees can expect innovation, inspiration, and industry insights.
@@ -122,7 +120,7 @@
 
 ---
 
-### 11. Elegant Variation (刻意换词)
+### 11. Elegant Variation
 
 **Before**:
 > The protagonist faces many challenges. The main character must overcome obstacles. The central figure eventually triumphs. The hero returns home.
@@ -132,7 +130,7 @@
 
 ---
 
-### 12. False Ranges (虚假范围)
+### 12. False Ranges
 
 **Before**:
 > Our journey through the universe has taken us from the singularity of the Big Bang to the grand cosmic web, from the birth and death of stars to the enigmatic dance of dark matter.
@@ -142,9 +140,9 @@
 
 ---
 
-## STYLE PATTERNS (风格模式)
+## STYLE PATTERNS
 
-### 13. Em Dash Overuse (破折号过度使用)
+### 13. Em Dash Overuse
 
 **Before**:
 > The term is primarily promoted by Dutch institutions—not by the people themselves. You don't say "Netherlands, Europe" as an address—yet this mislabeling continues—even in official documents.
@@ -154,7 +152,7 @@
 
 ---
 
-### 14. Overuse of Boldface (粗体过度使用)
+### 14. Overuse of Boldface
 
 **Before**:
 > It blends **OKRs (Objectives and Key Results)**, **KPIs (Key Performance Indicators)**, and visual strategy tools such as **Business Model Canvas (BMC)** and **Balanced Scorecard (BSC)**.
@@ -164,7 +162,7 @@
 
 ---
 
-### 15. Inline-Header Vertical Lists (内联标题垂直列表)
+### 15. Inline-Header Vertical Lists
 
 **Before**:
 > - **User Experience:** The user experience has been significantly improved with a new interface.
@@ -176,9 +174,9 @@
 
 ---
 
-## COMMUNICATION PATTERNS (交流模式)
+## COMMUNICATION PATTERNS
 
-### 16. Collaborative Communication Artifacts (协作交流痕迹)
+### 16. Collaborative Communication Artifacts
 
 **Words to watch**: I hope this helps, Of course!, Certainly!, You're absolutely right!, Would you like..., let me know, here is a...
 
@@ -190,7 +188,7 @@
 
 ---
 
-### 17. Knowledge-Cutoff Disclaimers (知识截止免责声明)
+### 17. Knowledge-Cutoff Disclaimers
 
 **Words to watch**: as of [date], Up to my last training update, While specific details are limited/scarce..., based on available information...
 
@@ -202,9 +200,9 @@
 
 ---
 
-## FILLER PATTERNS (填充模式)
+## FILLER PATTERNS
 
-### 18. Filler Phrases (填充短语)
+### 18. Filler Phrases
 
 | Before | After |
 |--------|-------|
@@ -217,7 +215,7 @@
 
 ---
 
-### 19. Excessive Hedging (过度限定)
+### 19. Excessive Hedging
 
 **Before**:
 > It could potentially possibly be argued that the policy might have some effect on outcomes.
@@ -227,7 +225,7 @@
 
 ---
 
-### 20. Generic Positive Conclusions (通用积极结论)
+### 20. Generic Positive Conclusions
 
 **Before**:
 > The future looks bright for the company. Exciting times lie ahead as they continue their journey toward excellence. This represents a major step in the right direction.

@@ -1,75 +1,75 @@
-# .gitignore 规范
+# .gitignore Standards
 
-## 基本规则
+## Basic Rules
 
 ```
-# 空行：不匹配任何文件
-# 注释：以 # 开头
-# 目录：以 / 结尾
-# 取反：以 ! 开头表示不忽略
-# 根目录：以 / 开头表示项目根目录
+# Empty line: matches no files
+# Comment: starts with #
+# Directory: ends with /
+# Negation: starts with ! to un-ignore
+# Root: starts with / to mean project root
 
-*.log               # 忽略所有 .log 文件
-node_modules/       # 忽略 node_modules 目录
-/temp/              # 忽略根目录下的 temp 目录
-**/.env             # 忽略所有目录下的 .env 文件
-!.gitkeep           # 不忽略 .gitkeep 文件
+*.log               # ignore all .log files
+node_modules/       # ignore node_modules directory
+/temp/              # ignore temp directory at root
+**/.env             # ignore .env files in all directories
+!.gitkeep           # do not ignore .gitkeep files
 ```
 
-## 通用 .gitignore
+## General .gitignore
 
 ```
 # ============================================
-# 依赖目录
+# Dependency directories
 # ============================================
 node_modules/
 vendor/
 
 # ============================================
-# 构建产物
+# Build artifacts
 # ============================================
 dist/
 build/
 target/
 
 # ============================================
-# 编辑器和 IDE
+# Editors and IDEs
 # ============================================
 .idea/
 .vscode/
 *.sw?
 
 # ============================================
-# 环境配置
+# Environment configuration
 # ============================================
 .env
 .env.local
 .env.*.local
 
 # ============================================
-# 日志文件
+# Log files
 # ============================================
 logs/
 *.log
 npm-debug.log*
 
 # ============================================
-# 系统文件
+# System files
 # ============================================
 .DS_Store
 Thumbs.db
 
 # ============================================
-# 缓存文件
+# Cache files
 # ============================================
 .cache/
 .eslintcache
 .stylelintcache
 ```
 
-## 项目特定配置
+## Project-Specific Configuration
 
-### 前端/文档项目补充
+### Frontend/Documentation Projects
 
 ```
 # VitePress
@@ -82,7 +82,7 @@ yarn.lock
 pnpm-lock.yaml
 ```
 
-### 后端项目补充
+### Backend Projects
 
 ```
 # Maven
@@ -91,12 +91,12 @@ pom.xml.tag
 *.jar
 !**/src/main/**/target/
 
-# 敏感配置
+# Sensitive configuration
 application-local.yml
 application-dev.yml
 ```
 
-### Python 项目补充
+### Python Projects
 
 ```
 # Python
@@ -125,7 +125,7 @@ dmypy.json
 .pytype/
 ```
 
-### Go 项目补充
+### Go Projects
 
 ```
 # Binaries for programs and plugins
@@ -148,7 +148,7 @@ vendor/
 go.work
 ```
 
-### Rust 项目补充
+### Rust Projects
 
 ```
 # Rust
@@ -158,119 +158,119 @@ go.work
 Cargo.lock
 ```
 
-## .gitignore 技巧
+## .gitignore Tips
 
-### 忽略文件但保留目录
+### Ignore files but keep directory
 
 ```
 logs/*
 !logs/.gitkeep
 ```
 
-### 检查忽略规则
+### Check ignore rules
 
 ```bash
 git check-ignore -v filename
 ```
 
-### 清理已提交的忽略文件
+### Clean up committed ignored files
 
 ```bash
 git rm --cached filename
-git commit -m "chore: 移除不应提交的文件"
+git commit -m "chore: remove files that should not be committed"
 ```
 
-### 调试 .gitignore
+### Debug .gitignore
 
 ```bash
-# 查看文件是否被忽略以及被哪条规则匹配
+# Check if a file is ignored and which rule matches
 git check-ignore -v path/to/file
 
-# 查看所有被忽略的文件
+# List all ignored files
 git ls-files --others --ignored --exclude-standard
 ```
 
-## 常见模式
+## Common Patterns
 
-### 忽略特定文件
+### Ignore specific files
 
 ```
-# 忽略特定文件
+# Ignore specific files
 config/local.json
 secrets.yaml
 ```
 
-### 忽略特定类型
+### Ignore by type
 
 ```
-# 忽略所有 .log 文件
+# Ignore all .log files
 *.log
 
-# 忽略所有临时文件
+# Ignore all temporary files
 *.tmp
 *.temp
 ```
 
-### 忽略目录
+### Ignore directories
 
 ```
-# 忽略所有 node_modules 目录
+# Ignore all node_modules directories
 node_modules/
 
-# 忽略根目录下的 build 目录
+# Ignore build directory at root
 /build/
 
-# 忽略任何位置的 build 目录
+# Ignore build directory anywhere
 **/build/
 ```
 
-### 取反规则
+### Negation rules
 
 ```
-# 忽略所有 .a 文件
+# Ignore all .a files
 *.a
 
-# 但不忽略 lib.a
+# But not lib.a
 !lib.a
 
-# 忽略所有 TODO 文件
+# Ignore all TODO files
 TODO*
 
-# 但不忽略 TODO.md
+# But not TODO.md
 !TODO.md
 ```
 
-### 通配符
+### Wildcards
 
 ```
-# * 匹配任意字符
+# * matches any characters
 *.log
 
-# ** 匹配任意目录
+# ** matches any directory
 **/temp/
 
-# ? 匹配单个字符
+# ? matches a single character
 file?.txt
 
-# [] 匹配括号内任意字符
+# [] matches any character in brackets
 file[0-9].txt
 ```
 
-## .gitignore 优先级
+## .gitignore Priority
 
-1. 命令行指定的文件（如 `git add -f`）
-2. `.git/info/exclude`（本地排除规则）
-3. `.gitignore`（项目级别，提交到仓库）
-4. `~/.gitignore_global`（全局级别）
+1. Files specified on the command line (e.g., `git add -f`)
+2. `.git/info/exclude` (local exclusion rules)
+3. `.gitignore` (project-level, committed to repository)
+4. `~/.gitignore_global` (global level)
 
-### 本地排除规则
+### Local Exclusion Rules
 
-对于不想提交到仓库的本地忽略规则：
+For local ignore rules you don't want to commit to the repository:
 
 ```bash
-# 编辑本地排除文件
+# Edit global ignore file
 git config --global core.excludesfile ~/.gitignore_global
 
-# 或者使用 .git/info/exclude（仅当前仓库）
+# Or use .git/info/exclude (current repository only)
 echo "secrets.yaml" >> .git/info/exclude
 ```

@@ -28,13 +28,13 @@ Commit uncommitted changes and push to remote GitHub repository.
    ```
 
    Types:
-   - `feat`: 新功能
-   - `fix`: Bug 修复
-   - `docs`: 文档更新
-   - `refactor`: 代码重构
-   - `perf`: 性能优化
-   - `test`: 测试相关
-   - `chore`: 其他修改
+   - `feat`: new feature
+   - `fix`: bug fix
+   - `docs`: documentation update
+   - `refactor`: code refactoring
+   - `perf`: performance optimization
+   - `test`: test related
+   - `chore`: other changes
 
 4. **Stage and Commit**
    - Run `git add` for affected files
@@ -67,10 +67,10 @@ User: /update-github
    - README.md: Updated documentation
 
 3. Proposed commit:
-   docs(readme): 更新项目文档
+   docs(readme): update project documentation
 
-   - 添加使用示例
-   - 更新依赖说明
+   - add usage example
+   - update dependency instructions
 
    Co-Authored-By: Claude <noreply@anthropic.com>
 
@@ -80,7 +80,7 @@ User: /update-github
    git add src/utils/helpers.py README.md
 
 6. Creating commit...
-   [main abc1234] docs(readme): 更新项目文档
+   [main abc1234] docs(readme): update project documentation
 
 7. Pushing to remote...
    git push

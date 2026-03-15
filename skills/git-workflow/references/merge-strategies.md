@@ -1,48 +1,48 @@
-# 合并策略详解
+# Merge Strategies
 
 ## Merge vs Rebase
 
-| 特性     | Merge                      | Rebase                   |
-| :------- | :------------------------- | :----------------------- |
-| 历史记录 | 保留完整历史，创建合并提交 | 线性历史，不创建合并提交 |
-| 适用场景 | 公共分支、需要保留历史     | 私有分支、保持历史清晰   |
-| 冲突处理 | 一次性处理所有冲突         | 逐个提交处理冲突         |
-| 推荐用法 | 合并到主分支               | 同步上游代码             |
+| Feature | Merge | Rebase |
+| :------ | :---- | :----- |
+| History | Preserves full history, creates merge commit | Linear history, no merge commit |
+| Use case | Public branches, preserve history | Private branches, keep history clean |
+| Conflict handling | Resolve all conflicts at once | Resolve conflicts per commit |
+| Recommended for | Merging into main branch | Syncing upstream code |
 
-## 使用建议
+## Usage Guidelines
 
-### 功能分支同步 develop：使用 rebase
+### Sync feature branch with develop: use rebase
 
 ```bash
 git checkout feature/user-management
 git rebase develop
 ```
 
-### 功能分支合并到 develop：使用 merge --no-ff
+### Merge feature branch into develop: use merge --no-ff
 
 ```bash
 git checkout develop
 git merge --no-ff feature/user-management
 ```
 
-### develop 合并到 master：使用 merge --no-ff
+### Merge develop into master: use merge --no-ff
 
 ```bash
 git checkout master
 git merge --no-ff develop
 ```
 
-### 禁止在公共分支上 rebase
+### Never rebase on public branches
 
 ```bash
-# ❌ 危险操作
+# Dangerous operation
 git checkout develop
-git rebase feature/xxx  # 会改写公共历史
+git rebase feature/xxx  # rewrites public history
 ```
 
 ## Fast-Forward vs No-Fast-Forward
 
-### Fast-Forward 合并（不创建合并提交）
+### Fast-Forward merge (no merge commit)
 
 ```bash
 git merge feature/xxx
@@ -52,10 +52,10 @@ git merge feature/xxx
 # A---B---C  (master)
 #          \
 #           D---E  (feature)
-# 结果: A---B---C---D---E  (master)
+# Result: A---B---C---D---E  (master)
 ```
 
-### No-Fast-Forward 合并（创建合并提交）
+### No-Fast-Forward merge (creates merge commit)
 
 ```bash
 git merge --no-ff feature/xxx
@@ -67,55 +67,55 @@ git merge --no-ff feature/xxx
 #           D---E    (feature)
 ```
 
-**项目约定**：合并功能分支时使用 `--no-ff`，保留分支历史信息。
+**Project convention**: Use `--no-ff` when merging feature branches to preserve branch history.
 
-## Squash 合并
+## Squash Merge
 
-将多个提交压缩成一个：
+Squash multiple commits into one:
 
 ```bash
 git checkout develop
 git merge --squash feature/user-management
-git commit -m "feat(user): 添加用户管理功能"
+git commit -m "feat(user): add user management feature"
 ```
 
-### 适用场景
+### Use cases
 
-- 功能分支有太多琐碎提交
-- 想要保持主分支历史清晰
-- 不需要保留开发过程中的细节
+- Feature branch has too many trivial commits
+- Want to keep main branch history clean
+- Development process details are not needed
 
 ### Squash vs Merge --no-ff
 
-| 策略        | 优点                     | 缺点                     | 适用场景               |
-| :---------- | :----------------------- | :----------------------- | :--------------------- |
-| merge --no-ff | 保留完整历史和开发过程   | 历史可能比较复杂         | 功能分支、重要功能     |
-| squash      | 历史清晰，一个提交一个功能 | 丢失开发过程信息         | 小功能、实验性功能     |
-| rebase      | 线性历史，易于理解       | 改写历史，可能引起问题   | 个人分支、同步上游     |
+| Strategy | Pros | Cons | Use case |
+| :------- | :--- | :--- | :------- |
+| merge --no-ff | Preserves full history and development process | History can be complex | Feature branches, important features |
+| squash | Clean history, one commit per feature | Loses development process information | Small features, experimental features |
+| rebase | Linear history, easy to understand | Rewrites history, can cause issues | Personal branches, syncing upstream |
 
-## Rebase 高级用法
+## Advanced Rebase Usage
 
-### 交互式 Rebase
+### Interactive Rebase
 
 ```bash
-# 编辑最近5个提交
+# Edit last 5 commits
 git rebase -i HEAD~5
 ```
 
-在编辑器中可以使用以下命令：
-- `pick` - 保留该提交
-- `reword` - 修改提交消息
-- `edit` - 修改提交内容
-- `squash` - 合并到前一个提交
-- `drop` - 删除该提交
+Available commands in the editor:
+- `pick` - keep the commit
+- `reword` - edit commit message
+- `edit` - edit commit content
+- `squash` - merge into previous commit
+- `drop` - delete the commit
 
-### Rebase 时解决冲突
+### Resolving conflicts during rebase
 
 ```bash
 git rebase develop
-# 出现冲突后，编辑文件解决冲突
+# After conflict appears, edit the file to resolve
 git add <file>
 git rebase --continue
-# 如果想放弃 rebase
+# To abort the rebase
 git rebase --abort
 ```

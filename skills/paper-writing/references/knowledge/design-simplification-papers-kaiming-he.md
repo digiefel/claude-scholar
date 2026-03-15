@@ -440,7 +440,7 @@ no feature pyramid          47.8    42.5
 **Techniques**:
 - **Baseline**: "no [X]" shows it's needed
 - **(a), (b), (c)**: Progressive variations
-- **Δ标注**: (+2.5) - Show incremental gains
+- **Delta annotation**: (+2.5) - Show incremental gains
 - **Conclusion text**: "our simple pyramid is sufficient"
 
 ---

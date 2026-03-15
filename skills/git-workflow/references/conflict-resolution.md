@@ -1,147 +1,147 @@
-# 冲突处理详解
+# Conflict Resolution
 
-## 识别冲突
+## Identifying Conflicts
 
-当 Git 无法自动合并时，会标记冲突：
+When Git cannot automatically merge, it marks conflicts:
 
 ```
 <<<<<<< HEAD
-// 当前分支的代码
-const name = '张三'
+// current branch code
+const name = 'Alice'
 =======
-// 要合并的分支的代码
-const name = '李四'
+// code from the branch being merged
+const name = 'Bob'
 >>>>>>> feature/user-management
 ```
 
-## 解决冲突步骤
+## Steps to Resolve Conflicts
 
-### 1. 查看冲突文件
+### 1. View Conflicted Files
 
 ```bash
 git status
 ```
 
-### 2. 手动编辑文件，解决冲突
+### 2. Manually Edit Files to Resolve Conflicts
 
-打开冲突文件，找到冲突标记（`<<<<<<<`、`=======`、`>>>>>>>`），手动编辑选择保留的内容或合并两者。
+Open the conflicted file, find the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`), and manually edit to select the content to keep or merge both.
 
-### 3. 标记已解决
+### 3. Mark as Resolved
 
 ```bash
 git add <file>
 ```
 
-### 4. 完成合并
+### 4. Complete the Merge
 
 ```bash
-# 对于 merge 冲突
+# For merge conflicts
 git commit
 
-# 对于 rebase 冲突
+# For rebase conflicts
 git rebase --continue
 ```
 
-## 冲突处理策略
+## Conflict Resolution Strategies
 
-### 保留当前分支版本
+### Keep Current Branch Version
 
 ```bash
 git checkout --ours <file>
 git add <file>
 ```
 
-### 保留传入分支版本
+### Keep Incoming Branch Version
 
 ```bash
 git checkout --theirs <file>
 git add <file>
 ```
 
-### 放弃合并
+### Abort Merge
 
 ```bash
-# 放弃 merge
+# Abort merge
 git merge --abort
 
-# 放弃 rebase
+# Abort rebase
 git rebase --abort
 ```
 
-## 预防冲突的最佳实践
+## Best Practices for Preventing Conflicts
 
-1. **及时同步代码** - 每天开始工作前拉取最新代码
-2. **小步提交** - 频繁提交小的改动
-3. **功能模块化** - 不同功能在不同文件中实现
-4. **沟通协作** - 避免同时修改同一文件
+1. **Sync code promptly** - Pull latest code before starting work each day
+2. **Small commits** - Commit small changes frequently
+3. **Modular features** - Implement different features in different files
+4. **Communication** - Avoid multiple people modifying the same file simultaneously
 
-## 常见冲突场景
+## Common Conflict Scenarios
 
-### 场景1：同一文件不同位置修改
+### Scenario 1: Same file, different locations modified
 
-这种情况 Git 通常能自动合并，无需人工干预。
+Git can usually auto-merge this case without manual intervention.
 
-### 场景2：同一行不同修改
+### Scenario 2: Same line, different modifications
 
-需要手动决定保留哪个版本或合并两者。
+Need to manually decide which version to keep or how to merge both.
 
-### 场景3：文件重命名
+### Scenario 3: File rename
 
-Git 通常能智能识别，但如果一个分支重命名而另一个分支修改内容，可能需要手动处理。
+Git can usually detect this intelligently, but if one branch renames a file while another modifies its content, manual handling may be needed.
 
-### 场景4：二进制文件冲突
+### Scenario 4: Binary file conflict
 
-对于图片、PDF 等二进制文件，需要决定保留哪个版本：
+For binary files like images and PDFs, decide which version to keep:
 
 ```bash
-# 保留当前分支的版本
+# Keep current branch version
 git checkout --ours image.png
 
-# 或保留传入分支的版本
+# Or keep incoming branch version
 git checkout --theirs image.png
 ```
 
-## 冲突解决工具
+## Conflict Resolution Tools
 
-### 使用 merge 工具
+### Using merge tool
 
 ```bash
-# 配置合并工具
+# Configure merge tool
 git config --global merge.tool vimdiff
 git config --global mergetool.prompt false
 
-# 使用合并工具
+# Use merge tool
 git mergetool
 ```
 
-### 使用 diff 工具
+### Using diff tool
 
 ```bash
-# 查看详细差异
+# View detailed differences
 git diff --ours
 git diff --theirs
 git diff --base
 ```
 
-## Rebase 冲突特殊处理
+## Rebase Conflict Handling
 
-Rebase 时冲突会逐个提交出现，处理方式：
+Conflicts during rebase appear one commit at a time; handle them as:
 
 ```bash
 git rebase develop
-# 冲突1 -> 解决 -> git add -> git rebase --continue
-# 冲突2 -> 解决 -> git add -> git rebase --continue
+# conflict 1 -> resolve -> git add -> git rebase --continue
+# conflict 2 -> resolve -> git add -> git rebase --continue
 # ...
-# 直到完成
+# until complete
 ```
 
-如果某一步想跳过：
+To skip a step:
 
 ```bash
 git rebase --skip
 ```
 
-如果整体想放弃：
+To abort entirely:
 
 ```bash
 git rebase --abort

@@ -1,81 +1,81 @@
 # Citation Verification Scripts
 
-## 状态说明
+## Status
 
-**这些脚本是参考实现，不是主要工作流的一部分。**
+**These scripts are reference implementations, not part of the main workflow.**
 
-本目录中的Python脚本提供了基于API的引用验证实现，但**实际的引用验证工作流使用WebSearch和Google Scholar**，而不是这些脚本。
+The Python scripts in this directory provide API-based citation verification implementations, but **the actual citation verification workflow uses WebSearch and Google Scholar**, not these scripts.
 
-## 为什么保留这些脚本？
+## Why Keep These Scripts?
 
-这些脚本作为**参考实现**保留，用于：
+These scripts are retained as **reference implementations** for:
 
-1. **理解验证逻辑** - 展示引用验证的完整逻辑和步骤
-2. **学习API使用** - 了解如何使用CrossRef、arXiv、Semantic Scholar等API
-3. **高级用例** - 对于需要批量验证或自动化的场景，可以参考这些实现
+1. **Understanding verification logic** - demonstrates the complete logic and steps of citation verification
+2. **Learning API usage** - shows how to use CrossRef, arXiv, Semantic Scholar, and other APIs
+3. **Advanced use cases** - for scenarios requiring batch verification or automation, these implementations can serve as references
 
-## 主要工作流
+## Main Workflow
 
-**实际的引用验证应该使用 `ml-paper-writing` skill 中的 Citation Workflow：**
+**For actual citation verification, use the Citation Workflow in the `paper-writing` skill:**
 
-1. 使用 WebSearch 查找论文
-2. 在 Google Scholar 上验证
-3. 从 Google Scholar 获取 BibTeX
-4. 验证声明（如需要）
-5. 添加到 bibliography
+1. Use WebSearch to find papers
+2. Verify on Google Scholar
+3. Get BibTeX from Google Scholar
+4. Verify claims (if needed)
+5. Add to bibliography
 
-详见 `ml-paper-writing` skill 的 "Citation Workflow (Hallucination Prevention)" 部分。
+See the "Citation Workflow (Hallucination Prevention)" section of the `paper-writing` skill.
 
-## 脚本说明
+## Script Descriptions
 
 ### verify-citations.py
 
-完整的引用验证脚本，包含：
-- 四层验证机制（格式、存在性、信息匹配、内容验证）
-- 多API支持（CrossRef、arXiv、Semantic Scholar）
-- 报告生成
+A complete citation verification script including:
+- Four-layer verification mechanism (format, existence, information matching, content validation)
+- Multi-API support (CrossRef, arXiv, Semantic Scholar)
+- Report generation
 
-**用途**: 参考实现，了解完整的验证逻辑
+**Purpose**: Reference implementation to understand the complete verification logic
 
 ### api-clients.py
 
-API客户端库，包含：
-- CrossRefClient - DOI验证
-- ArXivClient - arXiv论文验证
-- SemanticScholarClient - 通用学术搜索
-- CitationAPIManager - 统一API管理
+An API client library including:
+- CrossRefClient - DOI verification
+- ArXivClient - arXiv paper verification
+- SemanticScholarClient - general academic search
+- CitationAPIManager - unified API management
 
-**用途**: 参考实现，了解如何使用学术API
+**Purpose**: Reference implementation to understand how to use academic APIs
 
 ### format-checker.py
 
-BibTeX和LaTeX格式检查工具，包含：
-- BibTeX格式验证
-- LaTeX引用检查
-- 格式错误报告
+A BibTeX and LaTeX format checking tool including:
+- BibTeX format validation
+- LaTeX citation check
+- Format error reporting
 
-**用途**: 参考实现，了解格式检查逻辑
+**Purpose**: Reference implementation to understand format checking logic
 
-## 使用建议
+## Usage Recommendations
 
-**对于日常论文写作**:
-- ✅ 使用 `ml-paper-writing` skill 的 Citation Workflow
-- ✅ 使用 WebSearch 和 Google Scholar
-- ❌ 不要使用这些Python脚本
+**For day-to-day paper writing**:
+- Use the `paper-writing` skill's Citation Workflow
+- Use WebSearch and Google Scholar
+- Do not use these Python scripts
 
-**对于批量验证或自动化**:
-- 可以参考这些脚本的实现
-- 根据需要修改和使用
-- 注意API速率限制
+**For batch verification or automation**:
+- These script implementations can be used as references
+- Modify and use as needed
+- Be aware of API rate limits
 
-## 依赖安装
+## Dependency Installation
 
-如果需要运行这些脚本（仅用于参考或高级用例）：
+If you need to run these scripts (for reference or advanced use cases only):
 
 ```bash
 pip install bibtexparser requests semanticscholar arxiv
 ```
 
-## 更多信息
+## More Information
 
-详见 `citation-verification` skill 的 SKILL.md 文件。
+See the SKILL.md file in the `citation-verification` skill.

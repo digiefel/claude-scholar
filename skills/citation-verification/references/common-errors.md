@@ -1,14 +1,14 @@
-# 常见引用错误模式
+# Common Citation Error Patterns
 
-本文档总结常见的引用错误类型、识别方法和修复建议。
+This document summarizes common types of citation errors, how to identify them, and how to fix them.
 
-## 错误分类
+## Error Categories
 
-### 1. 格式错误 (Format Errors)
+### 1. Format Errors
 
-#### 1.1 缺少必填字段
+#### 1.1 Missing Required Fields
 
-**错误示例:**
+**Error example:**
 ```bibtex
 @article{smith2020,
   title={Deep Learning for NLP},
@@ -16,9 +16,9 @@
 }
 ```
 
-**问题:** 缺少 `author` 和 `journal` 字段
+**Problem:** Missing `author` and `journal` fields
 
-**修复:**
+**Fix:**
 ```bibtex
 @article{smith2020,
   author={Smith, John and Doe, Jane},
@@ -28,143 +28,143 @@
 }
 ```
 
-#### 1.2 年份格式错误
+#### 1.2 Year Format Errors
 
-**错误示例:**
+**Error examples:**
 ```bibtex
-year={20}          # 年份不完整
-year={2020-2021}   # 年份范围格式错误
-year={circa 2020}  # 包含非数字字符
+year={20}          # incomplete year
+year={2020-2021}   # year range format error
+year={circa 2020}  # contains non-numeric characters
 ```
 
-**修复:**
+**Fix:**
 ```bibtex
-year={2020}        # 使用四位数年份
+year={2020}        # use four-digit year
 ```
 
-#### 1.3 DOI 格式错误
+#### 1.3 DOI Format Errors
 
-**错误示例:**
+**Error examples:**
 ```bibtex
-doi={doi:10.1038/nature12345}     # 包含 "doi:" 前缀
-doi={https://doi.org/10.1038/...} # 包含完整 URL
-doi={10.1038/nature12345.}        # 末尾有句号
+doi={doi:10.1038/nature12345}     # contains "doi:" prefix
+doi={https://doi.org/10.1038/...} # contains full URL
+doi={10.1038/nature12345.}        # trailing period
 ```
 
-**修复:**
+**Fix:**
 ```bibtex
-doi={10.1038/nature12345}         # 只保留 DOI 本身
+doi={10.1038/nature12345}         # keep only the DOI itself
 ```
 
-#### 1.4 作者名格式不一致
+#### 1.4 Inconsistent Author Name Format
 
-**错误示例:**
+**Error examples:**
 ```bibtex
-author={John Smith and Jane Doe and Bob}  # 格式不一致
-author={Smith, J. and Doe, Jane}          # 格式混用
+author={John Smith and Jane Doe and Bob}  # inconsistent format
+author={Smith, J. and Doe, Jane}          # mixed format
 ```
 
-**修复:**
+**Fix:**
 ```bibtex
-author={Smith, John and Doe, Jane and Brown, Bob}  # 统一格式
-# 或
-author={Smith, J. and Doe, J. and Brown, B.}       # 统一缩写
+author={Smith, John and Doe, Jane and Brown, Bob}  # unified format
+# or
+author={Smith, J. and Doe, J. and Brown, B.}       # unified abbreviation
 ```
 
-### 2. 信息错误 (Information Errors)
+### 2. Information Errors
 
-#### 2.1 作者名拼写错误
+#### 2.1 Misspelled Author Names
 
-**错误示例:**
+**Error example:**
 ```bibtex
-author={Vaswani, Ashish}  # 正确
-author={Vaswani, Asish}   # 拼写错误
+author={Vaswani, Ashish}  # correct
+author={Vaswani, Asish}   # misspelling
 ```
 
-**识别方法:**
-- API 验证时作者匹配度低
-- 通过 Google Scholar 搜索确认正确拼写
+**Identification:**
+- Low author match score in API verification
+- Search on Google Scholar to confirm correct spelling
 
-**修复建议:**
-- 从可靠来源(Google Scholar, Semantic Scholar)获取 BibTeX
-- 仔细核对作者名拼写
+**Fix recommendations:**
+- Get BibTeX from reliable sources (Google Scholar, Semantic Scholar)
+- Carefully verify author name spelling
 
-#### 2.2 标题错误
+#### 2.2 Title Errors
 
-**错误示例:**
+**Error examples:**
 ```bibtex
-title={Attention is All You Need}           # 正确
-title={Attention Is All You Need}           # 大小写错误
-title={Attention is all you need}           # 大小写错误
-title={Attention Mechanism for Transformers} # 标题完全错误
+title={Attention is All You Need}           # correct
+title={Attention Is All You Need}           # capitalization error
+title={Attention is all you need}           # capitalization error
+title={Attention Mechanism for Transformers} # completely wrong title
 ```
 
-**识别方法:**
-- 标题匹配度低于阈值
-- API 返回的标题与 BibTeX 中的标题不一致
+**Identification:**
+- Title match score below threshold
+- Title returned by API does not match BibTeX
 
-**修复建议:**
-- 从原始论文或 DOI 获取准确标题
-- 保持原始大小写格式
+**Fix recommendations:**
+- Get the accurate title from the original paper or DOI
+- Preserve the original capitalization format
 
-#### 2.3 年份错误
+#### 2.3 Year Errors
 
-**常见情况:**
-- 使用预印本年份而非正式发表年份
-- 使用会议年份而非论文集出版年份
+**Common situations:**
+- Using the preprint year instead of the formal publication year
+- Using the conference year instead of the proceedings publication year
 
-**错误示例:**
+**Error example:**
 ```bibtex
-# 论文在 2017 年 arXiv 发布,2018 年 NIPS 正式发表
-year={2017}  # 使用了预印本年份
-year={2018}  # 正确:使用正式发表年份
+# Paper published on arXiv in 2017, officially at NeurIPS in 2018
+year={2017}  # used preprint year
+year={2018}  # correct: use official publication year
 ```
 
-**修复建议:**
-- 优先使用正式发表年份
-- 如果引用预印本,在 note 字段说明
+**Fix recommendations:**
+- Prefer the formal publication year
+- If citing a preprint, note this in the note field
 
-#### 2.4 期刊/会议名称错误
+#### 2.4 Journal/Conference Name Errors
 
-**错误示例:**
+**Error examples:**
 ```bibtex
-booktitle={NeurIPS}                    # 缩写
-booktitle={Neural Information Processing Systems}  # 完整名称
-booktitle={Advances in Neural Information Processing Systems}  # 正确的完整名称
+booktitle={NeurIPS}                    # abbreviation
+booktitle={Neural Information Processing Systems}  # incomplete name
+booktitle={Advances in Neural Information Processing Systems}  # correct full name
 ```
 
-**修复建议:**
-- 使用官方全称或标准缩写
-- 保持整个文献列表的命名一致性
+**Fix recommendations:**
+- Use the official full name or standard abbreviation
+- Maintain consistent naming throughout the reference list
 
-### 3. 虚假引用 (Fake Citations)
+### 3. Fake Citations
 
-#### 3.1 完全虚构的论文
+#### 3.1 Completely Fabricated Papers
 
-**特征:**
-- 论文不存在于任何数据库
-- API 验证全部失败
-- 无法通过 Google Scholar 找到
+**Characteristics:**
+- Paper does not exist in any database
+- All API verifications fail
+- Cannot be found via Google Scholar
 
-**识别方法:**
+**Identification:**
 ```python
-# 所有 API 都返回 not_found
+# All APIs return not_found
 if not crossref_found and not arxiv_found and not semantic_scholar_found:
-    return "可能是虚假引用"
+    return "possibly fake citation"
 ```
 
-**修复建议:**
-- 删除虚假引用
-- 如果确实需要引用,寻找真实的相关论文
+**Fix recommendations:**
+- Remove the fake citation
+- If a citation is truly needed, find a real related paper
 
-#### 3.2 信息严重错误的引用
+#### 3.2 Citations with Severely Wrong Information
 
-**特征:**
-- 论文存在,但信息完全不匹配
-- 作者、标题、年份都不对
-- 可能是复制粘贴错误
+**Characteristics:**
+- Paper exists but information does not match at all
+- Author, title, and year are all wrong
+- Likely a copy-paste error
 
-**错误示例:**
+**Error example:**
 ```bibtex
 @article{smith2020deep,
   author={Smith, John},
@@ -174,30 +174,30 @@ if not crossref_found and not arxiv_found and not semantic_scholar_found:
 }
 ```
 
-**实际论文:**
-- 作者: Brown, Tom et al.
-- 标题: Language Models are Few-Shot Learners
-- 期刊: NeurIPS
-- 年份: 2020
+**Actual paper:**
+- Author: Brown, Tom et al.
+- Title: Language Models are Few-Shot Learners
+- Venue: NeurIPS
+- Year: 2020
 
-**修复建议:**
-- 重新搜索正确的论文
-- 从可靠来源获取正确的 BibTeX
+**Fix recommendations:**
+- Search again for the correct paper
+- Get the correct BibTeX from a reliable source
 
-#### 3.3 引用不存在的版本
+#### 3.3 Citing Non-existent Versions
 
-**错误示例:**
+**Error example:**
 ```bibtex
-# 引用了不存在的期刊版本
+# Citing a journal version that does not exist
 @article{vaswani2017attention,
   author={Vaswani, Ashish and others},
   title={Attention is All You Need},
-  journal={Nature Machine Intelligence},  # 错误:这篇论文没有期刊版本
+  journal={Nature Machine Intelligence},  # wrong: this paper has no journal version
   year={2017}
 }
 ```
 
-**正确引用:**
+**Correct citation:**
 ```bibtex
 @inproceedings{vaswani2017attention,
   author={Vaswani, Ashish and others},
@@ -207,37 +207,37 @@ if not crossref_found and not arxiv_found and not semantic_scholar_found:
 }
 ```
 
-### 4. 一致性错误 (Consistency Errors)
+### 4. Consistency Errors
 
-#### 4.1 LaTeX 引用与 BibTeX 不一致
+#### 4.1 LaTeX Citation and BibTeX Mismatch
 
-**错误示例:**
+**Error example:**
 
-LaTeX 文件中:
+LaTeX file:
 ```latex
 \cite{smith2020deep}
 ```
 
-BibTeX 文件中:
+BibTeX file:
 ```bibtex
-@article{smith2020deeplearning,  # Key 不匹配
+@article{smith2020deeplearning,  # key does not match
   author={Smith, John},
   title={Deep Learning for NLP},
   year={2020}
 }
 ```
 
-**识别方法:**
+**Identification:**
 ```python
 def check_citation_consistency(tex_keys, bib_keys):
-    """检查引用一致性"""
+    """Check citation consistency"""
     tex_set = set(tex_keys)
     bib_set = set(bib_keys)
 
-    # 未定义的引用
+    # Undefined citations
     undefined = tex_set - bib_set
 
-    # 未使用的引用
+    # Unused citations
     unused = bib_set - tex_set
 
     return {
@@ -246,40 +246,40 @@ def check_citation_consistency(tex_keys, bib_keys):
     }
 ```
 
-**修复建议:**
-- 确保 LaTeX 中的 citation key 与 BibTeX 中的 ID 完全一致
-- 删除未使用的 BibTeX 条目
-- 补充缺失的 BibTeX 条目
+**Fix recommendations:**
+- Ensure citation keys in LaTeX exactly match IDs in BibTeX
+- Delete unused BibTeX entries
+- Add missing BibTeX entries
 
-#### 4.2 引用格式不统一
+#### 4.2 Inconsistent Citation Format
 
-**错误示例:**
+**Error example:**
 ```bibtex
-# 同一文献列表中格式混乱
+# Mixed formats in the same reference list
 @article{paper1,
-  author={Smith, John and Doe, Jane},  # 全名
+  author={Smith, John and Doe, Jane},  # full name
   ...
 }
 
 @article{paper2,
-  author={Brown, T. and Lee, S.},      # 缩写
+  author={Brown, T. and Lee, S.},      # abbreviation
   ...
 }
 
 @article{paper3,
-  author={John Wilson and Mary Johnson},  # First Last 格式
+  author={John Wilson and Mary Johnson},  # First Last format
   ...
 }
 ```
 
-**修复建议:**
-- 统一作者名格式(全名或缩写)
-- 统一期刊/会议名称格式(全称或标准缩写)
-- 统一页码格式(1-10 或 1--10)
+**Fix recommendations:**
+- Unify author name format (full name or abbreviation)
+- Unify journal/conference name format (full name or standard abbreviation)
+- Unify page number format (1-10 or 1--10)
 
-#### 4.3 重复引用
+#### 4.3 Duplicate Citations
 
-**错误示例:**
+**Error example:**
 ```bibtex
 @article{vaswani2017,
   author={Vaswani, Ashish and others},
@@ -296,90 +296,89 @@ def check_citation_consistency(tex_keys, bib_keys):
 }
 ```
 
-**问题:** 同一篇论文被引用两次,使用不同的 citation key
+**Problem:** The same paper is cited twice with different citation keys
 
-**识别方法:**
-- 标题高度相似(相似度 > 0.9)
-- 作者重叠度高
-- 年份相同
+**Identification:**
+- Titles are highly similar (similarity > 0.9)
+- High author overlap
+- Same year
 
-**修复建议:**
-- 保留更完整准确的条目
-- 删除重复条目
-- 更新 LaTeX 文件中的引用
+**Fix recommendations:**
+- Keep the more complete and accurate entry
+- Delete the duplicate entry
+- Update citations in the LaTeX file
 
-## 错误预防最佳实践
+## Best Practices for Error Prevention
 
-### 1. 使用可靠来源
+### 1. Use Reliable Sources
 
-✅ **推荐来源:**
-- Google Scholar - 获取 BibTeX
-- Semantic Scholar - 验证论文信息
-- 官方出版商网站 - 获取准确元数据
-- DOI 系统 - 最可靠的标识符
+Recommended sources:
+- Google Scholar - get BibTeX
+- Semantic Scholar - verify paper information
+- Official publisher websites - get accurate metadata
+- DOI system - most reliable identifier
 
-❌ **避免:**
-- 手动输入 BibTeX
-- 从不可靠网站复制
-- 使用过时的引用管理工具
+Avoid:
+- Manually entering BibTeX
+- Copying from unreliable websites
+- Using outdated citation management tools
 
-### 2. 及时验证
+### 2. Verify Promptly
 
-**验证时机:**
-- 添加引用后立即验证
-- 完成初稿后全面验证
-- 提交前最终验证
+**When to verify:**
+- Verify immediately after adding a citation
+- Comprehensive verification after completing a draft
+- Final verification before submission
 
-**验证内容:**
-- 格式完整性
-- 信息准确性
-- 引用一致性
+**What to verify:**
+- Format completeness
+- Information accuracy
+- Citation consistency
 
-### 3. 保持一致性
+### 3. Maintain Consistency
 
-**统一标准:**
-- 作者名格式统一(全名或缩写)
-- 期刊/会议名称统一(全称或标准缩写)
-- 页码格式统一
-- 大小写规则统一
+**Unified standards:**
+- Consistent author name format (full name or abbreviation)
+- Consistent journal/conference name format (full name or standard abbreviation)
+- Consistent page number format
+- Consistent capitalization rules
 
-### 4. 使用工具辅助
+### 4. Use Tools
 
-**推荐工具:**
-- BibTeX 格式检查器
-- LaTeX 编译器(检测未定义引用)
+**Recommended tools:**
+- BibTeX format checker
+- LaTeX compiler (detects undefined citations)
 - Citation verification scripts
-- 引用管理软件(Zotero, Mendeley)
+- Reference management software (Zotero, Mendeley)
 
-## 常见错误总结
+## Common Errors Summary
 
-| 错误类型 | 严重程度 | 检测难度 | 修复难度 |
-|---------|---------|---------|---------|
-| 缺少必填字段 | 高 | 低 | 低 |
-| 年份格式错误 | 中 | 低 | 低 |
-| DOI 格式错误 | 中 | 低 | 低 |
-| 作者名拼写错误 | 高 | 中 | 中 |
-| 标题错误 | 高 | 中 | 中 |
-| 完全虚构论文 | 极高 | 高 | 高 |
-| 信息严重错误 | 极高 | 中 | 高 |
-| LaTeX-BibTeX 不一致 | 高 | 低 | 低 |
-| 格式不统一 | 低 | 低 | 中 |
-| 重复引用 | 中 | 中 | 中 |
+| Error Type | Severity | Detection Difficulty | Fix Difficulty |
+|-----------|----------|---------------------|----------------|
+| Missing required fields | High | Low | Low |
+| Year format error | Medium | Low | Low |
+| DOI format error | Medium | Low | Low |
+| Misspelled author name | High | Medium | Medium |
+| Title error | High | Medium | Medium |
+| Completely fabricated paper | Critical | High | High |
+| Severely wrong information | Critical | Medium | High |
+| LaTeX-BibTeX mismatch | High | Low | Low |
+| Inconsistent format | Low | Low | Medium |
+| Duplicate citation | Medium | Medium | Medium |
 
-## 快速检查清单
+## Quick Verification Checklist
 
-提交论文前,确保完成以下检查:
+Before submitting a paper, ensure the following checks are complete:
 
-- [ ] 所有 BibTeX 条目包含必填字段
-- [ ] 年份格式正确(四位数字)
-- [ ] DOI 格式正确(无前缀,无 URL)
-- [ ] 作者名格式统一
-- [ ] 标题大小写正确
-- [ ] 所有引用通过 API 验证
-- [ ] LaTeX 引用与 BibTeX 一致
-- [ ] 无重复引用
-- [ ] 格式统一(作者名、期刊名、页码)
-- [ ] 无虚假或严重错误的引用
+- [ ] All BibTeX entries contain required fields
+- [ ] Year format is correct (four digits)
+- [ ] DOI format is correct (no prefix, no URL)
+- [ ] Author name format is consistent
+- [ ] Title capitalization is correct
+- [ ] All citations pass API verification
+- [ ] LaTeX citations are consistent with BibTeX
+- [ ] No duplicate citations
+- [ ] Consistent format (author names, journal names, page numbers)
+- [ ] No fake or severely erroneous citations
 
-遵循这些最佳实践可以有效避免常见的引用错误,提高论文质量和可信度。
-
+Following these best practices can effectively prevent common citation errors and improve paper quality and credibility.

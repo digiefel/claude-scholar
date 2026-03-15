@@ -1,119 +1,119 @@
-# 多人协作规范
+# Multi-Person Collaboration Standards
 
-## Pull Request 规范
+## Pull Request Standards
 
-创建 PR 时应包含以下内容：
+A PR should include the following content:
 
 ```markdown
-## 变更说明
-<!-- 描述本次变更的内容和目的 -->
+## Change Description
+<!-- Describe the content and purpose of this change -->
 
-## 变更类型
-- [ ] 新功能 (feat)
-- [ ] Bug 修复 (fix)
-- [ ] 代码重构 (refactor)
-- [ ] 文档更新 (docs)
-- [ ] 其他
+## Change Type
+- [ ] New feature (feat)
+- [ ] Bug fix (fix)
+- [ ] Code refactoring (refactor)
+- [ ] Documentation update (docs)
+- [ ] Other
 
-## 测试方式
-<!-- 描述如何测试这些变更 -->
+## How to Test
+<!-- Describe how to test these changes -->
 
-## 关联 Issue
+## Related Issue
 Closes #xxx
 
-## 检查清单
-- [ ] 代码已自测
-- [ ] 文档已更新
-- [ ] 变更已添加到 CHANGELOG
+## Checklist
+- [ ] Code has been self-tested
+- [ ] Documentation has been updated
+- [ ] Change has been added to CHANGELOG
 ```
 
-## Code Review 规范
+## Code Review Standards
 
-### 审查要点
+### Review Points
 
-#### 1. 代码质量
+#### 1. Code Quality
 
-- 代码是否清晰易读
-- 命名是否规范
-- 是否有重复代码
+- Is the code clear and readable
+- Are naming conventions followed
+- Is there duplicate code
 
-#### 2. 逻辑正确性
+#### 2. Logical Correctness
 
-- 业务逻辑是否正确
-- 边界条件是否处理
-- 异常情况是否考虑
+- Is the business logic correct
+- Are boundary conditions handled
+- Are exception cases considered
 
-#### 3. 安全性
+#### 3. Security
 
-- 是否有安全漏洞
-- 敏感信息是否暴露
-- 输入是否校验
+- Are there security vulnerabilities
+- Is sensitive information exposed
+- Is input validated
 
-#### 4. 性能
+#### 4. Performance
 
-- 是否有性能问题
-- 资源是否正确释放
-- 算法复杂度是否合理
+- Are there performance problems
+- Are resources properly released
+- Is algorithm complexity reasonable
 
-### 反馈格式
+### Feedback Format
 
 ```markdown
-<!-- 必须修改 -->
-🔴 **必须修改**: 这里有 SQL 注入风险，需要使用参数化查询
+<!-- Must fix -->
+REQUIRED: There is an SQL injection risk here; use parameterized queries
 
-<!-- 建议修改 -->
-🟡 **建议修改**: 这个方法可以提取为工具函数，提高复用性
+<!-- Suggestion -->
+SUGGESTION: This method could be extracted as a utility function to improve reusability
 
-<!-- 讨论 -->
-💬 **讨论**: 这里是否可以考虑使用缓存？
+<!-- Discussion -->
+DISCUSSION: Could we consider using caching here?
 
-<!-- 赞 -->
-👍 **赞**: 这个封装很优雅！
+<!-- Praise -->
+PRAISE: This encapsulation is very elegant!
 ```
 
-## 最佳实践总结
+## Best Practices Summary
 
-### 提交规范
+### Commit Standards
 
-✅ **推荐：**
+Recommended:
 
-- 使用 Conventional Commits 规范
-- 提交消息清晰描述改动
-- 一次提交只做一件事
-- 提交前进行代码检查
+- Use Conventional Commits specification
+- Commit messages clearly describe the change
+- One commit does one thing
+- Run code checks before committing
 
-❌ **禁止：**
+Prohibited:
 
-- 提交消息模糊不清
-- 一次提交多个不相关改动
-- 提交敏感信息（密码、密钥）
-- 直接在主分支开发
+- Vague commit messages
+- Committing multiple unrelated changes at once
+- Committing sensitive information (passwords, keys)
+- Developing directly on the main branch
 
-### 分支管理
+### Branch Management
 
-✅ **推荐：**
+Recommended:
 
-- 使用 feature 分支开发
-- 定期同步主分支代码
-- 功能完成后及时删除分支
-- 使用 `--no-ff` 合并保留历史
+- Use feature branches for development
+- Regularly sync main branch code
+- Delete branches promptly after feature is complete
+- Use `--no-ff` merge to preserve history
 
-❌ **禁止：**
+Prohibited:
 
-- 在主分支直接开发
-- 长期不合并的功能分支
-- 分支命名不规范
-- 在公共分支上 rebase
+- Developing directly on the main branch
+- Long-running feature branches that never merge
+- Non-standard branch naming
+- Rebasing on public branches
 
-### 代码审查
+### Code Review
 
-✅ **推荐：**
+Recommended:
 
-- 所有代码通过 Pull Request
-- 至少一人审核通过才能合并
-- 提供建设性反馈
+- All code goes through Pull Requests
+- At least one reviewer must approve before merging
+- Provide constructive feedback
 
-❌ **禁止：**
+Prohibited:
 
-- 未经审查直接合并
-- 自己审查自己的代码
+- Merging without review
+- Reviewing your own code

@@ -1,390 +1,390 @@
-# 审稿响应策略库
+# Response Strategy Library
 
-本文档提供针对不同类型审稿意见的系统化回复策略，帮助撰写专业、有效的rebuttal。
+This document provides systematic response strategies for different types of review comments, helping to write professional and effective rebuttals.
 
-## 四大核心策略
+## Four Core Strategies
 
-### 1. Accept（接受策略）
+### 1. Accept
 
-**适用场景**:
-- 审稿人指出的确实是问题或不足
-- 修改成本低且能改进论文质量
-- Typos和格式问题
-- 合理的改进建议
+**Applicable scenarios**:
+- The reviewer has identified a genuine problem or deficiency
+- The cost of revision is low and will improve paper quality
+- Typos and formatting issues
+- Reasonable improvement suggestions
 
-**回复模板**:
+**Response template**:
 ```
-We thank the reviewer for this valuable suggestion. We have [具体修改行动].
+We thank the reviewer for this valuable suggestion. We have [specific action taken].
 ```
 
-**示例**:
+**Example**:
 
-**审稿意见**:
+**Review comment**:
 > "The related work section is too brief and misses several important recent papers."
 
-**回复**:
+**Response**:
 > "We thank the reviewer for pointing this out. We have significantly expanded the related work section and added discussions of the suggested papers [X, Y, Z]. The revised section now provides a more comprehensive overview of the field."
 
 
 ---
 
-### 2. Defend（辩护策略）
+### 2. Defend
 
-**适用场景**:
-- 当前做法有充分理由
-- 审稿人的建议不适用于本研究
-- 需要解释设计选择的合理性
+**Applicable scenarios**:
+- The current approach has sound reasons
+- The reviewer's suggestion does not apply to this research
+- Need to explain the rationale for design choices
 
-**关键原则**:
-- 保持礼貌和尊重
-- 提供充分的理由和证据
-- 避免"The reviewer is wrong"这样的表述
+**Key principles**:
+- Maintain politeness and respect
+- Provide sufficient justification and evidence
+- Avoid expressions such as "The reviewer is wrong"
 
-**回复模板**:
+**Response template**:
 ```
-We appreciate the reviewer's concern. However, we respectfully note that [解释理由]. This choice is motivated by [具体原因].
+We appreciate the reviewer's concern. However, we respectfully note that [explanation]. This choice is motivated by [specific reason].
 ```
 
-**示例**:
+**Example**:
 
-**审稿意见**:
+**Review comment**:
 > "The authors should use method X instead of method Y."
 
-**回复**:
-> "We appreciate the reviewer's suggestion. However, we respectfully note that method Y is more suitable for our specific setting because [理由1] and [理由2]. While method X has advantages in [场景A], our preliminary experiments showed that method Y achieves better performance in our task due to [具体原因]. We have added this discussion to Section 3.2."
+**Response**:
+> "We appreciate the reviewer's suggestion. However, we respectfully note that method Y is more suitable for our specific setting because [reason 1] and [reason 2]. While method X has advantages in [scenario A], our preliminary experiments showed that method Y achieves better performance in our task due to [specific reason]. We have added this discussion to Section 3.2."
 
 
 ---
 
-### 3. Clarify（澄清策略）
+### 3. Clarify
 
-**适用场景**:
-- 审稿人误解了论文内容
-- 论文中已有相关内容但审稿人未注意到
-- 需要指出论文中已有的说明或实验
+**Applicable scenarios**:
+- The reviewer misunderstood the paper content
+- Related content already exists in the paper but the reviewer did not notice
+- Need to point to existing explanations or experiments in the paper
 
-**关键原则**:
-- 礼貌地指出论文中已有的内容
-- 提供具体的位置引用（章节、页码、图表）
-- 避免让审稿人感到尴尬
-- 可以考虑改进表述使其更清晰
+**Key principles**:
+- Politely point to existing content in the paper
+- Provide specific location references (sections, page numbers, figures/tables)
+- Avoid making the reviewer feel embarrassed
+- Consider improving wording to make it clearer
 
-**回复模板**:
+**Response template**:
 ```
-We thank the reviewer for raising this point. We would like to respectfully clarify that [已有内容的说明]. This is discussed in [具体位置]. To make this clearer, we have [改进措施].
+We thank the reviewer for raising this point. We would like to respectfully clarify that [description of existing content]. This is discussed in [specific location]. To make this clearer, we have [improvement action].
 ```
 
-**示例**:
+**Example**:
 
-**审稿意见**:
+**Review comment**:
 > "The authors did not compare their method with baseline X."
 
-**回复**:
+**Response**:
 > "We thank the reviewer for this comment. We would like to respectfully clarify that we did include comparisons with baseline X in our experiments. These results are presented in Table 2 (page 6) and discussed in Section 4.2. To make this comparison more prominent, we have added a dedicated paragraph highlighting the key differences and added baseline X to Figure 3 for visual comparison."
 
-**注意事项**:
-- 即使审稿人误解了，也要保持礼貌和尊重
-- 如果可能，承认论文表述可以更清晰，并做出改进
-- 提供具体的引用位置，方便审稿人查找
+**Notes**:
+- Even if the reviewer misunderstood, maintain politeness and respect
+- If possible, acknowledge that the paper phrasing could be clearer and make improvements
+- Provide specific citation locations to make it easy for the reviewer to find
 
 
 ---
 
-### 4. Experiment（实验策略）
+### 4. Experiment
 
-**适用场景**:
-- 审稿人要求补充关键实验或对比
-- 实验要求合理且可行
-- 补充实验能显著增强论文说服力
-- Major Issues 中的实验要求
+**Applicable scenarios**:
+- Reviewer requests supplementary key experiments or comparisons
+- The experimental request is reasonable and feasible
+- Additional experiments can significantly strengthen the paper
+- Experimental requirements in Major Issues
 
-**关键原则**:
-- 明确承诺会进行补充实验
-- 说明实验设计和预期时间
-- 如果已经完成，直接展示结果
-- 如果时间紧迫，说明初步结果或计划
+**Key principles**:
+- Explicitly commit to conducting additional experiments
+- Describe the experimental design and expected timeline
+- If already completed, show results directly
+- If time is tight, describe preliminary results or plans
 
-**回复模板**:
+**Response template**:
 ```
-We thank the reviewer for this valuable suggestion. We agree that [实验的重要性]. We have conducted additional experiments on [实验内容]. The results show that [主要发现]. These new results have been added to [位置].
+We thank the reviewer for this valuable suggestion. We agree that [importance of experiment]. We have conducted additional experiments on [content]. The results show that [main findings]. These new results have been added to [location].
 ```
 
-**示例 1（已完成实验）**:
+**Example 1 (experiments completed)**:
 
-**审稿意见**:
+**Review comment**:
 > "The authors should compare their method with the recent state-of-the-art method Z."
 
-**回复**:
+**Response**:
 > "We thank the reviewer for this excellent suggestion. We agree that comparing with method Z is important for a comprehensive evaluation. We have conducted additional experiments comparing our method with Z on all three datasets. The results show that our method achieves comparable or better performance (Dataset A: +2.3%, Dataset B: +1.1%, Dataset C: -0.5%). These new results have been added to Table 3 and discussed in Section 4.3. We also provide detailed analysis of the performance differences in the revised manuscript."
 
-**示例 2（承诺进行实验）**:
+**Example 2 (committing to experiments)**:
 
-**审稿意见**:
+**Review comment**:
 > "The authors should conduct ablation studies to verify the contribution of each component."
 
-**回复**:
-> "We thank the reviewer for this important suggestion. We agree that ablation studies are crucial for understanding the contribution of each component. We are currently conducting comprehensive ablation experiments and will include the results in the revised manuscript. Based on our preliminary analysis, we expect to show that [预期发现]. We will complete these experiments within the rebuttal period and update the manuscript accordingly."
+**Response**:
+> "We thank the reviewer for this important suggestion. We agree that ablation studies are crucial for understanding the contribution of each component. We are currently conducting comprehensive ablation experiments and will include the results in the revised manuscript. Based on our preliminary analysis, we expect to show that [expected findings]. We will complete these experiments within the rebuttal period and update the manuscript accordingly."
 
-**注意事项**:
-- 只承诺可行的实验，不要过度承诺
-- 如果实验不可行，需要解释原因（时间、资源、技术限制）
-- 提供实验时间表，让审稿人了解进度
-- 如果已完成，立即展示结果以增强说服力
+**Notes**:
+- Only commit to feasible experiments; do not over-commit
+- If experiments are not feasible, explain the reason (time, resources, technical constraints)
+- Provide an experimental timeline so the reviewer understands the progress
+- If already completed, show results immediately to strengthen persuasiveness
 
 
 ---
 
-## 成功模式（基于ICLR Spotlight论文）
+## Success Patterns (Based on ICLR Spotlight Papers)
 
-从ICLR 2024 spotlight论文的成功rebuttal中提取的关键模式：
+Key patterns extracted from successful rebuttals of ICLR 2024 spotlight papers:
 
-### 模式1: 认可优点，正面回应批评
+### Pattern 1: Acknowledge Strengths, Address Criticism Positively
 
-**观察**:
-- 审稿人通常会先认可论文的优点（novelty, impact, practical applicability）
-- 即使是spotlight论文，也会收到建设性批评
-- 约20%的论文在rebuttal后排名发生变化
+**Observations**:
+- Reviewers typically first acknowledge the paper's strengths (novelty, impact, practical applicability)
+- Even spotlight papers receive constructive criticism
+- About 20% of papers see their ranking change after rebuttal
 
-**应用策略**:
+**Application strategy**:
 ```
 We thank the reviewer for recognizing [acknowledged strength]. Regarding [concern], we have [specific action taken].
 ```
 
-**示例**:
+**Example**:
 > "We thank the reviewer for recognizing the novelty of our game-theoretic formulation. Regarding the brevity of Section 2.2, we have expanded it with 2-3 additional paragraphs providing more intuition for readers without a game theory background."
 
 ---
 
-### 模式2: 提供清晰度和直觉理解
+### Pattern 2: Provide Clarity and Intuitive Understanding
 
-**观察**:
-- 高质量论文仍可能存在clarity问题
-- 审稿人需要为不同背景的读者提供intuition
-- 建议：expand sections, move technical details to appendix
+**Observations**:
+- High-quality papers can still have clarity issues
+- Reviewers need to provide intuition for readers from different backgrounds
+- Suggestions: expand sections, move technical details to appendix
 
-**应用策略**:
+**Application strategy**:
 ```
 We apologize for the confusion. We have [clarification action]. To make this clearer, we have [additional improvements].
 ```
 
-**示例**:
+**Example**:
 > "We apologize for the confusion in Section 3.2. We have completely rewritten this section with detailed mathematical formulation and added Algorithm 1 with pseudocode. We have also moved some technical details to Appendix B to improve readability."
 
 ---
 
-### 模式3: 充分论证实验设置
+### Pattern 3: Thoroughly Justify Experimental Setup
 
-**观察**:
-- 审稿人期望实验设置有充分的justification
-- 需要考虑和讨论alternative metrics
-- Comprehensive experiments是spotlight论文的共同特征
+**Observations**:
+- Reviewers expect thorough justification for experimental setup
+- Need to consider and discuss alternative metrics
+- Comprehensive experiments are a common feature of spotlight papers
 
-**应用策略**:
+**Application strategy**:
 ```
 We chose [experimental setup] because [justification]. We have also considered [alternative approach], but [reason for current choice]. We have added [additional experiments] to strengthen our evaluation.
 ```
 
-**示例**:
+**Example**:
 > "We chose dataset W because it better represents our target scenario [justification]. We have also considered dataset Z, but it focuses on static graphs while our work targets dynamic graphs. We have added ablation studies showing that our improvement comes from fundamental architectural innovations."
 
 ---
 
-### 模式4: 主动讨论伦理考量
+### Pattern 4: Proactively Discuss Ethical Considerations
 
-**观察**:
-- 对于涉及隐私、安全等敏感话题的研究，ethical considerations至关重要
-- 审稿人会特别关注ethical implications
-- Spotlight论文通常有thorough ethical discussions
+**Observations**:
+- For research involving privacy, security, and other sensitive topics, ethical considerations are crucial
+- Reviewers pay particular attention to ethical implications
+- Spotlight papers typically have thorough ethical discussions
 
-**应用策略**:
+**Application strategy**:
 ```
 We appreciate the concern about ethical implications. We have [ethical consideration actions]. We have also added [ethical safeguards/discussions].
 ```
 
-**示例**:
+**Example**:
 > "We appreciate the concern about privacy implications. We have added a comprehensive ethics section discussing potential risks and mitigation strategies. We have also included anonymization experiments and detailed our data handling procedures in Appendix C."
 
 ---
 
-### 模式5: 强调实际应用价值
+### Pattern 5: Emphasize Practical Application Value
 
-**观察**:
-- 审稿人重视practical applicability和scalability
-- "Easily applicable"和"scalable"是重要的优点
-- Spotlight论文通常demonstrate practical benefits
+**Observations**:
+- Reviewers value practical applicability and scalability
+- "Easily applicable" and "scalable" are important strengths
+- Spotlight papers typically demonstrate practical benefits
 
-**应用策略**:
+**Application strategy**:
 ```
 Our method is [practical benefit]. It is easily applicable because [reason] and scales to [scale] without [limitation].
 ```
 
-**示例**:
+**Example**:
 > "Our method is practical and easily applicable to large language models without extensive tuning. It scales efficiently to models with up to 540B parameters, as demonstrated by our experiments. The consistent performance improvements across different model sizes highlight its practical value."
 
 ---
 
-## 策略组合使用
+## Combining Strategies
 
-在实际rebuttal中，通常需要组合使用多种策略：
+In practice, rebuttals typically combine multiple strategies:
 
-### 组合示例 1: Accept + Clarify
+### Example 1: Accept + Clarify
 
-**审稿意见**:
+**Review comment**:
 > "The paper lacks discussion of limitation X, and the authors did not mention related work Y."
 
-**回复**:
+**Response**:
 > "We thank the reviewer for these valuable comments. Regarding limitation X, we agree this is an important point and have added a dedicated discussion in Section 5.3 (**Accept**). Regarding related work Y, we would like to respectfully clarify that we did discuss this work in Section 2.2 (page 3, paragraph 2). To make this more prominent, we have expanded the discussion and added it to the comparison table (**Clarify**)."
 
-### 组合示例 2: Defend + Experiment
+### Example 2: Defend + Experiment
 
-**审稿意见**:
+**Review comment**:
 > "The authors should use dataset Z instead of dataset W, and should add experiments on task T."
 
-**回复**:
-> "We appreciate the reviewer's suggestions. Regarding dataset Z, we respectfully note that dataset W is more suitable for our research question because [理由]. Dataset Z focuses on [场景A], while our work targets [场景B] (**Defend**). However, we agree that experiments on task T would strengthen our evaluation. We have conducted additional experiments on task T, and the results show [发现]. These new results have been added to Section 4.4 (**Experiment**)."
+**Response**:
+> "We appreciate the reviewer's suggestions. Regarding dataset Z, we respectfully note that dataset W is more suitable for our research question because [reason]. Dataset Z focuses on [scenario A], while our work targets [scenario B] (**Defend**). However, we agree that experiments on task T would strengthen our evaluation. We have conducted additional experiments on task T, and the results show [findings]. These new results have been added to Section 4.4 (**Experiment**)."
 
 
 ---
 
-## 使用指南
+## Usage Guide
 
-### 策略选择流程
+### Strategy Selection Workflow
 
 ```
-审稿意见 → 分类（Major/Minor/Typo/Misunderstanding）→ 选择策略
-│
-├─ Major Issues → Experiment (补充实验) 或 Defend (充分理由)
-├─ Minor Issues → Accept (接受改进) 或 Clarify (澄清说明)
-├─ Typos/Formatting → Accept (直接接受)
-└─ Misunderstandings → Clarify (礼貌澄清)
+Review comment → Classify (Major/Minor/Typo/Misunderstanding) → Select strategy
+|
+├─ Major Issues → Experiment (additional experiments) or Defend (sufficient justification)
+├─ Minor Issues → Accept (accept improvement) or Clarify (clarify explanation)
+├─ Typos/Formatting → Accept (directly accept)
+└─ Misunderstandings → Clarify (polite clarification)
 ```
 
-### 策略优先级
+### Strategy Priority
 
-1. **优先Accept**: 如果意见合理且改进成本低
-2. **谨慎Defend**: 只在有充分理由时使用
-3. **礼貌Clarify**: 即使审稿人误解，也要保持尊重
-4. **诚实Experiment**: 只承诺可行的实验
+1. **Prefer Accept**: If the comment is reasonable and the revision cost is low
+2. **Use Defend carefully**: Only when there are sufficient reasons
+3. **Clarify politely**: Even if the reviewer misunderstood, maintain respect
+4. **Be honest about Experiment**: Only commit to feasible experiments
 
-### 语气原则
+### Tone Principles
 
-**始终保持**:
-- ✅ 感谢审稿人的意见
-- ✅ 尊重和礼貌的态度
-- ✅ 具体的引用和证据
-- ✅ 建设性的回应
+**Always maintain**:
+- Thank the reviewer for their comments
+- Respectful and polite attitude
+- Specific citations and evidence
+- Constructive responses
 
-**避免**:
-- ❌ "The reviewer is wrong"
-- ❌ "This is obvious"
-- ❌ 防御性或攻击性语气
-- ❌ 模糊或回避的回答
+**Avoid**:
+- "The reviewer is wrong"
+- "This is obvious"
+- Defensive or aggressive tone
+- Vague or evasive answers
 
 ---
 
-## 会议特定策略
+## Conference-Specific Strategies
 
-不同顶会对rebuttal有不同的侧重点，了解这些差异可以帮助你更有针对性地回复。
+Different top conferences have different emphases on rebuttals; understanding these differences helps write more targeted responses.
 
 ### NeurIPS
 
-**会议特点**:
-- 强调概念新颖性和理论贡献
-- 重视broader impact和社会影响
-- 要求reproducibility checklist
+**Conference characteristics**:
+- Emphasizes conceptual novelty and theoretical contribution
+- Values broader impact and societal influence
+- Requires reproducibility checklist
 
-**Rebuttal侧重点**:
-1. **突出概念创新** - 强调你的方法在概念上的新颖性
-2. **展示broader impact** - 说明研究的社会意义和潜在影响
-3. **确保可复现性** - 承诺开源代码和数据
+**Rebuttal focus**:
+1. **Highlight conceptual innovation** - Emphasize the conceptual novelty of your method
+2. **Show broader impact** - Describe the social significance and potential impact of the research
+3. **Ensure reproducibility** - Commit to open-sourcing code and data
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank the reviewers for their constructive feedback. Our key contributions advance the field by [conceptual innovation]. We have strengthened the paper with [new experiments] and clarified [methodology]. All code and data will be released upon acceptance to ensure reproducibility.
 ```
 
-**回复策略**:
-- 当审稿人质疑新颖性时，强调概念上的突破而非仅仅是性能提升
-- 主动讨论broader impact，即使审稿人没有明确要求
-- 提供详细的实验设置和超参数，确保可复现
+**Response strategies**:
+- When reviewers question novelty, emphasize conceptual breakthroughs rather than just performance gains
+- Proactively discuss broader impact even if the reviewer did not explicitly request it
+- Provide detailed experimental settings and hyperparameters to ensure reproducibility
 
 ---
 
 ### ICML
 
-**会议特点**:
-- 强调方法论严谨性和理论基础
-- 重视数学证明和理论分析
-- 要求broader impact statement
+**Conference characteristics**:
+- Emphasizes methodological rigor and theoretical foundations
+- Values mathematical proofs and theoretical analysis
+- Requires broader impact statement
 
-**Rebuttal侧重点**:
-1. **展示理论严谨性** - 提供数学证明和理论分析
-2. **强调方法论贡献** - 说明方法的理论优势
-3. **补充理论分析** - 添加定理、引理或理论保证
+**Rebuttal focus**:
+1. **Show theoretical rigor** - Provide mathematical proofs and theoretical analysis
+2. **Emphasize methodological contributions** - Describe the theoretical advantages of the method
+3. **Supplement theoretical analysis** - Add theorems, lemmas, or theoretical guarantees
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We appreciate the reviewers' thorough evaluation. We have added theoretical analysis (Theorem 2, Appendix C) proving [property]. Our method's soundness is further validated by [experiments]. We have also expanded the broader impact statement to address [concern].
 ```
 
-**回复策略**:
-- 当审稿人质疑方法时，提供理论证明而非仅仅是实验结果
-- 强调算法的理论复杂度和收敛性保证
-- 将实验结果与理论预测联系起来
+**Response strategies**:
+- When reviewers question the method, provide theoretical proofs rather than just experimental results
+- Emphasize the theoretical complexity and convergence guarantees of the algorithm
+- Connect experimental results with theoretical predictions
 
 ---
 
 ### ICLR
 
-**会议特点**:
-- 强调实验彻底性和全面评估
-- 重视局限性的诚实讨论
-- 要求LLM使用披露（如适用）
+**Conference characteristics**:
+- Emphasizes experimental thoroughness and comprehensive evaluation
+- Values honest discussion of limitations
+- Requires LLM usage disclosure (if applicable)
 
-**Rebuttal侧重点**:
-1. **补充实验** - 添加审稿人要求的对比实验和消融研究
-2. **扩展局限性讨论** - 诚实承认方法的局限性
-3. **披露LLM使用** - 如果使用了LLM，明确说明使用方式
+**Rebuttal focus**:
+1. **Add experiments** - Include the comparison experiments and ablation studies requested by reviewers
+2. **Expand limitations discussion** - Honestly acknowledge method limitations
+3. **Disclose LLM usage** - If LLMs were used, clearly state how
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank the reviewers for their detailed comments. We have conducted additional experiments (Tables 4-6) addressing all concerns. We have also expanded the Limitations section (Section 5.2) and added LLM usage disclosure (Appendix D). These revisions significantly strengthen the empirical validation.
 ```
 
-**回复策略**:
-- 当审稿人要求更多实验时，优先添加而非辩解
-- 主动扩展局限性讨论，展示对方法边界的清晰认识
-- 如果使用了LLM辅助写作或实验，诚实披露并说明具体用途
+**Response strategies**:
+- When reviewers request more experiments, prioritize adding them rather than defending
+- Proactively expand limitations discussion, demonstrating clear understanding of method boundaries
+- If LLMs were used for writing or experiments, honestly disclose and describe specific uses
 
-**ICLR 2026特定策略**:
+**ICLR-specific strategies**:
 
-**1. 证据支持的澄清最有效**
-- 研究表明，包含证据支持的澄清与分数提升最强相关
-- 避免模糊或回避的回应，这些会维持或降低分数
-- 明确引用原文中的具体章节或行号
+**1. Evidence-supported clarifications are most effective**
+- Research shows that clarifications backed by evidence are most strongly correlated with score increases
+- Avoid vague or evasive responses, which maintain or lower scores
+- Explicitly cite specific sections or line numbers in the original paper
 
-**示例**:
+**Example**:
 ```markdown
 Thank you for this concern. We respectfully clarify that we did include this comparison in Section 4.2 (page 6, lines 234-245). To make this more prominent, we have added a dedicated paragraph and included the baseline in Figure 3 for visual comparison.
 ```
 
-**2. 针对边界论文策略**
-- Rebuttal对边界分数论文（5-6分范围）影响最大
-- 如果论文处于边界，即使小的改进也可能影响最终决定
-- 重点关注可以快速提升的方面
+**2. Strategy for borderline papers**
+- Rebuttal has the greatest impact on borderline-scored papers (5-6 range)
+- If the paper is borderline, even small improvements may affect the final decision
+- Focus on aspects that can be quickly improved
 
-**3. 提交时机策略**
-- 在rebuttal期间中期提交可能更有效
-- 避免过早或最后一刻提交
-- 中期提交可以提高审稿人参与度和分数变化
+**3. Submission timing strategy**
+- Submitting mid-period during the rebuttal window may be more effective
+- Avoid submitting too early or at the last minute
+- Mid-period submission can increase reviewer engagement and score changes
 
-**4. 系统化回应结构**
-每个回应应遵循三步结构：
-1. **总结审稿人观点** - 展示你理解了他们的反馈
-2. **陈述你的回应** - 清晰说明你的立场
-3. **提供具体证据** - 给出实验、解释或修改计划
+**4. Systematic response structure**
+Each response should follow a three-step structure:
+1. **Summarize the reviewer's point** - Show that you understood their feedback
+2. **State your response** - Clearly describe your position
+3. **Provide specific evidence** - Give experiments, explanations, or revision plans
 
-**示例**:
+**Example**:
 ```markdown
 **Reviewer's Concern**: The baseline comparison is insufficient.
 
@@ -393,91 +393,91 @@ Thank you for this concern. We respectfully clarify that we did include this com
 **Evidence**: We have added comparisons with three additional baselines (X, Y, Z) in Table 4 (Appendix). Results show our method achieves +2.3% improvement over the strongest baseline Z. We will integrate this into the main paper.
 ```
 
-**5. 利用页面限制扩展**
-- ICLR 2026将camera-ready版本从9页扩展到10页
-- 可以利用额外的1页空间整合rebuttal中的新结果或讨论
-- 在rebuttal中承诺将新内容添加到最终版本
+**5. Leveraging page limit expansion**
+- ICLR 2026 expanded the camera-ready version from 9 to 10 pages
+- The extra page can be used to integrate new results or discussions from the rebuttal
+- In the rebuttal, commit to adding new content to the final version
 
-**6. 可复现性声明**
-- 强烈建议在主文本末尾（参考文献前）包含可复现性声明
-- 讨论为确保可复现性所做的努力
-- 引用论文、附录或补充材料中的相关部分
+**6. Reproducibility statement**
+- Strongly recommended to include a reproducibility statement at the end of the main text (before references)
+- Discuss efforts made to ensure reproducibility
+- Reference relevant sections in the paper, appendix, or supplementary materials
 
-**7. ICLR 2026评分系统**
-- 使用离散分数：{0, 2, 4, 6, 8, 10}
+**7. ICLR 2026 scoring system**
+- Uses discrete scores: {0, 2, 4, 6, 8, 10}
 - 0=Strong Reject, 2=Reject, 4=Weak Reject, 6=Weak Accept, 8=Accept, 10=Strong Accept
-- 理解评分系统有助于判断论文处于哪个范围
+- Understanding the scoring system helps judge which range the paper falls in
 
 ---
 
 ### CVPR
 
-**会议特点**:
-- 计算机视觉顶会，竞争激烈
-- 严格的一页rebuttal限制
-- 禁止外部链接和新的大规模实验
-- 重视视觉效果和实验完整性
+**Conference characteristics**:
+- Top computer vision conference, highly competitive
+- Strict one-page rebuttal limit
+- No external links or large-scale new experiments
+- Values visual quality and experimental completeness
 
-**Rebuttal侧重点**:
-1. **识别"Champion"审稿人** - 找到支持你的审稿人，为他们提供强有力的论据
-2. **重申核心贡献** - 在回应批评时，巧妙地提醒审稿人论文的重要贡献
-3. **展示响应性** - 明确说明如何在最终版本中采纳建议
+**Rebuttal focus**:
+1. **Identify "Champion" reviewers** - Find reviewers who support your paper and provide them with strong arguments
+2. **Reiterate core contributions** - When addressing criticism, subtly remind reviewers of the paper's key contributions
+3. **Show responsiveness** - Clearly state how suggestions will be incorporated in the final version
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank all reviewers for their valuable feedback. We are particularly grateful to R2 for recognizing our novel approach to [X]. Regarding the concerns raised, we provide clarifications below and will incorporate all valid suggestions in the camera-ready version.
 ```
 
-**回复策略**:
-- 识别持积极态度的审稿人，为他们提供论据帮助他们在讨论中辩护
-- 在解决问题的同时，巧妙强化论文的核心优势
-- 对关键概念的误解提供明确、有说服力的澄清
-- 展示对审稿人建议的认真对待，列出具体改进计划
+**Response strategies**:
+- Identify reviewers with positive attitudes and provide arguments to help them defend the paper in discussion
+- While addressing issues, subtly reinforce the paper's core strengths
+- Provide clear, convincing clarifications for misunderstandings of key concepts
+- Show genuine attention to reviewer suggestions and list specific improvement plans
 
-**特殊限制**:
-- 必须使用官方模板，严格一页限制
-- 不得包含外部链接（代码、视频、补充材料）
-- 可以包含基于已有结果的图表和对比表格
-- 审稿人不应要求大规模新实验
+**Special restrictions**:
+- Must use the official template with a strict one-page limit
+- No external links (code, video, supplementary materials)
+- May include figures and comparison tables based on existing results
+- Reviewers should not require large-scale new experiments
 
 ---
 
 ### ACL
 
-**会议特点**:
-- 自然语言处理顶会
-- Best paper标准：fascinating, controversial, surprising, impressive, field-changing
-- 重视方法的语言学意义和实际应用
-- 要求Limitations和Ethics Statement
+**Conference characteristics**:
+- Top natural language processing conference
+- Best paper criteria: fascinating, controversial, surprising, impressive, field-changing
+- Values the linguistic significance and practical application of methods
+- Requires Limitations and Ethics Statement
 
-**Rebuttal侧重点**:
-1. **小表格策略** - 如果审稿人要求额外结果，可以在rebuttal中包含小表格
-2. **增强理解** - 目标是增强审稿人对论文的理解，而非大规模重写
-3. **突出影响力** - 强调研究对NLP领域的潜在影响
+**Rebuttal focus**:
+1. **Small table strategy** - If reviewers request additional results, include small tables in the rebuttal
+2. **Enhance understanding** - Goal is to enhance reviewer understanding of the paper, not large-scale rewrites
+3. **Highlight impact** - Emphasize the potential impact of the research on the NLP field
 
-**示例开场**:
+**Example opening**:
 ```markdown
 We thank the reviewers for their insightful comments. We have prepared additional analysis to address the raised concerns. Below we provide clarifications and include a small table (Table R1) demonstrating the requested comparison. These results will be integrated into the revised manuscript.
 ```
 
-**回复策略**:
-- 如果审稿人要求额外数据，可以在rebuttal中包含小表格展示
-- 强调研究的语言学意义和对NLP社区的贡献
-- 主动讨论伦理影响，特别是涉及偏见、公平性的研究
-- 展示对不同语言和文化背景的考虑
+**Response strategies**:
+- If reviewers request additional data, include a small table in the rebuttal
+- Emphasize the linguistic significance and contribution to the NLP community
+- Proactively discuss ethical implications, especially for research involving bias and fairness
+- Show consideration for different languages and cultural contexts
 
-**Best Paper考虑**:
-- 论文是否"fascinating"（引人入胜）- 提出令人兴奋的新问题或视角
-- 是否"controversial"（有争议性）- 挑战现有假设
-- 是否"surprising"（令人惊讶）- 违反直觉但有说服力的发现
-- 是否"impressive"（令人印象深刻）- 技术深度或实验规模
-- 是否"field-changing"（改变领域）- 潜在的长期影响
+**Best Paper considerations**:
+- Is the paper "fascinating" - Raises exciting new questions or perspectives
+- Is it "controversial" - Challenges existing assumptions
+- Is it "surprising" - Counter-intuitive but convincing findings
+- Is it "impressive" - Technical depth or experimental scale
+- Is it "field-changing" - Potential long-term impact
 
 ---
 
-## 参考资源
+## Reference Resources
 
-更多详细的成功案例和模板，请参考：
-- `successful-cases.md` - 真实的成功rebuttal案例库
-- `rebuttal-templates.md` - 完整的rebuttal模板
-- `tone-guidelines.md` - 语气和表达指南
+For more detailed successful cases and templates, see:
+- `successful-cases.md` - Real successful rebuttal case library
+- `rebuttal-templates.md` - Complete rebuttal templates
+- `tone-guidelines.md` - Tone and expression guide

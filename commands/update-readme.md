@@ -35,12 +35,12 @@ Update README.md file with latest project information and push to GitHub.
 4. **Update README**
    - Apply proposed changes
    - Maintain markdown formatting
-   - Keep language consistent (中文/English)
+   - Keep language consistent
    - Preserve structure
 
 5. **Commit and Push**
    - Run `/update-github` with `docs(readme):` type
-   - Example commit: `docs(readme): 更新 README 文档`
+   - Example commit: `docs(readme): update README documentation`
 
 ## Example Usage
 
@@ -50,9 +50,9 @@ User: /update-readme
 1. Analyzing repository state...
 
 Recent changes:
-- feat(data): 添加新的数据加载器
-- fix(model): 修复训练时的内存泄漏
-- chore: 更新依赖到 v2.0.0
+- feat(data): add new data loader
+- fix(model): fix memory leak during training
+- chore: update dependencies to v2.0.0
 
 2. Checking README.md...
 
@@ -63,9 +63,9 @@ Current README sections:
 - Contributing
 
 3. Proposed updates:
-   [ ] Installation - 添加新的依赖说明
-   [ ] Usage - 添加数据加载器示例
-   [ ] API Reference - 更新模型接口文档
+   [ ] Installation - add new dependency instructions
+   [ ] Usage - add data loader example
+   [ ] API Reference - update model interface docs
 
 4. Applying updates...
 
@@ -74,7 +74,7 @@ Current README sections:
    + pip install transformers>=4.30.0
 
    Adding usage example:
-   ## 数据加载示例
+   ## Data Loading Example
    ```python
    from data import DataLoader
    loader = DataLoader(batch_size=32)
@@ -86,10 +86,10 @@ Current README sections:
 6. Proceed with commit?
    > yes
 
-7. Committing with: docs(readme): 更新 README 文档
+7. Committing with: docs(readme): update README documentation
    Co-Authored-By: Claude <noreply@anthropic.com>
 
-✅ README updated and pushed to GitHub!
+README updated and pushed to GitHub!
 ```
 
 ## README Structure Template
@@ -97,52 +97,52 @@ Current README sections:
 When updating README, follow this structure:
 
 ```markdown
-# 项目名称
+# Project Name
 
-简短描述项目用途。
+Short description of what the project does.
 
-## 安装
+## Installation
 
-### 依赖要求
+### Requirements
 - Python >= 3.8
-- uv 或 pip
+- uv or pip
 
-### 安装步骤
+### Installation Steps
 ```bash
 uv sync
 ```
 
-## 使用
+## Usage
 
-### 基本用法
+### Basic Usage
 ```python
-# 示例代码
+# example code
 ```
 
-### 配置
-说明配置文件位置和格式。
+### Configuration
+Describe configuration file location and format.
 
-## API 文档
+## API Documentation
 
-主要接口说明。
+Main interface descriptions.
 
-## 开发
+## Development
 
-### 运行测试
+### Running Tests
 ```bash
 pytest
 ```
 
-### 代码规范
-- 遵循 PEP 8
-- 使用 mypy 进行类型检查
-- 使用 ruff 进行 linting
+### Code Standards
+- Follow PEP 8
+- Use mypy for type checking
+- Use ruff for linting
 
-## 贡献
+## Contributing
 
-欢迎提交 Pull Request。
+Pull Requests are welcome.
 
-## 许可证
+## License
 
 MIT License
 ```
