@@ -602,4 +602,4 @@ fine-tuning, maintaining upstream/downstream independence."
 **Extraction Focus**: Design simplification paper writing patterns, "surprisingly"
 findings reporting, minimal adaptations philosophy, fair comparison strategies
 
-**For Integration**: ml-paper-writing skill knowledge base
+**For Integration**: paper-writing skill knowledge base

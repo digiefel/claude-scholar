@@ -1,6 +1,6 @@
 ---
 name: citation-verification
-description: This skill provides reference guidance for citation verification in academic writing. Use when the user asks about "citation verification best practices", "how to verify references", "preventing fake citations", or needs guidance on citation accuracy. This skill supports ml-paper-writing by providing detailed verification principles and common error patterns.
+description: This skill provides reference guidance for citation verification in academic writing. Use when the user asks about "citation verification best practices", "how to verify references", "preventing fake citations", or needs guidance on citation accuracy. This skill supports paper-writing by providing detailed verification principles and common error patterns.
 tags: [Research, Academic, Citation, Reference]
 version: 0.1.0
 ---
@@ -94,11 +94,11 @@ Add to bibliography
 
 ## Usage Guide
 
-### Using with ml-paper-writing
+### Using with paper-writing
 
-The verification principles of this skill are integrated into the Citation Workflow of the `ml-paper-writing` skill.
+The verification principles of this skill are integrated into the Citation Workflow of the `paper-writing` skill.
 
-**Auto-trigger**: Citation verification is automatically executed when writing papers with the ml-paper-writing skill.
+**Auto-trigger**: Citation verification is automatically executed when writing papers with the paper-writing skill.
 
 **Manual reference**: Refer to this skill when you need detailed verification principles.
 
@@ -199,4 +199,4 @@ Step 5: Add to bibliography
 
 **Failure handling**: When verification fails, mark as `[CITATION NEEDED]` and clearly notify the user.
 
-**Integration**: The principles of this skill are integrated into the ml-paper-writing skill for automatic verification.
+**Integration**: The principles of this skill are integrated into the paper-writing skill for automatic verification.

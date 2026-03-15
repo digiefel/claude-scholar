@@ -558,4 +558,4 @@ scratch without pre-training or distillation."
 **Extraction Focus**: Theory-driven paper writing patterns, first-principles
 derivations, principled vs heuristic positioning
 
-**For Integration**: ml-paper-writing skill knowledge base
+**For Integration**: paper-writing skill knowledge base

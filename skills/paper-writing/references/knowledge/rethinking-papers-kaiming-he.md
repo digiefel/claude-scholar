@@ -1020,4 +1020,4 @@ motivate continuous-valued modeling in other domains."
 **Extraction Focus**: Writing patterns for challenging conventional wisdom,
 unifying methods, and structuring "rethinking" papers
 
-**For Integration**: ml-paper-writing skill knowledge base
+**For Integration**: paper-writing skill knowledge base
