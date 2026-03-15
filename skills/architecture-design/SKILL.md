@@ -1,271 +1,189 @@
 ---
 name: architecture-design
 description: |
-  Use ONLY when creating NEW registrable components in ML projects that require Factory/Registry patterns.
+  Use when designing the structure of a new software project or adding significant new components that require architectural decisions.
 
   ✅ USE when:
-  - Creating a new Dataset class (needs @register_dataset)
-  - Creating a new Model class (needs @register_model)
-  - Creating a new module directory with __init__.py factory
-  - Initializing a new ML project structure from scratch
-  - Adding new component types (Augmentation, CollateFunction, Metrics)
+  - Starting a new project and deciding how to organize code
+  - Adding a new module or subsystem with its own internal structure
+  - Choosing between architectural patterns (layered, plugin-based, event-driven, etc.)
+  - Designing configuration management for a multi-component system
+  - Establishing conventions for a codebase that a team will maintain
 
   ❌ DO NOT USE when:
-  - Modifying existing functions or methods
-  - Fixing bugs in existing code
-  - Adding helper functions or utilities
-  - Refactoring without adding new registrable components
-  - Simple code changes to a single file
-  - Modifying configuration files
-  - Reading or understanding existing code
+  - Modifying existing functions or fixing bugs
+  - Adding helper functions or small utilities
+  - Simple single-file changes
+  - Refactoring without structural reorganization
 
-  Key indicator: Does the task require @register_* decorator or Factory pattern? If no, skip this skill.
-version: 1.2.0
+  Key indicator: Does the task require deciding how components relate to each other? If no, skip this skill.
+version: 2.0.0
 ---
 
-# Architecture Design - ML Project Template
+# Software Architecture Design
 
-This skill defines the standard code architecture for machine learning projects based on the template structure. When modifying or extending code, follow these patterns to maintain consistency.
+Guidance for designing clean, maintainable software project structures. Focuses on separation of concerns, clear module boundaries, and patterns that scale as a codebase grows.
 
-## Overview
+## Core Principles
 
-The project follows a modular, extensible architecture with clear separation of concerns. Each module (data, model, trainer, analysis) is independently organized using factory and registry patterns for maximum flexibility.
+### Separation of Concerns
 
-## Core Design Patterns
+Each module should have a single, clear responsibility:
+- Keep data handling, business logic, and I/O in separate layers
+- Modules should be independently testable
+- Changes to one concern should not ripple through unrelated code
 
-### Factory Pattern
+### Layered Architecture
 
-Each module uses a factory to create instances dynamically:
+Organize code in layers with clear dependency direction (inner layers don't depend on outer):
 
-```python
-# Example from data_module/dataset/__init__.py
-DATASET_FACTORY: Dict = {}
-
-def DatasetFactory(data_name: str):
-    dataset = DATASET_FACTORY.get(data_name, None)
-    if dataset is None:
-        print(f"{data_name} dataset is not implementation, use simple dataset")
-        dataset = DATASET_FACTORY.get('simple')
-    return dataset
+```
+Entry Points (CLI, API, UI)
+    ↓
+Application Logic (orchestration, use cases)
+    ↓
+Domain Logic (core algorithms, business rules)
+    ↓
+Infrastructure (databases, files, external APIs)
 ```
 
-For detailed guidance, refer to `references/factory_pattern.md`.
+### Configuration Management
 
-### Registry Pattern
-
-Components register themselves via decorators:
-
-```python
-# Example from data_module/dataset/simple_dataset.py
-@register_dataset("simple")
-class SimpleDataset(Dataset):
-    def __init__(self, data):
-        self.data = data
-```
-
-For detailed guidance, refer to `references/registry_pattern.md`.
-
-### Auto-Import Pattern
-
-Modules automatically discover and import submodules:
-
-```python
-# Example from data_module/dataset/__init__.py
-models_dir = os.path.dirname(__file__)
-import_modules(models_dir, "src.data_module.dataset")
-```
-
-For detailed guidance, refer to `references/auto_import.md`.
+- Separate configuration from code — use config files, environment variables, or dataclasses
+- Make configuration explicit: no magic constants buried in source files
+- Use typed configuration objects (e.g., `@dataclass(frozen=True)`) to catch errors early
+- Support environment-specific overrides (dev/staging/prod) without code changes
 
 ## Directory Structure
 
+A clean project structure reflects its architecture:
+
 ```
 project/
-├── run/
-│   ├── pipeline/            # Main workflow scripts
-│   │   ├── training/        # Training pipelines
-│   │   ├── prepare_data/    # Data preparation pipelines
-│   │   └── analysis/        # Analysis pipelines
-│   └── conf/                # Hydra configuration files
-│       ├── training/        # Training configs
-│       ├── dataset/         # Dataset configs
-│       ├── model/           # Model configs
-│       ├── prepare_data/    # Data prep configs
-│       └── analysis/        # Analysis configs
+├── src/                    # Application source code
+│   ├── domain/             # Core logic, no external dependencies
+│   ├── application/        # Orchestration, use cases
+│   ├── infrastructure/     # External systems (DB, files, APIs)
+│   └── utils/              # Shared utilities
 │
-├── src/
-│   ├── data_module/         # Data processing module
-│   │   ├── dataset/         # Dataset implementations
-│   │   ├── augmentation/    # Data augmentation
-│   │   ├── collate_fn/      # Collate functions
-│   │   ├── compute_metrics/ # Metrics computation
-│   │   ├── prepare_data/    # Data preparation logic
-│   │   ├── data_func/       # Data utility functions
-│   │   └── utils.py         # Module-specific utilities
-│   │
-│   ├── model_module/        # Model implementations
-│   │   ├── brain_decoder/   # Brain decoder models
-│   │   └── model/           # Alternative model location
-│   │
-│   ├── trainer_module/      # Training logic
-│   ├── analysis_module/     # Analysis and evaluation
-│   ├── llm/                 # LLM-related code
-│   └── utils/               # Shared utilities
+├── tests/                  # Mirror src/ structure
+│   ├── unit/
+│   ├── integration/
+│   └── fixtures/
 │
-├── data/
-│   ├── raw/                 # Original, immutable data
-│   ├── processed/           # Cleaned, transformed data
-│   └── external/            # Third-party data
+├── config/                 # Configuration files
+├── scripts/                # One-off scripts and tooling
+├── data/                   # Data files (if applicable)
+│   ├── raw/                # Original, immutable inputs
+│   └── processed/          # Derived data
 │
-├── outputs/
-│   ├── logs/                # Training and evaluation logs
-│   ├── checkpoints/         # Model checkpoints
-│   ├── tables/              # Result tables
-│   └── figures/             # Plots and visualizations
-│
-├── pyproject.toml           # Project configuration
-├── uv.lock                  # Dependency lock file
-├── TODO.md                  # Task tracking
-├── README.md                # Project documentation
-└── .gitignore               # Git ignore rules
+├── pyproject.toml          # Project metadata and dependencies
+└── README.md
 ```
 
-For detailed directory structure with file descriptions, refer to `references/structure.md`.
+## Design Patterns
 
-## Module Organization
+### Plugin / Registry Pattern
 
-### Creating a New Dataset
-
-When adding a new dataset:
-
-1. Create file in `src/data_module/dataset/`
-2. Use `@register_dataset("name")` decorator
-3. Inherit from `torch.utils.data.Dataset`
-4. Implement `__init__`, `__len__`, `__getitem__`
+Use when you need to add implementations without modifying core code:
 
 ```python
-from torch.utils.data import Dataset
-from typing import Dict
-import torch
-from src.data_module.dataset import register_dataset
+REGISTRY: dict[str, type] = {}
 
-@register_dataset("custom")
-class CustomDataset(Dataset):
-    def __init__(self, data):
-        self.data = data
+def register(name: str):
+    def decorator(cls):
+        REGISTRY[name] = cls
+        return cls
+    return decorator
 
-    def __len__(self):
-        return len(self.data)
-
-    def __getitem__(self, i: int) -> Dict[str, torch.Tensor]:
-        return self.data[i]
+def create(name: str, **kwargs):
+    cls = REGISTRY.get(name)
+    if cls is None:
+        raise ValueError(f"Unknown component: {name}")
+    return cls(**kwargs)
 ```
 
-### Creating a New Model
+Good for: parsers, formatters, backends, strategies — any place where you want extensibility.
 
-**CRITICAL: Models use config-driven pattern**
+### Configuration-Driven Components
 
-When adding a new model:
-
-1. Create file in `src/model_module/model/` or appropriate module subdirectory
-2. Use `@register_model('ModelName')` decorator
-3. `__init__` accepts **ONLY** `cfg` parameter - all hyperparameters come from config
-4. `forward()` returns dict: `{"loss": loss, "labels": labels, "logits": logits}`
-5. Handle training vs inference modes using `self.training`
+Components receive a config object rather than individual parameters:
 
 ```python
-from src.model_module.brain_decoder import register_model
+@dataclass(frozen=True)
+class ComponentConfig:
+    param_a: int
+    param_b: str = "default"
 
-@register_model('MyModel')
-class MyModel(nn.Module):
-    def __init__(self, cfg):
-        super().__init__()
+class MyComponent:
+    def __init__(self, cfg: ComponentConfig):
         self.cfg = cfg
-        self.task = cfg.dataset.task
-
-        # ALL parameters from cfg
-        self.hidden_dim = cfg.model.hidden_dim
-        self.output_dim = cfg.dataset.target_size[cfg.dataset.task]
-
-    def forward(self, x, labels=None, **kwargs):
-        if self.training:
-            # Training logic
-            pass
-        else:
-            # Inference logic
-            pass
-
-        return {"loss": loss, "labels": labels, "logits": logits}
 ```
 
-### Adding Data Augmentation
+Benefits: configs are serializable, testable, and self-documenting.
 
-When adding augmentation:
+### Interface / Protocol Boundaries
 
-1. Create file in `src/data_module/augmentation/`
-2. Implement transformation function
-3. Register with factory if needed
+Define explicit interfaces between layers:
 
-## Code Style Guidelines
+```python
+from typing import Protocol
 
-For comprehensive style guidelines, refer to `references/code_style.md`.
+class DataStore(Protocol):
+    def get(self, key: str) -> dict: ...
+    def put(self, key: str, value: dict) -> None: ...
+```
 
-**Key principles:**
-- Always use type hints for function signatures
-- Follow import order: standard library → third-party → local
-- Module `__init__.py` files contain factory/registry logic
-- Model classes must be config-driven
+Concrete implementations can be swapped without changing calling code.
 
-## Configuration Management
+## Code Organization Guidelines
 
-The project uses Hydra for configuration management:
+### File Size
+- Keep files focused: 150–400 lines is a healthy range
+- If a file grows beyond 400 lines, consider splitting by responsibility
+- Avoid mega-files that mix unrelated concerns
 
-- Config files in `run/conf/` organize by module
-- Each stage (training, analysis) has its own config structure
-- Use YAML files for all configuration
+### Import Structure
+```python
+# Standard library
+import os
+from pathlib import Path
 
-## When Working on This Project
+# Third-party
+import numpy as np
 
-### Before Modifying Code
+# Local
+from src.domain import MyClass
+```
 
-1. Read the relevant module's factory/registry pattern
-2. Check existing implementations for consistency
-3. Follow the established directory structure
-4. Use registration decorators for new components
+### Module `__init__.py`
+- Expose the public API of each module explicitly
+- Don't use `__init__.py` to run logic at import time
+- Use `__all__` to document what's meant to be public
 
-### Adding New Features
+## When Starting a New Project
 
-1. Determine which module the feature belongs to
-2. Check if similar functionality exists
-3. Follow factory/registry pattern if creating new component types
-4. Add configuration files if needed
-5. Update documentation
+### Step 1: Identify the main layers
+What are the distinct concerns? (data ingestion, processing, storage, output)
 
-### Code Review Checklist
+### Step 2: Define module boundaries
+Which parts need to change independently? Group things that change together.
 
-- [ ] Uses factory/registry pattern appropriately
-- [ ] Follows module directory structure
-- [ ] Has proper type annotations
-- [ ] Imports are correctly ordered
-- [ ] Registration decorator is used
-- [ ] Configuration files are added if needed
+### Step 3: Choose config strategy
+How will settings be provided and overridden? Decide early — it affects every module.
 
-## Additional Resources
+### Step 4: Establish conventions
+Pick naming, import style, and directory structure before writing much code. Consistency matters more than any particular choice.
 
-### Reference Files
+### Step 5: Start with tests
+Define what "working" looks like before writing implementations.
 
-For detailed information, consult:
-- **`references/structure.md`** - Detailed directory structure with file descriptions
-- **`references/factory_pattern.md`** - Factory pattern in-depth explanation
-- **`references/registry_pattern.md`** - Registry pattern in-depth explanation
-- **`references/auto_import.md`** - Auto-import pattern in-depth explanation
-- **`references/code_style.md`** - Comprehensive code style guidelines
+## Architecture Review Checklist
 
-### Example Files
-
-Working examples in `examples/`:
-- **`examples/custom_dataset.py`** - Custom dataset implementation
-- **`examples/custom_model.py`** - Custom model implementation
-- **`examples/augmentation_example.py`** - Data augmentation example
-- **`examples/config_example.yaml`** - Configuration file example
-- **`examples/pipeline_example.sh`** - Pipeline script example
+- [ ] Is each module's responsibility clear and singular?
+- [ ] Can each layer be tested independently?
+- [ ] Is configuration explicit and typed?
+- [ ] Do dependencies point inward (domain ← application ← infrastructure)?
+- [ ] Are interfaces between layers defined (not just implicit)?
+- [ ] Is the directory structure self-documenting?
+- [ ] Are there no circular imports?
