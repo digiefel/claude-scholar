@@ -62,51 +62,43 @@
 
 ## Core Workflows
 
-### Research Lifecycle (7 Stages)
+### Research Lifecycle (5 Stages)
 
 ```
-Ideation → ML Development → Experiment Analysis → Paper Writing → Self-Review → Submission/Rebuttal → Post-Acceptance
+Ideation → Development → Paper Writing → Self-Review → Submission/Rebuttal
 ```
 
-| Stage | Core Tools | Commands |
-|-------|-----------|----------|
-| 1. Research Ideation | `research-ideation` skill + `literature-reviewer` agent + Zotero MCP | `/research-init`, `/zotero-review`, `/zotero-notes` |
-| 2. ML Project Dev | `architecture-design` skill + `code-reviewer` agent | `/plan`, `/commit`, `/tdd` |
-| 3. Experiment Analysis | `results-analysis` skill + `data-analyst` agent | `/analyze-results` |
-| 4. Paper Writing | `ml-paper-writing` skill + `paper-miner` agent | - |
-| 5. Self-Review | `paper-self-review` skill | - |
-| 6. Submission & Rebuttal | `review-response` skill + `rebuttal-writer` agent | `/rebuttal` |
-| 7. Post-Acceptance | `post-acceptance` skill | `/presentation`, `/poster`, `/promote` |
+| Stage | Core Tools |
+|-------|-----------|
+| 1. Research Ideation | `research-ideation` skill + `literature-reviewer` agent + Zotero MCP |
+| 2. Project Dev | `architecture-design` skill + `code-reviewer` agent |
+| 3. Paper Writing | `paper-writing` skill + `paper-miner` agent |
+| 4. Self-Review | `paper-self-review` skill |
+| 5. Submission & Rebuttal | `review-response` skill + `rebuttal-writer` agent |
 
 ### Supporting Workflows
 
 - **Automation**: 5 Hooks auto-trigger at session lifecycle stages (skill evaluation, env init, work summary, security check)
 - **Zotero Integration**: Automated paper import, collection management, full-text reading, and citation export via Zotero MCP
-- **Knowledge Extraction**: `paper-miner` and `kaggle-miner` agents continuously extract knowledge from papers and competitions
+- **Knowledge Extraction**: `paper-miner` agent continuously extracts writing knowledge from papers
 - **Skill Evolution**: `skill-development` → `skill-quality-reviewer` → `skill-improver` three-step improvement loop
 
 ---
 
-## Skills Directory (32 skills)
+## Skills Directory (27 skills)
 
-### 🔬 Research & Analysis (4 skills)
+### 🔬 Research & Analysis (2 skills)
 
-- **research-ideation**: Research startup (5W1H, literature review, gap analysis, research question formulation, Zotero integration)
-- **results-analysis**: Experiment result analysis (statistical tests, visualization, ablation studies)
+- **research-ideation**: Research startup (5W1H, literature review, gap analysis, research question formulation)
 - **citation-verification**: Citation verification (multi-layer: format→API→info→content)
-- **daily-paper-generator**: Daily paper generator for research tracking
 
-### 📝 Paper Writing & Publication (7 skills)
+### 📝 Paper Writing & Publication (5 skills)
 
-- **ml-paper-writing**: ML/AI paper writing assistance
-  - Top conferences: NeurIPS, ICML, ICLR, ACL, AAAI, COLM
-  - Journals: Nature, Science, Cell, PNAS
-- **writing-anti-ai**: Remove AI writing patterns, bilingual (Chinese/English)
+- **paper-writing**: Academic and technical paper writing assistance (structure, logic, citations)
+- **writing-anti-ai**: Remove AI writing patterns
 - **paper-self-review**: Paper self-review (6-item quality checklist)
 - **review-response**: Systematic rebuttal writing
-- **post-acceptance**: Post-acceptance processing (presentation, poster, promotion)
 - **doc-coauthoring**: Document co-authoring workflow
-- **latex-conference-template-organizer**: LaTeX conference template organization
 
 ### 💻 Development Workflows (6 skills)
 
@@ -114,26 +106,23 @@ Ideation → ML Development → Experiment Analysis → Paper Writing → Self-R
 - **git-workflow**: Git workflow standards (Conventional Commits, branch management)
 - **code-review-excellence**: Code review best practices
 - **bug-detective**: Debugging and error investigation (Python, Bash/Zsh, JavaScript/TypeScript)
-- **architecture-design**: ML project code architecture and design patterns
+- **architecture-design**: Software architecture and code organization design patterns
 - **verification-loop**: Verification loops and testing
 
-### 🔌 Plugin Development (8 skills)
+### 🔌 Plugin Development (6 skills)
 
 - **skill-development**: Skill development guide
 - **skill-improver**: Skill improvement tool
 - **skill-quality-reviewer**: Skill quality review
-- **command-development**: Slash command development
-- **command-name**: Plugin structure guide
 - **agent-identifier**: Agent development configuration
 - **hook-development**: Hook development and event handling
 - **mcp-integration**: MCP server integration
 
-### 🧪 Tools & Utilities (4 skills)
+### 🧪 Tools & Utilities (3 skills)
 
 - **planning-with-files**: Planning and progress tracking with Markdown files
 - **uv-package-manager**: uv package manager usage
 - **webapp-testing**: Local web application testing
-- **kaggle-learner**: Kaggle competition learning
 
 ### 🎨 Web Design (3 skills)
 
@@ -143,75 +132,7 @@ Ideation → ML Development → Experiment Analysis → Paper Writing → Self-R
 
 ---
 
-## Commands (50+ Commands)
-
-### Research Workflow Commands
-
-| Command | Function |
-|---------|----------|
-| `/research-init` | Start Zotero-integrated research ideation workflow (auto-create collections, import papers, full-text analysis) |
-| `/zotero-review` | Read papers from Zotero collection, generate structured literature review |
-| `/zotero-notes` | Batch read Zotero papers, generate structured reading notes |
-| `/analyze-results` | Analyze experiment results (statistical tests, visualization, ablation) |
-| `/rebuttal` | Generate systematic rebuttal document |
-| `/presentation` | Create conference presentation outline |
-| `/poster` | Generate academic poster design |
-| `/promote` | Generate promotion content (Twitter, LinkedIn, blog) |
-
-### Development Workflow Commands
-
-| Command | Function |
-|---------|----------|
-| `/plan` | Create implementation plan |
-| `/commit` | Commit code (following Conventional Commits) |
-| `/update-github` | Commit and push to GitHub |
-| `/update-readme` | Update README documentation |
-| `/code-review` | Code review |
-| `/tdd` | Test-driven development workflow |
-| `/build-fix` | Fix build errors |
-| `/verify` | Verify changes |
-| `/checkpoint` | Create checkpoint |
-| `/refactor-clean` | Refactor and clean up |
-| `/learn` | Extract reusable patterns from code |
-| `/create_project` | Create new project |
-| `/setup-pm` | Configure package manager (uv/pnpm) |
-| `/update-memory` | Check and update CLAUDE.md memory |
-
-### SuperClaude Command Suite (`/sc`)
-
-- `/sc agent` - Agent dispatch
-- `/sc analyze` - Code analysis
-- `/sc brainstorm` - Interactive brainstorming
-- `/sc build` - Build project
-- `/sc business-panel` - Business panel
-- `/sc cleanup` - Code cleanup
-- `/sc design` - System design
-- `/sc document` - Generate documentation
-- `/sc estimate` - Effort estimation
-- `/sc explain` - Code explanation
-- `/sc git` - Git operations
-- `/sc help` - Help info
-- `/sc implement` - Feature implementation
-- `/sc improve` - Code improvement
-- `/sc index` - Project index
-- `/sc index-repo` - Repository index
-- `/sc load` - Load context
-- `/sc pm` - Package manager operations
-- `/sc recommend` - Recommend solutions
-- `/sc reflect` - Reflection summary
-- `/sc research` - Technical research
-- `/sc save` - Save context
-- `/sc select-tool` - Tool selection
-- `/sc spawn` - Spawn subtasks
-- `/sc spec-panel` - Spec panel
-- `/sc task` - Task management
-- `/sc test` - Test execution
-- `/sc troubleshoot` - Issue troubleshooting
-- `/sc workflow` - Workflow management
-
----
-
-## Agents (14 Agents)
+## Agents (13 Agents)
 
 ### Research Workflow Agents
 
@@ -229,7 +150,6 @@ Ideation → ML Development → Experiment Analysis → Paper Writing → Self-R
 - **dev-planner** - Development task planning and breakdown
 - **refactor-cleaner** - Code refactoring and cleanup
 - **tdd-guide** - TDD workflow guidance
-- **kaggle-miner** - Extract engineering practices from Kaggle solutions
 
 ### Design & Content Agents
 
