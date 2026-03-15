@@ -105,16 +105,13 @@ research-ideation (Research initiation)
     ↓
 Experiment execution (completed by user)
     ↓
-results-analysis (Results analysis)
-    ↓
-ml-paper-writing (Paper writing)
+paper-writing (Paper writing)
 ```
 
 ### Data Flow
 
 - **research-ideation output** → Guides experiment design and method selection
-- **Experimental results** → results-analysis for statistical analysis
-- **Analysis results** → Related Work and Methods sections of ml-paper-writing
+- **Experimental results** → Related Work and Methods sections of paper-writing
 
 ### Zotero Integration
 
