@@ -4,31 +4,20 @@
       "source": "github",
       "repo": "anthropics/claude-plugins-official"
     },
-    "installLocation": "/Users/gaoruizhang/.claude/plugins/marketplaces/claude-plugins-official",
-    "lastUpdated": "2026-01-27T14:18:29.764Z"
-  },
-  "superpowers-marketplace": {
-    "source": {
-      "source": "github",
-      "repo": "obra/superpowers-marketplace"
-    },
-    "installLocation": "/Users/gaoruizhang/.claude/plugins/marketplaces/superpowers-marketplace",
-    "lastUpdated": "2026-01-19T03:20:38.167Z"
+    "lastUpdated": "2026-03-16T14:08:00.608Z"
   },
   "anthropic-agent-skills": {
     "source": {
       "source": "github",
       "repo": "anthropics/skills"
     },
-    "installLocation": "/Users/gaoruizhang/.claude/plugins/marketplaces/anthropic-agent-skills",
-    "lastUpdated": "2026-01-22T02:23:26.704Z"
+    "lastUpdated": "2026-03-16T14:08:04.414Z"
   },
   "ai-research-skills": {
     "source": {
       "source": "github",
       "repo": "zechenzhangAGI/AI-research-SKILLs"
     },
-    "installLocation": "/Users/gaoruizhang/.claude/plugins/marketplaces/ai-research-skills",
-    "lastUpdated": "2026-01-25T14:58:37.422Z"
+    "lastUpdated": "2026-03-16T14:08:08.546Z"
   }
 }

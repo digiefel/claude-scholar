@@ -145,17 +145,3 @@ Discuss 5W1H questions with advisors and colleagues to get multi-perspective fee
 
 Record the 5W1H analysis results as the basis for research proposals.
 
-## Integration with superpowers:brainstorming
-
-You can invoke the `superpowers:brainstorming` skill for interactive brainstorming:
-
-**Use cases**:
-- Need to quickly generate multiple research ideas
-- Need to evaluate the feasibility of ideas
-- Need team-collaborative discussion
-
-**Integration approach**:
-1. Use the 5W1H framework to preliminarily conceptualize ideas
-2. Call superpowers:brainstorming for in-depth exploration
-3. Organize brainstorming results back into the 5W1H framework
-4. Form a structured research proposal

@@ -1,10 +1,10 @@
 ---
 name: paper-miner
-description: Use this agent when the user provides a research paper (PDF/DOCX/arXiv link) or asks to "learn from NeurIPS papers", "extract writing patterns from this paper", "analyze paper structure", "study academic writing from [venue] papers", "find transition phrases in papers". Extracts writing knowledge (structure, techniques, submission requirements, rebuttal strategies) from research papers and updates the ml-paper-writing skill knowledge base. Examples:
+description: Use this agent when the user provides a research paper (PDF/DOCX/arXiv link) or asks to "learn from this paper", "extract writing patterns from this paper", "analyze paper structure", "study academic writing from [venue] papers", "find transition phrases in papers". Extracts writing knowledge (structure, techniques, submission requirements, rebuttal strategies) from research papers and updates the paper-writing skill knowledge base. Examples:
 
 <example>
 Context: User wants to extract writing knowledge from a specific paper
-user: "Learn writing techniques from this NeurIPS paper: path/to/paper.pdf"
+user: "Learn writing techniques from this Nature paper: path/to/paper.pdf"
 assistant: "I'll dispatch the paper-miner agent to analyze the paper and extract writing knowledge for the scientific-writing skill."
 <commentary>
 The paper-miner agent specializes in extracting and categorizing writing knowledge from research papers into the scientific-writing skill's knowledge base.
@@ -47,12 +47,12 @@ You are the Academic Writing Knowledge Miner, specializing in extracting actiona
 
 **Your Core Responsibilities:**
 1. Extract writing knowledge from papers (structure patterns, writing techniques, venue requirements, rebuttal strategies)
-2. Categorize knowledge into 4 types for the ml-paper-writing skill:
+2. Categorize knowledge into 4 types for the paper-writing skill:
    - `structure.md` → Paper organization, IMRaD section patterns, transitions
    - `writing-techniques.md` → Sentence patterns, transition phrases, clarity techniques
-   - `submission-guides.md` → Venue-specific requirements (NeurIPS, ICML, ICLR, ACL, AAAI, COLM)
+   - `submission-guides.md` → Venue-specific requirements (page limits, required sections, formatting, citation style)
    - `review-response.md` → Rebuttal strategies, addressing reviewer comments
-3. Update knowledge files at: `/Users/gaoruizhang/.claude/skills/ml-paper-writing/references/knowledge/`
+3. Update knowledge files at: `~/.claude/skills/paper-writing/references/knowledge/`
 4. Maintain consistent format with source attribution
 
 **Analysis Process:**
@@ -149,7 +149,7 @@ After processing each paper, report:
 
 [Most valuable writing insights - 2-3 bullet points]
 
-**Knowledge files updated at:** /Users/gaoruizhang/.claude/skills/scientific-writing/references/knowledge/
+**Knowledge files updated at:** ~/.claude/skills/paper-writing/references/knowledge/
 ```
 
 **Edge Cases:**

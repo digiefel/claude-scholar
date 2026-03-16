@@ -75,7 +75,7 @@ choose_install_target() {
 # ============================================================
 # Claude Code install
 # ============================================================
-CLAUDE_COMPONENTS=(skills commands agents rules hooks plugins utils scripts CLAUDE.md)
+CLAUDE_COMPONENTS=(skills commands agents rules hooks plugins utils scripts CLAUDE.md AGENTS.md)
 
 install_claude() {
   echo ""
@@ -94,31 +94,64 @@ install_claude() {
   info "Claude Code install complete. Restart Claude Code CLI to activate."
 }
 
+# Symlink a single file: create parent dirs, back up conflicts, replace stale links
+link_file() {
+  local src="$1"
+  local dst="$2"
+
+  mkdir -p "$(dirname "$dst")"
+
+  # Already correct — skip
+  if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
+    return
+  fi
+
+  # Real file/dir exists — back it up
+  if [ -e "$dst" ] && [ ! -L "$dst" ]; then
+    mv "$dst" "${dst}.bak"
+    warn "Backed up: $(basename "$dst") → $(basename "$dst").bak"
+  fi
+
+  # Stale symlink — remove
+  [ -L "$dst" ] && rm "$dst"
+
+  ln -s "$src" "$dst"
+}
+
+# Recursively symlink all files under src/ into dst/, creating dirs as needed
+link_tree() {
+  local src="$1"
+  local dst="$2"
+  local count=0
+
+  while IFS= read -r -d '' file; do
+    local rel="${file#"$src"/}"
+    link_file "$file" "$dst/$rel"
+    count=$((count + 1))
+  done < <(find "$src" -type f -print0)
+
+  echo "$count"
+}
+
 link_components() {
+  local total=0
   for comp in "${CLAUDE_COMPONENTS[@]}"; do
     local src="$SRC_DIR/$comp"
-    local dst="$CLAUDE_DIR/$comp"
 
     [ -e "$src" ] || { warn "Skipping $comp (not found in repo)."; continue; }
 
-    # Already a correct symlink — nothing to do
-    if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
-      info "Already linked: $comp"
-      continue
+    if [ -f "$src" ]; then
+      link_file "$src" "$CLAUDE_DIR/$comp"
+      info "Linked file: $comp"
+      total=$((total + 1))
+    elif [ -d "$src" ]; then
+      local n
+      n=$(link_tree "$src" "$CLAUDE_DIR/$comp")
+      info "Linked dir:  $comp/ ($n files)"
+      total=$((total + n))
     fi
-
-    # Existing real file or directory — back it up
-    if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-      mv "$dst" "${dst}.bak"
-      warn "Backed up existing $comp → ${comp}.bak"
-    fi
-
-    # Stale symlink — remove it
-    [ -L "$dst" ] && rm "$dst"
-
-    ln -s "$src" "$dst"
-    info "Linked: $comp → $src"
   done
+  info "Total: $total symlinks created/verified"
 }
 
 merge_settings() {

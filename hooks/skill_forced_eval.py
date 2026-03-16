@@ -68,7 +68,7 @@ def categorize_skills(skills):
         "Development": re.compile(
             r"coding|git|code-review|bug|architecture|verification|tdd|"
             r"uv-package|webapp-testing|kaggle|driven-development|"
-            r"development-branch|planning|dispatching|executing|using-superpowers"
+            r"development-branch|planning|dispatching|executing"
         ),
         "Plugin Dev": re.compile(
             r"skill-|command-|hook-|mcp-|agent-identifier|command-name"
@@ -98,7 +98,7 @@ def categorize_skills(skills):
 KEYWORD_SKILL_MAP = [
     (re.compile(r"\b(git|github|commit|push|pull|merge|rebase|branch|tag|stash|cherry.?pick|develop|master|main)\b", re.I), ["git-workflow"]),
     (re.compile(r"\b(debug|bug|error|broken|failing|traceback|exception)\b", re.I), ["bug-detective"]),
-    (re.compile(r"\b(tdd|test.?driven)\b", re.I), ["superpowers:test-driven-development"]),
+    (re.compile(r"\b(tdd|test.?driven)\b", re.I), ["verification-loop"]),
     (re.compile(r"\b(code.?review|review code)\b", re.I), ["code-review-excellence"]),
     (re.compile(r"\b(paper|manuscript|draft)\b", re.I), ["ml-paper-writing"]),
     (re.compile(r"\b(research|idea|brainstorm)\b", re.I), ["research-ideation"]),

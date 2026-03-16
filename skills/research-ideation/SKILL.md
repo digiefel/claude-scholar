@@ -20,8 +20,6 @@ Systematically brainstorm research ideas using the 5W1H framework:
 - **Where**: Application scenarios and domains
 - **How**: Preliminary research methodology ideas
 
-**Integration with superpowers:brainstorming**: Can invoke the superpowers:brainstorming skill for interactive brainstorming to help rapidly generate and evaluate research ideas.
-
 ### 2. Literature Review
 
 Systematically search, analyze, and synthesize related literature:
@@ -141,7 +139,6 @@ Detailed methodology guides, loaded on demand:
 - **`references/5w1h-framework.md`** - 5W1H Framework Guide
   - What, Why, Who, When, Where, How — six dimensions
   - Systematic approach to brainstorming research ideas
-  - Integration with superpowers:brainstorming
   - Usage examples and best practices
 
 - **`references/literature-search-strategies.md`** - Literature Search Strategies
