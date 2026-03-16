@@ -1,0 +1,92 @@
+# Codex Scholar - Main Configuration
+# Run: bash scripts/setup.sh to configure interactively
+
+# ============================================================
+# Model & Provider (configured by setup.sh)
+# ============================================================
+model = "__MODEL__"
+model_provider = "__PROVIDER_NAME__"
+model_reasoning_effort = "medium"
+disable_response_storage = true
+
+[model_providers.__PROVIDER_NAME__]
+name = "__PROVIDER_NAME__"
+base_url = "__PROVIDER_URL__"
+wire_api = "responses"
+requires_openai_auth = true
+
+# ============================================================
+# Sandbox & Instructions
+# ============================================================
+sandbox_mode = "workspace-write"
+
+# ============================================================
+# Features
+# ============================================================
+[features]
+multi_agent = true
+memories = true
+skill_approval = true
+
+# ============================================================
+# MCP Servers (optional, enable after installing zotero-mcp)
+# ============================================================
+[mcp_servers.zotero]
+command = "zotero-mcp"
+args = ["serve"]
+enabled = false
+[mcp_servers.zotero.env]
+ZOTERO_API_KEY = "your-api-key"
+ZOTERO_LIBRARY_ID = "your-library-id"
+ZOTERO_LIBRARY_TYPE = "user"
+UNPAYWALL_EMAIL = "your-email@example.com"
+UNSAFE_OPERATIONS = "all"
+
+# ============================================================
+# Agents
+# ============================================================
+
+# --- Research Workflow ---
+
+[agents.literature-reviewer]
+description = "Literature search, classification, and trend analysis with Zotero MCP integration"
+
+[agents.data-analyst]
+description = "Automated data analysis and visualization"
+
+[agents.rebuttal-writer]
+description = "Systematic rebuttal writing with tone optimization"
+
+[agents.paper-miner]
+description = "Extract writing knowledge from successful papers"
+
+# --- Development Workflow ---
+
+[agents.architect]
+description = "ML project architecture specialist for code structure and design patterns"
+
+[agents.bug-analyzer]
+description = "Deep code execution flow analysis and root cause investigation"
+
+[agents.build-error-resolver]
+description = "Fix build and type errors with minimal diffs"
+
+[agents.code-reviewer]
+description = "Expert code review for quality, security, and maintainability"
+
+[agents.dev-planner]
+description = "Implementation planning and task breakdown"
+
+[agents.refactor-cleaner]
+description = "Dead code cleanup and consolidation specialist"
+
+[agents.tdd-guide]
+description = "Test-driven development workflow guidance"
+
+# --- Design & Content ---
+
+[agents.ui-sketcher]
+description = "UI blueprint design and interaction specification"
+
+[agents.story-generator]
+description = "User story and narrative generation"
