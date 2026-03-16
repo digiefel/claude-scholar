@@ -1,5 +1,5 @@
 {
-  "description": "Oh My Claude automated workflow hooks - cross-platform JavaScript implementation",
+  "description": "Claude Scholar automated workflow hooks — Python implementation",
   "hooks": {
     "PreToolUse": [
       {
@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/security-guard.js",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/security_guard.py",
             "timeout": 5
           }
         ]
@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session-summary.js",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/session_summary.py",
             "timeout": 15
           }
         ]
@@ -31,7 +31,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session-start.js",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/session_start.py",
             "timeout": 10
           }
         ]
@@ -43,7 +43,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/stop-summary.js",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/stop_summary.py",
             "timeout": 10
           }
         ]
@@ -55,7 +55,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/skill-forced-eval.js",
+            "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/skill_forced_eval.py",
             "timeout": 10
           }
         ]
