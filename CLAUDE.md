@@ -8,27 +8,14 @@
 
 ---
 
-## User Background
+## Tech Stack & Git Standards
 
-### Academic Background
-- **Degree**: Computer Science PhD
-- **Target Venues**:
-  - Top conferences: NeurIPS, ICML, ICLR, KDD
-  - High-impact journals: Nature, Science, Cell, PNAS
-- **Focus**: Academic writing quality, logical coherence, natural expression
-
-### Tech Stack Preferences
-
-**Python Ecosystem**:
-- **Package manager**: `uv` - modern Python package manager
-- **Config management**: Hydra + OmegaConf (config composition, overrides, type safety)
-- **Model training**: Transformers Trainer
+**Python**: use `uv` as the package manager.
 
 **Git Standards**:
 - **Commit convention**: Conventional Commits
   ```
   Type: feat, fix, docs, style, refactor, perf, test, chore
-  Scope: data, model, config, trainer, utils, workflow
   ```
 - **Branch strategy**: master/develop/feature/bugfix/hotfix/release
 - **Merge strategy**: rebase for feature branch sync, merge --no-ff for integration
@@ -39,7 +26,7 @@
 
 ### Language Settings
 - **Respond in English to the user**
-- Keep technical terms in English (e.g. NeurIPS, RLHF, TDD, Git)
+- Keep technical terms in English (e.g. TDD, Git, DOI, LaTeX)
 - Do not translate proper nouns or names
 
 ### Working Directory Standards
@@ -85,31 +72,26 @@ Ideation → Development → Paper Writing → Self-Review → Submission/Rebutt
 
 ---
 
-## Skills Directory (27 skills)
+## Skills Directory
 
-### 🔬 Research & Analysis (2 skills)
+### Research & Writing
 
 - **research-ideation**: Research startup (5W1H, literature review, gap analysis, research question formulation)
 - **citation-verification**: Citation verification (multi-layer: format→API→info→content)
-
-### 📝 Paper Writing & Publication (5 skills)
-
 - **paper-writing**: Academic and technical paper writing assistance (structure, logic, citations)
 - **writing-anti-ai**: Remove AI writing patterns
 - **paper-self-review**: Paper self-review (6-item quality checklist)
 - **review-response**: Systematic rebuttal writing
 - **doc-coauthoring**: Document co-authoring workflow
 
-### 💻 Development Workflows (6 skills)
+### Development
 
-- **daily-coding**: Daily coding checklist (minimal mode, auto-triggered)
 - **git-workflow**: Git workflow standards (Conventional Commits, branch management)
-- **code-review-excellence**: Code review best practices
-- **bug-detective**: Debugging and error investigation (Python, Bash/Zsh, JavaScript/TypeScript)
-- **architecture-design**: Software architecture and code organization design patterns
-- **verification-loop**: Verification loops and testing
+- **bug-detective**: Debugging and error investigation
+- **uv-package-manager**: uv package manager usage
+- **planning-with-files**: Planning and progress tracking with Markdown files
 
-### 🔌 Plugin Development (6 skills)
+### Plugin Development
 
 - **skill-development**: Skill development guide
 - **skill-improver**: Skill improvement tool
@@ -118,43 +100,24 @@ Ideation → Development → Paper Writing → Self-Review → Submission/Rebutt
 - **hook-development**: Hook development and event handling
 - **mcp-integration**: MCP server integration
 
-### 🧪 Tools & Utilities (3 skills)
-
-- **planning-with-files**: Planning and progress tracking with Markdown files
-- **uv-package-manager**: uv package manager usage
-- **webapp-testing**: Local web application testing
-
-### 🎨 Web Design (3 skills)
-
-- **frontend-design**: Create distinctive, production-grade frontend interfaces
-- **ui-ux-pro-max**: UI/UX design intelligence (50+ styles, 97 palettes, 57 font pairings, 9 stacks)
-- **web-design-reviewer**: Visual website inspection for responsive, accessibility, and layout issues
-
 ---
 
-## Agents (13 Agents)
+## Agents
 
-### Research Workflow Agents
+### Research Workflow
 
-- **literature-reviewer** - Literature search, classification, and trend analysis (Zotero MCP integration: auto-import, full-text reading)
-- **data-analyst** - Automated data analysis and visualization
+- **literature-reviewer** - Literature search, classification, and trend analysis (Zotero MCP integration)
+- **data-analyst** - Data analysis and visualization
 - **rebuttal-writer** - Systematic rebuttal writing with tone optimization
 - **paper-miner** - Extract writing knowledge from successful papers
 
-### Development Workflow Agents
+### Development Workflow
 
 - **architect** - System architecture design
 - **build-error-resolver** - Build error fixing
 - **bug-analyzer** - Deep code execution flow analysis and root cause investigation
 - **code-reviewer** - Code review
-- **dev-planner** - Development task planning and breakdown
 - **refactor-cleaner** - Code refactoring and cleanup
-- **tdd-guide** - TDD workflow guidance
-
-### Design & Content Agents
-
-- **ui-sketcher** - UI blueprint design and interaction specifications
-- **story-generator** - User story and requirement generation
 
 ---
 
@@ -178,10 +141,10 @@ Global constraints, always active:
 
 | Rule File | Purpose |
 |-----------|---------|
-| `coding-style.md` | ML project code standards: 200-400 line files, immutable config, type hints, Factory & Registry patterns |
+| `coding-style.md` | Code standards: file size, type hints, patterns |
 | `agents.md` | Agent orchestration: auto-invocation timing, parallel execution, multi-perspective analysis |
 | `security.md` | Security standards: key management, sensitive file protection, pre-commit security checks |
-| `experiment-reproducibility.md` | Experiment reproducibility: random seeds, config recording, environment recording, checkpoint management |
+| `experiment-reproducibility.md` | Experiment reproducibility: config recording, environment recording, result management |
 
 ---
 
@@ -194,7 +157,7 @@ Global constraints, always active:
 
 ### Tags Naming
 - Format: Title Case
-- Abbreviations all caps: TDD, RLHF, NeurIPS, ICLR
+- Abbreviations all caps: TDD, DOI, API, Git
 - Example: `[Writing, Research, Academic]`
 
 ### Description Standards
