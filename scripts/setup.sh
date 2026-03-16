@@ -19,7 +19,7 @@ red()    { printf "\033[31m%s\033[0m" "$1"; }
 yellow() { printf "\033[33m%s\033[0m" "$1"; }
 bold()   { printf "\033[1m%s\033[0m" "$1"; }
 info()   { echo -e "\033[1;34m[INFO]\033[0m $*"; }
-warn()   { echo -e "\033[1;33m[WARN]\033[0m $*"; }
+warn()   { echo -e "\033[1;33m[WARN]\033[0m $*" >&2; }
 error()  { echo -e "\033[1;31m[ERROR]\033[0m $*"; exit 1; }
 
 # ============================================================
@@ -75,7 +75,7 @@ choose_install_target() {
 # ============================================================
 # Claude Code install
 # ============================================================
-CLAUDE_COMPONENTS=(skills commands agents rules hooks plugins utils scripts CLAUDE.md AGENTS.md)
+CLAUDE_COMPONENTS=(skills commands agents rules hooks utils scripts CLAUDE.md AGENTS.md)
 
 install_claude() {
   echo ""
@@ -118,21 +118,6 @@ link_file() {
   ln -s "$src" "$dst"
 }
 
-# Recursively symlink all files under src/ into dst/, creating dirs as needed
-link_tree() {
-  local src="$1"
-  local dst="$2"
-  local count=0
-
-  while IFS= read -r -d '' file; do
-    local rel="${file#"$src"/}"
-    link_file "$file" "$dst/$rel"
-    count=$((count + 1))
-  done < <(find "$src" -type f -print0)
-
-  echo "$count"
-}
-
 link_components() {
   local total=0
   for comp in "${CLAUDE_COMPONENTS[@]}"; do
@@ -141,13 +126,23 @@ link_components() {
     [ -e "$src" ] || { warn "Skipping $comp (not found in repo)."; continue; }
 
     if [ -f "$src" ]; then
+      # Top-level files (e.g. CLAUDE.md, AGENTS.md)
       link_file "$src" "$CLAUDE_DIR/$comp"
       info "Linked file: $comp"
       total=$((total + 1))
     elif [ -d "$src" ]; then
-      local n
-      n=$(link_tree "$src" "$CLAUDE_DIR/$comp")
-      info "Linked dir:  $comp/ ($n files)"
+      # Symlink each immediate child into ~/.claude/<comp>/
+      # This preserves room for skills/agents from other repos alongside ours
+      mkdir -p "$CLAUDE_DIR/$comp"
+      local n=0
+      for item in "$src"/*; do
+        [ -e "$item" ] || continue
+        local name
+        name="$(basename "$item")"
+        link_file "$item" "$CLAUDE_DIR/$comp/$name"
+        n=$((n + 1))
+      done
+      info "Linked dir:  $comp/ ($n items)"
       total=$((total + n))
     fi
   done
